@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Validator;
 class AttendanceController extends Controller
 {
     public function  TakenPermitClass($email){
-          $getpermit=SemesterRule::where('email',$email)->get();
+          $getpermit=SemesterRule::select('session','batch','semester','email')->distinct()->where('email',$email)->get();
        //  $getpermit =DB::table('semester_rules')->distinct('tyrbatch2')->get();
            return response()->json([
                'success'=> true,
