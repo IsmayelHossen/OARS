@@ -24,6 +24,7 @@ class CreateAttendacesTable extends Migration
             $table->string('semester')->nullable();
             $table->text('TakenDate')->nullable();
             $table->string('it')->nullable();
+            $table->string('successCode')->nullable();
         });
     }
 

@@ -1,10 +1,11 @@
 import React from 'react';
 import {Form,Card,Button } from 'react-bootstrap';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 class CourseCode extends React.Component{
     state={
         coursecode:'',
-        modal:false,
+        cmodal:true,
     };
 
     changeInput=(e)=>{
@@ -13,25 +14,32 @@ class CourseCode extends React.Component{
     }
     FormSubmit=(e)=>{
         e.preventDefault();
-        alert(this.state.coursecode);
+        if(this.state.coursecode){
+        toast('Course Code Taken Successfully');
+      // this.customeModal();
+       $('#exampleModal').modal('hide');
+        }
+        else{
+            toast('Please select course code!');
+        }
         this.props.onCompleteCourseCode(this.state.coursecode);
         this.setState({ modal:true,  });
 
     }
+
     render(){
+
     return (
       <>
+        <ToastContainer/>
       <div style={{textAlign:'right'}}>
-      <button type="button" class=" btn btn-primary btn-sm " data-toggle="modal" data-target="#exampleModal">
+      <button type="button" class=" btn btn-success"   style={{marginRight:"5px"}} data-toggle="modal" data-target="#exampleModal">
   Course Code
 </button>
 </div>
 
 
-
-
-
-<div class="modal fade" id="exampleModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade"   id="exampleModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -44,7 +52,7 @@ class CourseCode extends React.Component{
           {console.log('kiii',this.props.coursecodedata)}
           <form onSubmit={this.FormSubmit}>
                <div class="form-group">
-                            <label for="exampleFormControlSelect1">Register as </label>
+
                             <select class="form-control" id="exampleFormControlSelect1" name="coursecode"
                                 onChange={(e) => this.changeInput(e)}
                                >
@@ -69,6 +77,8 @@ class CourseCode extends React.Component{
     </div>
   </div>
 </div>
+
+
 </>
     );
   }

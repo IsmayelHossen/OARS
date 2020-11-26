@@ -17,4 +17,5 @@ class Attendace extends Model
         'semester',
         'TakenDate',
     ];
+
 }

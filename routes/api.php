@@ -30,6 +30,11 @@ Route::post('register', [LoginRegController::class, 'register']);
 
 //student all api
 Route::apiResource('Student', StudentController::class);
+Route::get('AttendanceResultInfo1/{email}',[StudentController::class,'AttendanceResultInfo1']);
+Route::get('StudentSemResultInfo1/{it}/{semester}',[StudentController::class,'StudentSemResultInfo1']);
+Route::get('IndividualAttendResult1/{it}/{ccode}',[StudentController::class,'IndividualAttendResult1']);
+Route::get('TeacherInformation1/{temail}',[StudentController::class,'TeacherInformation1']);
+
 // Route::group(['middleware' => 'auth:api'], function () {
 //     Route::apiResource('Student', StudentController::class);
 // });
@@ -40,9 +45,26 @@ Route::apiResource('Teacher', TeacherController::class);
 // Route::get('semesterrule/{email}/{batch}',[AttendanceController::class,'TakenPermitClass']);
 Route::get('semesterrule/{email}',[AttendanceController::class,'TakenPermitClass']);
 Route::get('semesterStudent/{session}',[AttendanceController::class,'SessionStudent']);
-Route::post('saveattendence/{teacheremail}/{session}/{Coursecode}',[AttendanceController::class,'SaveAttendence']);
+Route::post('saveattendence/{teacheremail}/{session}/{Coursecode}/{Usemester}',[AttendanceController::class,'SaveAttendence']);
 Route::get('getsemesterinfo/{session}/{temail}',[AttendanceController::class,'SemesterInfo']);
+Route::get('gettotalclass/{ccode}/{temail}',[AttendanceController::class,'GetAllClass']);
+Route::get('gettotalclass/{ccode}/{temail}',[AttendanceController::class,'GetAllClass']);
+Route::delete('deleteSpecificAttendance/{ccode}/{successCode}/{temail}',[AttendanceController::class,'SpecificAttendanceDel']);
+Route::get('ViewSpecificAttendance/{ccode}/{successCode}/{temail}',[AttendanceController::class,'ViewSpecificAttendance']);
+Route::get('GetAttendanceForUpdate/{ccode}/{successCode}/{temail}',[AttendanceController::class,'GetAttendanceForUpdate']);
+Route::put('AttendanceUpdate/{ccode}/{successCode}/{temail}',[AttendanceController::class,'AttendanceUpdate']);
+Route::get('CourseCodeUpdate/{successCode}/{temail}/{ccode}',[AttendanceController::class,'CourseCodeUpdate']);
+Route::get('AllinformationGet/{temail}',[AttendanceController::class,'AllinformationGet']);
+Route::get('getAttendaceResult/{temail}',[AttendanceController::class,'getAttendaceResult']);
+Route::get('IndividualAttendResult/{it}/{ccode}/{temail}',[AttendanceController::class,'IndividualAttendResult']);
+Route::get('SearchByCourseCode/{sbyccode}/{temail}',[AttendanceController::class,'SearchByCourseCode']);
+
+
+
 //image all api
 Route::post('upload',[ImageController::class,'uploadimage']);
+
+//admin
+
 
 

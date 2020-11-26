@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link,withRouter } from "react-router-dom";
 import { AttendanceService } from '../Services/AttendanceService';
  class Header extends React.Component{
     constructor(props) {
@@ -25,9 +25,11 @@ import { AttendanceService } from '../Services/AttendanceService';
             localStorage.removeItem("LoginData");
             window.location.href = "/OARS/loginuser";
          }
-         semesterFunction=(session)=>{
-           window.location.href = `/OARS/attendance/${session}`;
-           console.log('semester',semester);
+         semesterFunction=async(session)=>{
+             const {history}=this.props;
+           //const abd= await history.push(`/OARS/attendance/${session}`);
+          window.location.href = `/OARS/attendance/${session}`;
+
         //    alert('hi');
          }
         render(){
@@ -43,7 +45,7 @@ import { AttendanceService } from '../Services/AttendanceService';
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
+                        <ul class="navbar-nav ">
                             {!this.props.authData.isLoggedIn && (
                                 <>
                             <li class="nav-item active">
@@ -79,20 +81,24 @@ import { AttendanceService } from '../Services/AttendanceService';
                             {this.props.authData.isLoggedIn && this.props.authData.user12.user_rule == 'Student' && (
                                 <li class="nav-item">
 
-                                    <Link class="nav-link" to='/OARS/studenthome'>{this.props.authData.user12.user_rule}</Link>
+                                    <Link class="nav-link" to='/OARS/studentallInfo'>All Info</Link>
                                 </li>
                             )}
                             {/* specific routes access after login(teacher) */}
                             {this.props.authData.isLoggedIn && this.props.authData.user12.user_rule == 'Teacher' && (
                               <>
-                              <li class="nav-item">
+                              {/* <li class="nav-item">
 
                                     <Link class="nav-link" to='/OARS/teacherhome'>{this.props.authData.user12.user_rule}</Link>
-                                </li>
+                                </li> */}
                                  <li class="nav-item">
 
                                  <Link class="nav-link" to='/OARS/teacherRoutine'>Routine</Link>
                              </li>
+                             <li class="nav-item">
+
+                       <Link class="nav-link" to='/OARS/allinformation' >AllInformation</Link>
+                        </li>
                              <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Semester
@@ -107,20 +113,26 @@ import { AttendanceService } from '../Services/AttendanceService';
                                  ) )}
                                    {this.state.Semester==0 &&(
 
-                   <a class="dropdown-item" href="#">Not yet assign into any semster to take class</a>
+                              <a class="dropdown-item" href="#">Not yet assign into any semster to take class</a>
 
                     )}
 
                                 </div>
                             </li>
+
                              </>
                             )}
+                             </ul>
+
+
+                             <ul  class="navbar-nav ml-auto">
                             {this.props.authData.isLoggedIn && (
-                                <li class="nav-item">
-                                    <Link to="/logout" onClick={() => this.Logout()} class="nav-link">Logout {this.props.authData.user12.email} {this.props.authData.user12.name}</Link>
+                                <li class="nav-item ">
+                                    <Link to="/logout" onClick={() => this.Logout()} class="nav-link">Logout ( {this.props.authData.user12.name})</Link>
                                 </li>
                             )}
-                        </ul>
+                             </ul>
+
                         {/* <form class="form-inline my-2 my-lg-0">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -134,4 +146,4 @@ import { AttendanceService } from '../Services/AttendanceService';
         }
  }
 
-export default Header;
+export default withRouter(Header);

@@ -1,14 +1,16 @@
 import React from 'react';
 import { getSemesterInfo, SaveAttendance, SemesterAllStudent } from '../Services/AttendanceService';
-import { Form, Button, Card} from 'react-bootstrap';
+import { Form, Button, Card, Pagination} from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CourseCode from './CourseCode';
+import Swal from 'sweetalert2';
+import Pagination1 from './Pagination1';
 class Attendance extends React.Component {
 
         state = {
             SemesterStudent:[],
-            SemesterStudent1:{},
+            TotalSemesterStu:[],
             session:this.props.match.params.session,
             attend:[],
             teacheremail:'',
@@ -17,6 +19,10 @@ class Attendance extends React.Component {
             TakenDate:new Date().toLocaleDateString(),
             semesterinfo1:[],
             semesterinfo2:{},
+            searchProject:[],
+            IndexOfFirst:'0',
+            IndexOfLast:'3',
+            checked1:false,
 
          }
 
@@ -41,7 +47,7 @@ class Attendance extends React.Component {
     getSemesterAllStudent=async()=>{
 
          const getSemesterStudent= await SemesterAllStudent(this.props.match.params.session);
-         this.setState({ SemesterStudent:getSemesterStudent.data ,  });
+         this.setState({ SemesterStudent:getSemesterStudent.data , searchProject:getSemesterStudent.data ,TotalSemesterStu:getSemesterStudent.data});
           console.log('object');
 
     }
@@ -54,21 +60,24 @@ class Attendance extends React.Component {
         const course=localStorage.getItem("CCode");
         console.log("ok done 123 ok",course);
 
-            var roll=true;
+//check if any roll is missing start
             $(":radio").each(function(){
                 name=$(this).attr('name');
-                if(roll && !$(':radio[name="' +name + '"]:checked').length){
-               alert(name+"  Roll Missing");
-               // toast(name+" "+"Roll missing!");
+                if(!$(':radio[name="' +name + '"]:checked').length){
+              // alert(name+"  Roll Missing");
+                toast(name+" "+"Roll missing!");
                 roll=false;
                 }
-            });
-           // return roll;
+              });
+
+//check if any roll is missing end
+
+
 
         const xyz = $("#attendence").serializeArray();
         const formData = new FormData();
         formData.append('attend', xyz);
-        console.log('attend',xyz)
+        console.log('serial',xyz)
         // $.each(x, function(i, field){
         //     this.setState({ attend:field.name ,attend:field.value  });
         //  attend.append(field.name + ":" + field.value + " ");
@@ -83,11 +92,22 @@ class Attendance extends React.Component {
         const Teacheremail = data1.user.email;
         const Coursecode=localStorage.getItem("CCode");
          this.setState({ teacheremail:Teacheremail  });
+         const Usemester =localStorage.getItem('setSemester');
+         console.log('unique semester',Usemester);
          if(!Coursecode){
             toast("Course Code Missing");
+            console.log('serial',xyz.length)
+            console.log('serial',this.state.SemesterStudent.length)
          }
+         else if(this.state.SemesterStudent.length !=xyz.length){
+             var total=this.state.SemesterStudent.length;
+             var taken=xyz.length;
+            toast(" Attendance Taken "+" "+taken+" "+" From  "+" "+total+" "+"Students ");
+         }
+
          else{
-            const response = await SaveAttendance(Teacheremail,this.state.session,Coursecode,xyz);
+           //here call the SaveAttendance method from Services AttendanceService
+            const response = await SaveAttendance(Teacheremail,this.state.session,Coursecode,Usemester,xyz);
 
 
 
@@ -96,15 +116,32 @@ class Attendance extends React.Component {
 
               isLoading: false,
           });
+          toast('Attendance Taken Successfully');
+          Swal.fire({
+
+            icon: 'success',
+            title: 'Attendance Taken Successfully',
+            showConfirmButton:true,
+            //timer: 1500
+          })
           localStorage.removeItem("CCode");
-          //alert('attendance taken successfully');
-           history.push('/OARS');
-          console.log('response',response);
-
-
+          history.push(`/OARS/takenclasses/${Coursecode}`);
       }
       else if(response.checkdate){
-        toast("You have already taken attendence");
+
+        const Coursecode=localStorage.getItem("CCode");
+
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Attendance Already Taken!',
+
+          })
+
+
+        history.push(`/OARS/takenclasses/${Coursecode}`);
+        localStorage.removeItem("CCode");
+
       }
       else{
           console.log("response.errors", response.errors);
@@ -132,24 +169,73 @@ class Attendance extends React.Component {
 
         };
 
+         // search functionality
+    onSearch=(e)=>{
+        const search=e.target.value;
+       // console.log('search',search);
+        this.setState({
+
+
+            isLoading:true,
+        });
+        if(search.length>0){
+            const searchData = this.state.searchProject.filter(function (item) {
+                const itemData = item.name + " " + item.it+" "+item.phone;
+                const textData = search.trim().toLowerCase();
+                return itemData.trim().toLowerCase().indexOf(textData) !== -1;
+            });
+            this.setState({
+
+                searchProject: searchData,
+                search:search,
+                isLoading: false,
+            });
+        }
+        else{
+
+            //here call this method when search result length is empty
+
+            this.getSemesterAllStudent();
+
+        }
+    }
+    //end search functionality
+//pagination
+paginate=(pageNum)=>{
+    alert(pageNum);
+    const currentPage=pageNum;
+    const PostPerPage=3;
+    const IndexOfLast=currentPage*PostPerPage;
+    const IndexOfFirst=IndexOfLast-PostPerPage;
+    this.setState({ IndexOfLast:IndexOfLast,IndexOfFirst:IndexOfFirst  });
+}
+//check ALl
+ CheckAll (){
+    this.setState({checked1:!this.state.checked1});
+    alert(this.state.checked1);
+
+}
     render() {
         return (
             <>
             <ToastContainer/>
 
+
                 <Card >
-                <Card.Body className="">
-                <Card.Title className="text-center">Attendance( {this.state.semesterinfo1.slice(0,1).map((student123, index) => (
-           <>batch:{student123.batch}</> ))})</Card.Title>
+                <Card.Body class="takenclasss">
+                <h3 className="text-center heading">Attendance Sheet( {this.state.semesterinfo1.slice(0,1).map((student123, index) => (
+           <>batch:{student123.batch}</> ))})</h3>
                 <div class="row">
 
                             <div class="col-md-6">
                             {this.state.semesterinfo1.slice(0,1).map((student123, index) => (
                                 <>
-                 <Card.Subtitle className="mb-2 text-muted">semester:{student123.semester}</Card.Subtitle>
-                 <Card.Subtitle className="mb-2  text-muted">Session:{this.state.session}</Card.Subtitle>
-                 <Card.Subtitle className="mb-2  text-muted">Today Date:{new Date().toLocaleDateString()}</Card.Subtitle>
-
+                 <Card.Subtitle class="mb-1 "><strong style={{color:"#d26161",paddingLeft:"10px"}}>Semester:{student123.semester}</strong></Card.Subtitle>
+                 <Card.Subtitle class="mb-1  "><strong style={{color:"#456",paddingLeft:"10px"}}>Session:{this.state.session}</strong></Card.Subtitle>
+                 <Card.Subtitle class="mb-1  "><strong style={{color:"#41aa6f",paddingLeft:"10px"}}>Today Date:{new Date().toLocaleDateString()}</strong></Card.Subtitle>
+                    {
+                        localStorage.setItem('setSemester',student123.semester)
+                    }
                  </>
                  ))}
                             </div>
@@ -157,34 +243,55 @@ class Attendance extends React.Component {
 
 
                     <div class="col-md-6">
+                        <div class="float-right clearfix">
                        <CourseCode coursecodedata={this.state.semesterinfo1}
                                  onCompleteCourseCode={this.onCompleteCourseCode}
                                 />
-
+                         </div>
                     </div>
-                </div>
+                  </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                          <h5 style={{paddingLeft:"10px",color:"#497141"}}>
+                        Total Student:{" "}
+                      <span class="badge badge-secondary">{this.state.searchProject.length}</span>
 
-                    <div class="row  ">
-                        <div class="col-md-12 attendance">
+                     </h5>
+                    <form style={{marginBottom: ".7em",paddingLeft:"10px"}}>
+                  Search: <input type="text" class="search" onChange={(e)=>this.onSearch(e)}>
 
+                                  </input>
+                    </form>
+                              {  this.state.SemesterStudent !=0 && this.state.searchProject.length === 0 && (
+                     <span class=" alert-warning" style={{padding:".2em .5em",
+                        marginLeft:"4.5em"}}>
+                        No result found!
+                     </span>
+                         )}
+                         <button class="btn btn-success btn-sm float-right clearfix" onClick={()=>this.CheckAll()}> Check All</button>
+                          </div>
+                      </div>
+                    <div class="row">
+                        <div class="col-md-12">
 
-                <Card.Text>
+                     <div class="table-responsive max_tableHeight">
+
 
                     {this.state.SemesterStudent !=0  &&(
                 <Form className="" method="post" onSubmit={this.submitform}  id="attendence">
-                <table class="table table-striped">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Image</th>
-      <th>Mobile</th>
-      <th>Attendence</th>
+                <table class="table table-striped ">
+            <thead>
+                <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Mobile</th>
+                <th>Attendence</th>
 
-    </tr>
-  </thead>
-  <tbody>
-  {this.state.SemesterStudent.map((student, index) => (
+                </tr>
+            </thead>
+            <tbody>
+  {this.state.searchProject.map((student, index) => (
 
     <tr key={student.id} >
       <td>{student.it}</td>
@@ -193,10 +300,10 @@ class Attendance extends React.Component {
       <td>{student.phone}</td>
       <td>
               <>
-              <input required type="radio" aria-label="Radio button for following text input"
-               name={student.it} id="fileupload"  value="P"/>P
-              <input  required type="radio" aria-label="Radio button for following text input"
-                 name={student.it} id="fileupload"  value="A"/>A
+              <input  type="radio" aria-label="Radio button for following text input"
+               name={student.it} id="fileupload"  value="P" />P
+              <input   type="radio" aria-label="Radio button for following text input"
+                 name={student.it} id="fileupload"  value="A"  />A
 
            </>
            </td>
@@ -205,19 +312,24 @@ class Attendance extends React.Component {
 ))}
 
   </tbody>
+
 </table>
-  <Button variant="primary" type="submit">
+
+
+  <Button className="submitbutton" variant="primary" type="submit">
     Submit
   </Button>
 </Form>
 )}
 
-                </Card.Text>
 
+</div>
                 </div>
                 </div>
                 </Card.Body>
                 </Card>
+
+
             </>
         );
     }

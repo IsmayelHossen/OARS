@@ -95,10 +95,10 @@ class StudentUpdate extends React.Component {
     render() {
         return (
             <>
-                <Card >
+
                     <Card.Body>
                         <div className="col-md-8 m-auto text-align-justify studentupdate">
-                        <Card.Title style={{textAlign:"center"}}>Update Information</Card.Title>
+                        <Card.Title style={{textAlign:"center",fontWeight:"600"}}>Update Information</Card.Title>
                             <Form  onSubmit={this.submitform}>
 
 
@@ -261,15 +261,15 @@ class StudentUpdate extends React.Component {
                                       </Form.Control.Feedback>
                                 </Form.Group>
 
-                            <Button variant="success" type="submit">
+                            <button class="btn btn-success float-right clearfix" type="submit">
                                 Update
-                         </Button>
+                         </button>
                         </Form>
 
                         </div>
                     </Card.Body>
 
-                </Card>
+
 
             </>
          );

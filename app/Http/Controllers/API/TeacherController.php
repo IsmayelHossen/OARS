@@ -80,6 +80,7 @@ class TeacherController extends Controller
     // file_put_contents($destinationPath, file_get_contents($image));
     $data['image']=$name;
  $teacherData=DB::table('teachers')->where('email',$email)->update($data);
+  $user=User::where('email',$email)->update(['name'=>$request->name]);
  return response()->json([
     'success' => true,
     'message' => 'Update Data successully !!',
@@ -89,7 +90,7 @@ class TeacherController extends Controller
 ]);
   }
   else{
-
+    $user=User::where('email',$email)->update(['name'=>$request->name]);
     $teacherData=DB::table('teachers')->where('email',$email)->update($data);
     return response()->json([
        'success' => true,

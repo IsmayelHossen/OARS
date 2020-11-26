@@ -3,9 +3,13 @@ import { Link, withRouter } from "react-router-dom";
 import { TeacherAllInfo } from '../Services/TeacherService';
 import TeacherUpdate from './TeacherUpdate';
 import { ToastContainer, toast } from 'react-toastify';
-
 import 'react-toastify/dist/ReactToastify.css';
 import ImageUpload from './ImageUpload';
+//Datatable Modules
+//import 'jquery/dist/jquery.min.js';
+// import "datatables.net-dt/js/dataTables.dataTables.min.js"
+// import "datatables.net-dt/css/jquery.dataTables.min.css"
+//import $ from 'jquery';
 class TeacherHome extends React.Component {
     constructor(props) {
         super(props);
@@ -18,7 +22,16 @@ class TeacherHome extends React.Component {
     }
     componentDidMount() {
         this.TeacherGetAllInfo();
+            this.table();
+
+
     }
+    table=()=>{
+        $(document).ready(function () {
+            $('.display').DataTable();
+        });
+    }
+
     TeacherGetAllInfo = async () => {
         const getLoginData = localStorage.getItem("LoginData");
         const data1 = JSON.parse(getLoginData);
@@ -55,6 +68,7 @@ class TeacherHome extends React.Component {
 
     render() {
         const image =this.state.teachertdata.image;
+        const abc="hi hello";
         let showimage;
         // if(image){
         //   showimage=
@@ -65,18 +79,32 @@ class TeacherHome extends React.Component {
         return (
             <>
                <ToastContainer/>
-                {this.state.isLoading && (
+               <div class="row">
+                   <div class="col-md-12">
+                       <div class="jumbotron">
+
+                 {this.state.isLoading && (
                     <div class="spinner-border" role="status">
                         <span class="sr-only">Loading...</span>
                     </div>
                 )}
 
                   {/* image show when toggleUpdateTask true */}
-                  {this.state.toggleUpdateTask &&  this.state.teachertdata.image &&(
+                  {this.state.toggleUpdateTask  &&(
 
-        <>
-                        <img src={`http://localhost/OARS/storage/app/public/uploads/${this.state.teachertdata.image}`} class="student-card-img-top" alt="..."/>
-                        <ImageUpload  onCompleteTeacherUpdateimage={this.onCompleteTeacherUpdateImage} />
+                      <>
+                      <div class="row">
+                          <div class="col-md-3">
+                          <img src={`http://localhost/OARS/storage/app/public/uploads/${this.state.teachertdata.image}`} class="student-card-img-top" alt="..."/>
+                          </div>
+                          <div class="col-md-9 flex-5">
+                              <div class="homeimagetop">
+                          <ImageUpload  onCompleteTeacherUpdateimage={this.onCompleteTeacherUpdateImage} />
+                          </div>
+                          </div>
+                      </div>
+
+
              </>
                   )}
 
@@ -84,7 +112,7 @@ class TeacherHome extends React.Component {
                   { this.state.toggleUpdateTask && (
                <>
 
-                        <div class="card" style={{ width: "18rem;" }}>
+                        <div class="card1" style={{ width: "18rem;" }}>
 
                             <div class="card-body">
                                 <h5 class="card-title">{this.state.teachertdata.name}</h5>
@@ -113,7 +141,16 @@ class TeacherHome extends React.Component {
                     {!this.state.toggleUpdateTask && <span>Cancel Updating</span>}
                 </button>
 
+                </div>
+                   </div>
+               </div>
+               <div className="MainDiv">
+      <div class="jumbotron text-center bg-sky">
+          <h3>Therichpost.com</h3>
+      </div>
+  {abc}
 
+      </div>
         </>
         );
     }

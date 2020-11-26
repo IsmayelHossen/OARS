@@ -80,6 +80,10 @@ class StudentHome extends React.Component {
         return (
             <>
             <ToastContainer/>
+            <div class="row">
+                   <div class="col-md-12">
+                       <div class="jumbotron">
+
                 {this.state.isLoading && (
                     <div class="spinner-border" role="status">
                         <span class="sr-only">Loading...</span>
@@ -98,7 +102,7 @@ class StudentHome extends React.Component {
                   { this.state.toggleUpdateTask && (
                <>
 
-                        <div class="card" style={{ width: "18rem;" }}>
+
 
                             <div class="card-body">
                                 <h5 class="card-title">{this.state.studentdata.name}</h5>
@@ -113,7 +117,7 @@ class StudentHome extends React.Component {
                                 <p class="card-text">{this.state.studentdata.caddress}</p>
                                 <p class="card-text">{this.state.studentdata.paddress}</p>
                             </div>
-                        </div>
+
 
             </>
                 )}
@@ -132,6 +136,9 @@ class StudentHome extends React.Component {
                 </button>
 
 
+           </div>
+           </div>
+           </div>
         </>
          );
     }

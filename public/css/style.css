@@ -13,7 +13,7 @@ body{
 	background-color:#F8F9FA;
 	border-radius: 0.3rem;
     box-shadow: 0px 2px 3px #456;
-    text-align: center;
+
 
 }
 .Headline {
@@ -96,12 +96,109 @@ body{
 	margin-left: 5px;
 }
 .studentupdate {
-	border: 2px solid #edf1f4;
 	padding: 9px 13px;
+	padding-bottom: 3em;
+	border: 1px solid #d2d9df;
+	box-shadow: 0px 2px 4px #c7cbce;
+}
+.teacherupdate {
+	border: 2px solid #edf1f4;
+    padding: 9px 13px;
+    padding-bottom: 3em;
 }
 /* //attendance */
 .attendance {
 	border: 2px solid rgb(241, 242, 242);
 	padding: 8px 8px 10px;
 }
+/* takenclasss */
+.takenclasss {
+	background: #e3e6ea;
+	border: 2px solid #dadee1;
+	box-shadow: 0px -1px 3px #979a9d;
+    margin-top: 2px;
+    padding-bottom:.9em;
 
+}
+.takenclasss .heading {
+	text-align: center;
+	/* padding: ; */
+	padding-top: 7px;
+	/* padding-bottom: 10px; */
+	color: #0e9958;
+	font-weight: 600;
+	display: block;
+	border-bottom: 2px solid #becec4;
+	max-width: 385px;
+	/* text-align: ; */
+	margin: 0 auto;
+	border-radius: 50px;
+	box-shadow: 0px 3px 3px #4565;
+    margin-top: 6px;
+    margin-bottom: .6em;
+}
+.takenclasss .heading3 {
+	text-align: center;
+     color: #d73a3a;
+}
+/* submit button attendance,update */
+.submitbutton {
+	margin-left: 10px;
+	margin-bottom: 9px;
+}
+/* All information */
+
+.AllInfo_course {
+	background: #d4dbe1;
+	padding-top: 1.4em;
+	/* padding-left: .3em; */
+	padding-bottom: 1.4em;
+	text-align: center;
+	box-shadow: 0px 1px 2px #456;
+	margin-left: .3em;
+	margin-bottom: .2em;
+}
+.AllInfo_course:hover {
+	color: #443d3d;
+	box-shadow: 0px 1px 14px #456;
+}
+.search  {
+	border: 1px solid #aaa;
+	border-radius: 3px;
+	padding: 5px;
+	background-color: transparent;
+	margin-left: 3px;
+}
+.jumbotron {
+	margin-bottom: .4rem;
+	background-color: #F8F9FA;
+	border-radius: 0.3rem;
+	box-shadow: 0px 2px 3px #456;
+
+}
+.homeimagetop{
+    padding-top:8em;
+}
+/* max_tableHeight */
+/* .max_tableHeight{
+    height:550px;
+} */
+.table-responsive {
+	display: block;
+	width: 100%;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	/* height: 700px; */
+}
+.Allinformation_h4 {
+	padding-top: 10px;
+	text-align: center;
+	font-weight: 600;
+	border-bottom: 2px solid #dddada;
+	padding-bottom: 10px;
+}
+@media(max-width:600px){
+    .homeimagetop{
+        padding-top:1em;
+    }
+}

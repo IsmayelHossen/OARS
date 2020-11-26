@@ -40,12 +40,16 @@ class ImageUpload extends Component {
 
 render() {
   return (
+      <>
     <div className="App">
-     <form method="POST" id="upload-image"  onSubmit={this.handleSubmit} encType="multipart/form-data">
+     <form method="POST" id="upload-image" class="form-inline" style={{marginTop:".5em"}}  onSubmit={this.handleSubmit} encType="multipart/form-data">
         <input id="fileupload" type="file" name="image" required/>
-        <button type="submit" id="btnUploadFile">Upload File</button>
+        <button type="submit" id="btnUploadFile" class="btn btn-success btn-sm">Upload Image</button>
      </form>
+
+
     </div>
+    </>
   );
 }
 }

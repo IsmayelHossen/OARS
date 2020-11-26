@@ -14,8 +14,16 @@ import Login from './frontend/Login';
 import Register from './frontend/Register';
 import Verification from './frontend/Verification';
 import { checkIfAuthenticated } from './Services/LoginRegService';
+import { StudentAllInfo } from './Services/StudentService';
+import StudentAllinfos from './Student/StudentAllinfos';
 import StudentHome from './Student/StudentHome';
+import StudentSemesterInfo from './Student/StudentSemesterInfo';
+import Allinformation from './Teacher/Allinformation';
+import AttendanceUpdate from './Teacher/AttendanceUpdate';
 import Attendance from './Teacher/Attendence';
+import successClasses from './Teacher/successClasses';
+import TakenClasses from './Teacher/TakenClasses';
+import TakenClasss from './Teacher/TakenClasses';
 import TeacherHome from './Teacher/TeacherHome';
 import TeacherRoutine from './Teacher/TeacherRoutine';
 
@@ -57,14 +65,22 @@ class Index extends React.Component {
                     url with differnt way to access homepage first check is logged?? if logged in, then access otherways redireect to login page */}
                     <AccessRoute
                         authed={this.state.isLoggedIn}
-                      exact  path="/OARS/studenthome"
+                      exact  path="/OARS/studenthome/"
                         component={StudentHome}
                     />
                     {/* after login specific user access specific routes */}
                     {this.state.isLoggedIn && this.state.user12.user_rule == 'Student' && (
-                        <Route exact path="/OARS/">
-                            <StudentHome />
+                       <>
+                       <Route exact path="/OARS/">
+                       <StudentHome />
+                   </Route>
+                       <Route exact path="/OARS/studentallInfo">
+                            <StudentAllinfos />
                         </Route>
+                        <Route exact path="/OARS/studentsemesterinfo/:it/:semester" component={StudentSemesterInfo}
+                            isSession={true}
+                           />
+                        </>
                     )}
                     {/* student routes end*/}
                         {/* Teacher routes  start*/}
@@ -96,6 +112,23 @@ class Index extends React.Component {
                            <TeacherRoutine/>
 
                         </Route>
+                        <Route exact path='/OARS/takenclasses/:course_code' component={TakenClasses} />
+                        <Route exact path='/OARS/allinformation'>
+                            <Allinformation/>
+                        </Route>
+                        <Route path='/OARS/suceessClasses'>
+                            <successClasses/>
+                        </Route>
+
+                        {/* <AccessRoute
+                        authed={this.state.isLoggedIn}
+                      exact  path="/OARS/successclasses"
+                        component={successClasses}
+                    /> */}
+                       <Route exact path="/OARS/attendanceupdate/:ccode/:scode" component={AttendanceUpdate}
+                            isSession={true}
+                           />
+
                         </>
                     )}
                {/* end teacher routes */}

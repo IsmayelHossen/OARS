@@ -62,6 +62,7 @@ class Login extends React.Component {
     render() {
         return (
             <>
+            {console.log('urlllll',this.props.location)}
                 <div class="login">
                     <h2>Login form</h2>
                     {this.state.isLoading && (
@@ -98,6 +99,7 @@ class Login extends React.Component {
                             <label for="exampleFormControlSelect1">Login as </label>
                             <select class="form-control" id="exampleFormControlSelect1" name="user_rule"
                                  onChange={(e) => this.changeInput(e)}>
+                              <option value="">Select</option>
                                 <option value="Teacher">Teacher</option>
                                 <option value="Student">Student</option>
 
