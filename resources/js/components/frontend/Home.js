@@ -7,6 +7,7 @@ class Home extends React.Component {
     render() {
         return (
             <>
+            <div class="topMargin">
                 <div class="jumbotron">
                     <h1>Welcome to ICT Online Attendance & Result System</h1>
                     <p>To Get the MemberShip Please Registration </p>
@@ -70,7 +71,7 @@ class Home extends React.Component {
                         </div>
                     </div>
                     <h2 className="btn btn-success">okkfd</h2>
-
+              </div>
             </>
          );
     }

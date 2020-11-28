@@ -15,6 +15,7 @@ import Register from './frontend/Register';
 import Verification from './frontend/Verification';
 import { checkIfAuthenticated } from './Services/LoginRegService';
 import { StudentAllInfo } from './Services/StudentService';
+import Print from './Student/Print';
 import StudentAllinfos from './Student/StudentAllinfos';
 import StudentHome from './Student/StudentHome';
 import StudentSemesterInfo from './Student/StudentSemesterInfo';
@@ -78,6 +79,9 @@ class Index extends React.Component {
                             <StudentAllinfos />
                         </Route>
                         <Route exact path="/OARS/studentsemesterinfo/:it/:semester" component={StudentSemesterInfo}
+                            isSession={true}
+                           />
+                             <Route exact path="/OARS/print/:it/:coursecode" component={Print}
                             isSession={true}
                            />
                         </>

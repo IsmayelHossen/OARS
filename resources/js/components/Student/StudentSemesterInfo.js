@@ -26,19 +26,20 @@ class StudentSemesterInfo extends React.Component {
         let randNum=1;
         return (
             <>
-
-             <div class="row">
+              <div class="topMargin">
+             <div class="row ">
                <div class="col-md-12">
                    <div class="takenclasss">
-                        <h3 class="heading"> All Information</h3>
+                        <h3 class="heading example-screen"> All Information</h3>
                           <div class="row">
 
                                {this.state.StudentSemInfo.map((row,index)=>(
 
 
-                              <div class="col-md-4">
+                              <div class="col-md-4 ">
                                   <div class="AllInfo_course">
                               <h4>Semester:{row.course_code}</h4>
+
                               <ViewAttendance random={randNum++} it={row.it} courseCode={row.course_code} />
 
                                   </div>
@@ -49,7 +50,7 @@ class StudentSemesterInfo extends React.Component {
                </div>
            </div>
 
-
+          </div>
             </>
 
           );

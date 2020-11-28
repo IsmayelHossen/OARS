@@ -37,9 +37,10 @@ class Allinformation extends React.Component {
         }
     }
     SeeDetails=async(coursecode)=>{
+      //  alert('hi');
         const {history}=this.props;
-       // window.location.href = `/OARS/takenclasses/${coursecode}`;
-       const abc= await history.push(`/OARS/takenclasses/${coursecode}`);
+        //window.location.href = `/OARS/takenclasses/${coursecode}`;
+      const abc= await history.push(`/OARS/takenclasses/${coursecode}`);
 
     }
     // ResultOfAttendance=async()=>{
@@ -127,6 +128,7 @@ paginate=(pageNum)=>{
         return (
             <>
             <ToastContainer/>
+            <div class="topMargin">
            <div class="row">
                <div class="col-md-12">
                    <div class="takenclasss">
@@ -221,9 +223,10 @@ paginate=(pageNum)=>{
                    </div>
                </div>
            </div>
+           </div>
            </>
          );
     }
 }
 
-export default Allinformation;
+export default withRouter(Allinformation);

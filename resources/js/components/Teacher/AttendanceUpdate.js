@@ -149,7 +149,7 @@ class AttendanceUpdate extends React.Component {
         return (
             <>
             <ToastContainer/>
-
+            <div class="topMargin">
                 <Card >
                 <Card.Body className="takenclasss">
                 <h3 className="heading">Update Attendance</h3>
@@ -234,6 +234,7 @@ class AttendanceUpdate extends React.Component {
         </div>
         </Card.Body>
         </Card>
+        </div>
     </>
         );
     }

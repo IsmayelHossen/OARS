@@ -13,10 +13,13 @@ class Footer extends React.Component {
 
                         <div class="col-md-12">
 
+
                         </div>
                     </div>
                 </div>
+                <a href="#" class="back-to-top" ><i class="fa fa-chevron-up"></i></a>
             </div>
+
           );
     }
 }

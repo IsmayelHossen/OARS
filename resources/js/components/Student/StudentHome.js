@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import StudentUpdate from './StudentUpdate';
 import ImageUpload from '../Teacher/ImageUpload';
+
 class StudentHome extends React.Component {
 
         state = {
@@ -80,6 +81,7 @@ class StudentHome extends React.Component {
         return (
             <>
             <ToastContainer/>
+            <div class="topMargin">
             <div class="row">
                    <div class="col-md-12">
                        <div class="jumbotron">
@@ -136,6 +138,7 @@ class StudentHome extends React.Component {
                 </button>
 
 
+           </div>
            </div>
            </div>
            </div>

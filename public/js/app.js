@@ -80671,6 +80671,17 @@ function pathToRegexp (path, keys, options) {
 
 /***/ }),
 
+/***/ "./node_modules/react-to-print/lib/index.js":
+/*!**************************************************!*\
+  !*** ./node_modules/react-to-print/lib/index.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+!function(e,t){ true?module.exports=t(__webpack_require__(/*! react */ "./node_modules/react/index.js"),__webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js")):undefined}("undefined"!=typeof self?self:this,function(n,r){return a={},o.m=i=[function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.useReactToPrint=t.PrintContextConsumer=void 0;var L=n(1),i=n(2),a=n(3),r=Object.prototype.hasOwnProperty.call(i,"createContext"),o=Object.prototype.hasOwnProperty.call(i,"useMemo")&&Object.prototype.hasOwnProperty.call(i,"useCallback"),l=r?i.createContext({}):null;t.PrintContextConsumer=l?l.Consumer:function(){return null};var c,u={copyStyles:!0,pageStyle:"@page { size: auto;  margin: 0mm; } @media print { body { -webkit-print-color-adjust: exact; } }",removeAfterPrint:!1,suppressErrors:!1},s=(c=i.Component,L.__extends(f,c),f.prototype.render=function(){var e=this.props,t=e.children,n=e.suppressErrors,r=e.trigger;if(r)return i.cloneElement(r(),{onClick:this.handleClick});var o={handlePrint:this.handleClick};return l?l?i.createElement(l.Provider,{value:o},t):i.createElement("h2",null,"lorem"):(n||console.error('"react-to-print" requires React ^16.3.0 to be able to use "PrintContext"'),null)},f.defaultProps=u,f);function f(){var W=null!==c&&c.apply(this,arguments)||this;return W.startPrint=function(t){var e=W.props,n=e.onAfterPrint,r=e.onPrintError,o=e.print,i=e.suppressErrors,a=e.documentTitle;setTimeout(function(){if(t.contentWindow){if(t.contentWindow.focus(),o)o(t).then(W.handleRemoveIframe).catch(function(e){r?r("print",e):i||console.error("An error was thrown by the specified `print` function",e)});else if(t.contentWindow.print){var e=document.title;a&&(document.title=a),t.contentWindow.print(),a&&(document.title=e),n&&n()}else i||console.error("Printing for this browser is not currently possible: the browser does not have a `print` method available for iframes.");W.handleRemoveIframe()}else i||console.error("Printing failed because the `contentWindow` of the print iframe did not load. This is possibly an error with `react-to-print`. Please file an issue: https://github.com/gregnb/react-to-print/issues/")},500)},W.triggerPrint=function(e){var t=W.props,n=t.onBeforePrint,r=t.onPrintError;if(n){var o=n();o&&"function"==typeof o.then?o.then(function(){W.startPrint(e)}).catch(function(e){r&&r("onBeforePrint",e)}):W.startPrint(e)}else W.startPrint(e)},W.handleClick=function(){var e=W.props,t=e.onBeforeGetContent,n=e.onPrintError;if(t){var r=t();r&&"function"==typeof r.then?r.then(W.handlePrint).catch(function(e){n&&n("onBeforeGetContent",e)}):W.handlePrint()}else W.handlePrint()},W.handlePrint=function(){var e=W.props,j=e.bodyClass,t=e.content,E=e.copyStyles,T=e.fonts,C=e.pageStyle,A=e.suppressErrors,n=t();if(void 0!==n)if(null!==n){var I=document.createElement("iframe");I.style.position="absolute",I.style.top="-1000px",I.style.left="-1000px",I.id="printWindow",I.title="Print Window";var R=a.findDOMNode(n);if(R){var r=document.querySelectorAll("link[rel='stylesheet']"),q=R.querySelectorAll("img");W.linkTotal=r.length+q.length,W.linksLoaded=[],W.linksErrored=[],W.fontsLoaded=[],W.fontsErrored=[];var M=function(e,t){t?W.linksLoaded.push(e):(A||console.error('"react-to-print" was unable to load a linked node. It may be invalid. "react-to-print" will continue attempting to print the page. The linked node that errored was:',e),W.linksErrored.push(e)),W.linksLoaded.length+W.linksErrored.length+W.fontsLoaded.length+W.fontsErrored.length===W.linkTotal&&W.triggerPrint(I)};I.onload=function(){var e,t,n,r;I.onload=null;var o=I.contentDocument||(null===(t=I.contentWindow)||void 0===t?void 0:t.document),i=R.querySelectorAll("canvas");if(o){o.open(),o.write(R.outerHTML),o.close(),T&&(null!==(n=I.contentDocument)&&void 0!==n&&n.fonts&&null!==(r=I.contentWindow)&&void 0!==r&&r.FontFace?T.forEach(function(e){var t=new FontFace(e.family,e.source);I.contentDocument.fonts.add(t),t.loaded.then(function(e){W.fontsLoaded.push(e)}).catch(function(e){W.fontsErrored.push(t),A||console.error('"react-to-print" was unable to load a font. "react-to-print" will continue attempting to print the page. The font that failed to load is:',t,"The error from loading the font is:",e)})}):A||console.error('"react-to-print" is not able to load custom fonts because the browser does not support the FontFace API'));var a="function"==typeof C?C():C,l=o.createElement("style");l.appendChild(o.createTextNode(a)),o.head.appendChild(l),j&&(e=o.body.classList).add.apply(e,L.__spread(j.split(" ")));for(var c=o.querySelectorAll("canvas"),u=0,s=c.length;u<s;++u){var f=(g=c[u]).getContext("2d");f&&f.drawImage(i[u],0,0)}for(u=0;u<q.length;u++){var d=q[u],p=d.getAttribute("src");if(p){var h=new Image;h.onload=M.bind(null,d,!0),h.onerror=M.bind(null,d,!1),h.src=p}else A||console.warn('"react-to-print" encountered an <img> tag with an empty "src" attribute. It will not attempt to pre-load it. The <img> is:',d)}var y=R.querySelectorAll("input[type=checkbox]"),b=o.querySelectorAll("input[type=checkbox]");for(u=0;u<y.length;u++)b[u].checked=y[u].checked;if(E)for(var m=document.querySelectorAll("style, link[rel='stylesheet']"),v=(u=0,m.length);u<v;++u){var g;if("STYLE"===(g=m[u]).tagName){var w=o.createElement(g.tagName),_=g.sheet;if(_){for(var P="",x=0,O=_.cssRules.length;x<O;++x)"string"==typeof _.cssRules[x].cssText&&(P+=_.cssRules[x].cssText+"\r\n");w.setAttribute("id","react-to-print-"+u),w.appendChild(o.createTextNode(P)),o.head.appendChild(w)}}else if(g.getAttribute("href")){w=o.createElement(g.tagName),x=0;for(var S=g.attributes.length;x<S;++x){var k=g.attributes[x];k&&w.setAttribute(k.nodeName,k.nodeValue||"")}w.onload=M.bind(null,w,!0),w.onerror=M.bind(null,w,!1),o.head.appendChild(w)}else A||console.warn('"react-to-print" encountered a <link> tag with an empty "href" attribute. In addition to being invalid HTML, this can cause problems in many browsers, and so the <link> was not loaded. The <link> is:',g),M(g,!0)}}0!==W.linkTotal&&E||W.triggerPrint(I)};var o=document.getElementById("printWindow");o&&document.body.removeChild(o),document.body.appendChild(I)}else A||console.error('"react-to-print" could not locate the DOM node corresponding with the `content` prop')}else A||console.error('There is nothing to print because the "content" prop returned "null". Please ensure "content" is renderable before allowing "react-to-print" to be called.');else A||console.error('For "react-to-print" to work only Class based components can be printed.')},W.handleRemoveIframe=function(){if(W.props.removeAfterPrint){var e=document.getElementById("printWindow");e&&document.body.removeChild(e)}},W}t.default=s,t.useReactToPrint=o?function(e){var t=i.useMemo(function(){return new s(L.__assign(L.__assign({},u),e))},[e]);return i.useCallback(function(){return t.handleClick()},[t])}:function(e){e.suppressErrors||console.warn('"react-to-print" requires React ^16.8.0 to be able to use "useReactToPrint"')}},function(e,t,n){"use strict";n.r(t),n.d(t,"__extends",function(){return o}),n.d(t,"__assign",function(){return i}),n.d(t,"__rest",function(){return a}),n.d(t,"__decorate",function(){return l}),n.d(t,"__param",function(){return c}),n.d(t,"__metadata",function(){return u}),n.d(t,"__awaiter",function(){return s}),n.d(t,"__generator",function(){return f}),n.d(t,"__exportStar",function(){return d}),n.d(t,"__values",function(){return p}),n.d(t,"__read",function(){return h}),n.d(t,"__spread",function(){return y}),n.d(t,"__spreadArrays",function(){return b}),n.d(t,"__await",function(){return m}),n.d(t,"__asyncGenerator",function(){return v}),n.d(t,"__asyncDelegator",function(){return g}),n.d(t,"__asyncValues",function(){return w}),n.d(t,"__makeTemplateObject",function(){return _}),n.d(t,"__importStar",function(){return P}),n.d(t,"__importDefault",function(){return x}),n.d(t,"__classPrivateFieldGet",function(){return O}),n.d(t,"__classPrivateFieldSet",function(){return S});var r=function(e,t){return(r=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var n in t)t.hasOwnProperty(n)&&(e[n]=t[n])})(e,t)};function o(e,t){function n(){this.constructor=e}r(e,t),e.prototype=null===t?Object.create(t):(n.prototype=t.prototype,new n)}var i=function(){return(i=Object.assign||function(e){for(var t,n=1,r=arguments.length;n<r;n++)for(var o in t=arguments[n])Object.prototype.hasOwnProperty.call(t,o)&&(e[o]=t[o]);return e}).apply(this,arguments)};function a(e,t){var n={};for(var r in e)Object.prototype.hasOwnProperty.call(e,r)&&t.indexOf(r)<0&&(n[r]=e[r]);if(null!=e&&"function"==typeof Object.getOwnPropertySymbols){var o=0;for(r=Object.getOwnPropertySymbols(e);o<r.length;o++)t.indexOf(r[o])<0&&Object.prototype.propertyIsEnumerable.call(e,r[o])&&(n[r[o]]=e[r[o]])}return n}function l(e,t,n,r){var o,i=arguments.length,a=i<3?t:null===r?r=Object.getOwnPropertyDescriptor(t,n):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)a=Reflect.decorate(e,t,n,r);else for(var l=e.length-1;0<=l;l--)(o=e[l])&&(a=(i<3?o(a):3<i?o(t,n,a):o(t,n))||a);return 3<i&&a&&Object.defineProperty(t,n,a),a}function c(n,r){return function(e,t){r(e,t,n)}}function u(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)}function s(e,a,l,c){return new(l=l||Promise)(function(n,t){function r(e){try{i(c.next(e))}catch(e){t(e)}}function o(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?n(e.value):((t=e.value)instanceof l?t:new l(function(e){e(t)})).then(r,o)}i((c=c.apply(e,a||[])).next())})}function f(n,r){var o,i,a,e,l={label:0,sent:function(){if(1&a[0])throw a[1];return a[1]},trys:[],ops:[]};return e={next:t(0),throw:t(1),return:t(2)},"function"==typeof Symbol&&(e[Symbol.iterator]=function(){return this}),e;function t(t){return function(e){return function(t){if(o)throw new TypeError("Generator is already executing.");for(;l;)try{if(o=1,i&&(a=2&t[0]?i.return:t[0]?i.throw||((a=i.return)&&a.call(i),0):i.next)&&!(a=a.call(i,t[1])).done)return a;switch(i=0,a&&(t=[2&t[0],a.value]),t[0]){case 0:case 1:a=t;break;case 4:return l.label++,{value:t[1],done:!1};case 5:l.label++,i=t[1],t=[0];continue;case 7:t=l.ops.pop(),l.trys.pop();continue;default:if(!(a=0<(a=l.trys).length&&a[a.length-1])&&(6===t[0]||2===t[0])){l=0;continue}if(3===t[0]&&(!a||t[1]>a[0]&&t[1]<a[3])){l.label=t[1];break}if(6===t[0]&&l.label<a[1]){l.label=a[1],a=t;break}if(a&&l.label<a[2]){l.label=a[2],l.ops.push(t);break}a[2]&&l.ops.pop(),l.trys.pop();continue}t=r.call(n,l)}catch(e){t=[6,e],i=0}finally{o=a=0}if(5&t[0])throw t[1];return{value:t[0]?t[1]:void 0,done:!0}}([t,e])}}}function d(e,t){for(var n in e)t.hasOwnProperty(n)||(t[n]=e[n])}function p(e){var t="function"==typeof Symbol&&Symbol.iterator,n=t&&e[t],r=0;if(n)return n.call(e);if(e&&"number"==typeof e.length)return{next:function(){return e&&r>=e.length&&(e=void 0),{value:e&&e[r++],done:!e}}};throw new TypeError(t?"Object is not iterable.":"Symbol.iterator is not defined.")}function h(e,t){var n="function"==typeof Symbol&&e[Symbol.iterator];if(!n)return e;var r,o,i=n.call(e),a=[];try{for(;(void 0===t||0<t--)&&!(r=i.next()).done;)a.push(r.value)}catch(e){o={error:e}}finally{try{r&&!r.done&&(n=i.return)&&n.call(i)}finally{if(o)throw o.error}}return a}function y(){for(var e=[],t=0;t<arguments.length;t++)e=e.concat(h(arguments[t]));return e}function b(){for(var e=0,t=0,n=arguments.length;t<n;t++)e+=arguments[t].length;var r=Array(e),o=0;for(t=0;t<n;t++)for(var i=arguments[t],a=0,l=i.length;a<l;a++,o++)r[o]=i[a];return r}function m(e){return this instanceof m?(this.v=e,this):new m(e)}function v(e,t,n){if(!Symbol.asyncIterator)throw new TypeError("Symbol.asyncIterator is not defined.");var o,i=n.apply(e,t||[]),a=[];return o={},r("next"),r("throw"),r("return"),o[Symbol.asyncIterator]=function(){return this},o;function r(r){i[r]&&(o[r]=function(n){return new Promise(function(e,t){1<a.push([r,n,e,t])||l(r,n)})})}function l(e,t){try{(n=i[e](t)).value instanceof m?Promise.resolve(n.value.v).then(c,u):s(a[0][2],n)}catch(e){s(a[0][3],e)}var n}function c(e){l("next",e)}function u(e){l("throw",e)}function s(e,t){e(t),a.shift(),a.length&&l(a[0][0],a[0][1])}}function g(r){var e,o;return e={},t("next"),t("throw",function(e){throw e}),t("return"),e[Symbol.iterator]=function(){return this},e;function t(t,n){e[t]=r[t]?function(e){return(o=!o)?{value:m(r[t](e)),done:"return"===t}:n?n(e):e}:n}}function w(c){if(!Symbol.asyncIterator)throw new TypeError("Symbol.asyncIterator is not defined.");var e,t=c[Symbol.asyncIterator];return t?t.call(c):(c=p(c),e={},n("next"),n("throw"),n("return"),e[Symbol.asyncIterator]=function(){return this},e);function n(l){e[l]=c[l]&&function(a){return new Promise(function(e,t){var n,r,o,i;a=c[l](a),n=e,r=t,o=a.done,i=a.value,Promise.resolve(i).then(function(e){n({value:e,done:o})},r)})}}}function _(e,t){return Object.defineProperty?Object.defineProperty(e,"raw",{value:t}):e.raw=t,e}function P(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var n in e)Object.hasOwnProperty.call(e,n)&&(t[n]=e[n]);return t.default=e,t}function x(e){return e&&e.__esModule?e:{default:e}}function O(e,t){if(!t.has(e))throw new TypeError("attempted to get private field on non-instance");return t.get(e)}function S(e,t,n){if(!t.has(e))throw new TypeError("attempted to set private field on non-instance");return t.set(e,n),n}},function(e,t){e.exports=n},function(e,t){e.exports=r}],o.c=a,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var r in t)o.d(n,r,function(e){return t[e]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,"a",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p="",o(o.s=0);function o(e){if(a[e])return a[e].exports;var t=a[e]={i:e,l:!1,exports:{}};return i[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}var i,a});
+
+/***/ }),
+
 /***/ "./node_modules/react-toastify/dist/ReactToastify.css":
 /*!************************************************************!*\
   !*** ./node_modules/react-toastify/dist/ReactToastify.css ***!
@@ -92270,16 +92281,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _frontend_Verification__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./frontend/Verification */ "./resources/js/components/frontend/Verification.js");
 /* harmony import */ var _Services_LoginRegService__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Services/LoginRegService */ "./resources/js/components/Services/LoginRegService.js");
 /* harmony import */ var _Services_StudentService__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Services/StudentService */ "./resources/js/components/Services/StudentService.js");
-/* harmony import */ var _Student_StudentAllinfos__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Student/StudentAllinfos */ "./resources/js/components/Student/StudentAllinfos.js");
-/* harmony import */ var _Student_StudentHome__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Student/StudentHome */ "./resources/js/components/Student/StudentHome.js");
-/* harmony import */ var _Student_StudentSemesterInfo__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./Student/StudentSemesterInfo */ "./resources/js/components/Student/StudentSemesterInfo.js");
-/* harmony import */ var _Teacher_Allinformation__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./Teacher/Allinformation */ "./resources/js/components/Teacher/Allinformation.js");
-/* harmony import */ var _Teacher_AttendanceUpdate__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./Teacher/AttendanceUpdate */ "./resources/js/components/Teacher/AttendanceUpdate.js");
-/* harmony import */ var _Teacher_Attendence__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./Teacher/Attendence */ "./resources/js/components/Teacher/Attendence.js");
-/* harmony import */ var _Teacher_successClasses__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./Teacher/successClasses */ "./resources/js/components/Teacher/successClasses.js");
-/* harmony import */ var _Teacher_TakenClasses__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./Teacher/TakenClasses */ "./resources/js/components/Teacher/TakenClasses.js");
-/* harmony import */ var _Teacher_TeacherHome__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./Teacher/TeacherHome */ "./resources/js/components/Teacher/TeacherHome.js");
-/* harmony import */ var _Teacher_TeacherRoutine__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./Teacher/TeacherRoutine */ "./resources/js/components/Teacher/TeacherRoutine.js");
+/* harmony import */ var _Student_Print__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Student/Print */ "./resources/js/components/Student/Print.js");
+/* harmony import */ var _Student_StudentAllinfos__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Student/StudentAllinfos */ "./resources/js/components/Student/StudentAllinfos.js");
+/* harmony import */ var _Student_StudentHome__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./Student/StudentHome */ "./resources/js/components/Student/StudentHome.js");
+/* harmony import */ var _Student_StudentSemesterInfo__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./Student/StudentSemesterInfo */ "./resources/js/components/Student/StudentSemesterInfo.js");
+/* harmony import */ var _Teacher_Allinformation__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./Teacher/Allinformation */ "./resources/js/components/Teacher/Allinformation.js");
+/* harmony import */ var _Teacher_AttendanceUpdate__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./Teacher/AttendanceUpdate */ "./resources/js/components/Teacher/AttendanceUpdate.js");
+/* harmony import */ var _Teacher_Attendence__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./Teacher/Attendence */ "./resources/js/components/Teacher/Attendence.js");
+/* harmony import */ var _Teacher_successClasses__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./Teacher/successClasses */ "./resources/js/components/Teacher/successClasses.js");
+/* harmony import */ var _Teacher_TakenClasses__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./Teacher/TakenClasses */ "./resources/js/components/Teacher/TakenClasses.js");
+/* harmony import */ var _Teacher_TeacherHome__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./Teacher/TeacherHome */ "./resources/js/components/Teacher/TeacherHome.js");
+/* harmony import */ var _Teacher_TeacherRoutine__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./Teacher/TeacherRoutine */ "./resources/js/components/Teacher/TeacherRoutine.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -92308,6 +92320,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
  //
+
 
 
 
@@ -92376,47 +92389,52 @@ var Index = /*#__PURE__*/function (_React$Component) {
         authed: this.state.isLoggedIn,
         exact: true,
         path: "/OARS/studenthome/",
-        component: _Student_StudentHome__WEBPACK_IMPORTED_MODULE_15__["default"]
+        component: _Student_StudentHome__WEBPACK_IMPORTED_MODULE_16__["default"]
       }), this.state.isLoggedIn && this.state.user12.user_rule == 'Student' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/OARS/"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Student_StudentHome__WEBPACK_IMPORTED_MODULE_15__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Student_StudentHome__WEBPACK_IMPORTED_MODULE_16__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/OARS/studentallInfo"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Student_StudentAllinfos__WEBPACK_IMPORTED_MODULE_14__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Student_StudentAllinfos__WEBPACK_IMPORTED_MODULE_15__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/OARS/studentsemesterinfo/:it/:semester",
-        component: _Student_StudentSemesterInfo__WEBPACK_IMPORTED_MODULE_16__["default"],
+        component: _Student_StudentSemesterInfo__WEBPACK_IMPORTED_MODULE_17__["default"],
+        isSession: true
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        exact: true,
+        path: "/OARS/print/:it/:coursecode",
+        component: _Student_Print__WEBPACK_IMPORTED_MODULE_14__["default"],
         isSession: true
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AuthenticatedRoutes_AccessRoutes__WEBPACK_IMPORTED_MODULE_5__["default"], {
         authed: this.state.isLoggedIn,
         exact: true,
         path: "/OARS/teacherhome",
-        component: _Teacher_TeacherHome__WEBPACK_IMPORTED_MODULE_22__["default"]
+        component: _Teacher_TeacherHome__WEBPACK_IMPORTED_MODULE_23__["default"]
       }), this.state.user12.user_rule == 'Teacher' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/OARS/"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Teacher_TeacherHome__WEBPACK_IMPORTED_MODULE_22__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Teacher_TeacherHome__WEBPACK_IMPORTED_MODULE_23__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/OARS/attendance/:session",
-        component: _Teacher_Attendence__WEBPACK_IMPORTED_MODULE_19__["default"],
+        component: _Teacher_Attendence__WEBPACK_IMPORTED_MODULE_20__["default"],
         isSession: true
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/OARS/teacherRoutine"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Teacher_TeacherRoutine__WEBPACK_IMPORTED_MODULE_23__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Teacher_TeacherRoutine__WEBPACK_IMPORTED_MODULE_24__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/OARS/takenclasses/:course_code",
-        component: _Teacher_TakenClasses__WEBPACK_IMPORTED_MODULE_21__["default"]
+        component: _Teacher_TakenClasses__WEBPACK_IMPORTED_MODULE_22__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/OARS/allinformation"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Teacher_Allinformation__WEBPACK_IMPORTED_MODULE_17__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Teacher_Allinformation__WEBPACK_IMPORTED_MODULE_18__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/OARS/suceessClasses"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("successClasses", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/OARS/attendanceupdate/:ccode/:scode",
-        component: _Teacher_AttendanceUpdate__WEBPACK_IMPORTED_MODULE_18__["default"],
+        component: _Teacher_AttendanceUpdate__WEBPACK_IMPORTED_MODULE_19__["default"],
         isSession: true
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
@@ -93213,6 +93231,282 @@ var TeacherUpdateData = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./resources/js/components/Student/Print.js":
+/*!**************************************************!*\
+  !*** ./resources/js/components/Student/Print.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_to_print__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-to-print */ "./node_modules/react-to-print/lib/index.js");
+/* harmony import */ var react_to_print__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_to_print__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Services_StudentService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Services/StudentService */ "./resources/js/components/Services/StudentService.js");
+/* harmony import */ var _ViewAttendance__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ViewAttendance */ "./resources/js/components/Student/ViewAttendance.js");
+
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+var ComponentToPrint = /*#__PURE__*/function (_React$Component) {
+  _inherits(ComponentToPrint, _React$Component);
+
+  var _super = _createSuper(ComponentToPrint);
+
+  function ComponentToPrint(props) {
+    var _this;
+
+    _classCallCheck(this, ComponentToPrint);
+
+    _this = _super.call(this, props);
+
+    _defineProperty(_assertThisInitialized(_this), "GetIndividulStudentAttendance", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var getLoginData, data1, email, it, coursecode, result;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              getLoginData = localStorage.getItem("LoginData");
+              data1 = JSON.parse(getLoginData);
+              email = data1.user.email;
+              it = localStorage.getItem('it');
+              coursecode = localStorage.getItem('coursecode');
+              _context.next = 7;
+              return Object(_Services_StudentService__WEBPACK_IMPORTED_MODULE_3__["SemesterWithCourseCodeRes"])(it, coursecode);
+
+            case 7:
+              result = _context.sent;
+
+              if (result.success) {
+                _this.setState({
+                  AttendanceIndivi: result.data,
+                  isLoading: false
+                });
+
+                console.log('AttendanceIndivi', _this.state.AttendanceIndivi);
+              }
+
+            case 9:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    })));
+
+    _defineProperty(_assertThisInitialized(_this), "TeacherInformationForStudent", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var temail, result;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              temail = localStorage.getItem('TeacherEmail');
+              _context2.next = 3;
+              return Object(_Services_StudentService__WEBPACK_IMPORTED_MODULE_3__["TeacherInformation"])(temail);
+
+            case 3:
+              result = _context2.sent;
+
+              if (result) {
+                _this.setState({
+                  TeacherInfo: result
+                });
+              }
+
+            case 5:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    })));
+
+    _this.state = {
+      AttendanceIndivi: [],
+      isLoading: true,
+      TeacherInfo: {}
+    };
+    return _this;
+  }
+
+  _createClass(ComponentToPrint, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.GetIndividulStudentAttendance();
+      this.TeacherInformationForStudent();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var getLoginData = localStorage.getItem("LoginData");
+      var data1 = JSON.parse(getLoginData);
+      var name = data1.user.name;
+      var coursecode = localStorage.getItem('coursecode');
+      var i = 1;
+      var PresentCount = 0;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        "class": "row"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        "class": "col-md-12"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        style: {
+          paddingLeft: '.6em'
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        style: {
+          textAlign: 'left',
+          paddingTop: '.5em'
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", {
+        style: {
+          color: '#c43838',
+          fontWeight: '600',
+          textAlign: 'center'
+        }
+      }, "Course Code:", coursecode), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+        style: {
+          width: "90px"
+        },
+        src: "http://localhost/OARS/storage/app/public/uploads/".concat(this.state.TeacherInfo.image),
+        alt: this.state.TeacherInfo.image
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
+        style: {
+          color: '#ac3e13',
+          paddingTop: '.2em'
+        }
+      }, "Course Teacher Name:", this.state.TeacherInfo.name, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", null, " phone:", this.state.TeacherInfo.phone, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", null, " email: ", this.state.TeacherInfo.email, " "), this.state.AttendanceIndivi.slice(0, 1).map(function (row, index) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", null, "Student Name:", name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", null, "ID:IT- ", row.it, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+          style: {
+            display: "none"
+          }
+        }, localStorage.setItem('TeacherEmail', row.teacheremail)));
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        "class": "table-responsive "
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("table", {
+        "class": "table table-striped"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col"
+      }, "Lecture"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col"
+      }, "Attendance"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col"
+      }, "Date"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tbody", null, this.state.AttendanceIndivi.map(function (row, index) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+          scope: "row"
+        }, i++), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, row.attend == 'P' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+          style: {
+            color: 'green'
+          }
+        }, "P"), row.attend != 'P' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+          style: {
+            color: 'red'
+          }
+        }, "A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+          style: {
+            display: 'none'
+          }
+        }, row.attend == 'P' ? PresentCount++ : '')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, row.TakenDate));
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        style: {
+          textAlign: 'left'
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", {
+        style: {
+          fontWeight: '600'
+        }
+      }, "Total Lecture:", this.state.AttendanceIndivi.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", null, "Total Present:", PresentCount), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", null, "Total Absent:", this.state.AttendanceIndivi.length - PresentCount), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
+        style: {
+          color: PresentCount * 100 / this.state.AttendanceIndivi.length > 60 ? '#2c601e' : 'red'
+        }
+      }, "Attendance Percentance:", PresentCount * 100 / this.state.AttendanceIndivi.length, "%"))))));
+    }
+  }]);
+
+  return ComponentToPrint;
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
+
+var Print = /*#__PURE__*/function (_React$Component2) {
+  _inherits(Print, _React$Component2);
+
+  var _super2 = _createSuper(Print);
+
+  function Print() {
+    _classCallCheck(this, Print);
+
+    return _super2.apply(this, arguments);
+  }
+
+  _createClass(Print, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      localStorage.setItem('it', this.props.match.params.it);
+      localStorage.setItem('coursecode', this.props.match.params.coursecode);
+      console.log('it ok', this.props.match.params.it);
+      console.log('coursecode ok', this.props.match.params.coursecode);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_to_print__WEBPACK_IMPORTED_MODULE_2___default.a, {
+        trigger: function trigger() {
+          // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
+          // to the root node of the returned component as it will be overwritten.
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+            "class": "btn btn-success float-right clearfix",
+            href: "#"
+          }, "Print!");
+        },
+        content: function content() {
+          return _this2.componentRef;
+        }
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ComponentToPrint, {
+        ref: function ref(el) {
+          return _this2.componentRef = el;
+        }
+      }));
+    }
+  }]);
+
+  return Print;
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Print);
+
+/***/ }),
+
 /***/ "./resources/js/components/Student/StudentAllinfos.js":
 /*!************************************************************!*\
   !*** ./resources/js/components/Student/StudentAllinfos.js ***!
@@ -93351,6 +93645,8 @@ var StudentAllinfos = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        "class": "topMargin"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         "class": "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         "class": "col-md-12"
@@ -93371,7 +93667,7 @@ var StudentAllinfos = /*#__PURE__*/function (_React$Component) {
             return _this2.SeeDetails(row.it, row.semester);
           }
         }, "See Details")));
-      }))))));
+      })))))));
     }
   }]);
 
@@ -93543,6 +93839,8 @@ var StudentHome = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_toastify__WEBPACK_IMPORTED_MODULE_4__["ToastContainer"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        "class": "topMargin"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         "class": "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         "class": "col-md-12"
@@ -93589,7 +93887,7 @@ var StudentHome = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick() {
           return _this2.toggleUpdateStudent();
         }
-      }, this.state.toggleUpdateTask && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "Update "), !this.state.toggleUpdateTask && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "Cancel Updating"))))));
+      }, this.state.toggleUpdateTask && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "Update "), !this.state.toggleUpdateTask && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "Cancel Updating")))))));
     }
   }]);
 
@@ -93708,18 +94006,20 @@ var StudentSemesterInfo = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var randNum = 1;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        "class": "row"
+        "class": "topMargin"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        "class": "row "
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         "class": "col-md-12"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         "class": "takenclasss"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
-        "class": "heading"
+        "class": "heading example-screen"
       }, " All Information"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         "class": "row"
       }, this.state.StudentSemInfo.map(function (row, index) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-          "class": "col-md-4"
+          "class": "col-md-4 "
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
           "class": "AllInfo_course"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", null, "Semester:", row.course_code), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ViewAttendance__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -93727,7 +94027,7 @@ var StudentSemesterInfo = /*#__PURE__*/function (_React$Component) {
           it: row.it,
           courseCode: row.course_code
         })));
-      }))))));
+      })))))));
     }
   }]);
 
@@ -94115,6 +94415,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Services_StudentService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Services/StudentService */ "./resources/js/components/Services/StudentService.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -94144,6 +94445,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -94220,6 +94522,11 @@ var ViewAttendance = /*#__PURE__*/function (_React$Component) {
       }, _callee2);
     })));
 
+    _defineProperty(_assertThisInitialized(_this), "PrintF", function () {
+      //   const {history}=this.props;
+      window.location.href = "/OARS/print/".concat(_this.props.it, "/").concat(_this.props.courseCode);
+    });
+
     _this.state = {
       AttendanceIndivi: [],
       isLoading: true,
@@ -94241,6 +94548,8 @@ var ViewAttendance = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       var getLoginData = localStorage.getItem("LoginData");
       var data1 = JSON.parse(getLoginData);
       var name = data1.user.name;
@@ -94282,7 +94591,8 @@ var ViewAttendance = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
         "aria-hidden": "true"
       }, "\xD7"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        "class": "modal-body"
+        "class": "modal-body",
+        id: "bodyok"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         style: {
           textAlign: 'left'
@@ -94351,6 +94661,10 @@ var ViewAttendance = /*#__PURE__*/function (_React$Component) {
       }, "Attendance Percentance:", PresentCount * 100 / this.state.AttendanceIndivi.length, "%"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         "class": "modal-footer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this3.PrintF();
+        }
+      }, " Print"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
         type: "button",
         "class": "btn btn-secondary",
         "data-dismiss": "modal"
@@ -94361,7 +94675,7 @@ var ViewAttendance = /*#__PURE__*/function (_React$Component) {
   return ViewAttendance;
 }(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (ViewAttendance);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["withRouter"])(ViewAttendance));
 
 /***/ }),
 
@@ -94471,7 +94785,8 @@ var Allinformation = /*#__PURE__*/function (_React$Component) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                history = _this.props.history; // window.location.href = `/OARS/takenclasses/${coursecode}`;
+                //  alert('hi');
+                history = _this.props.history; //window.location.href = `/OARS/takenclasses/${coursecode}`;
 
                 _context2.next = 3;
                 return history.push("/OARS/takenclasses/".concat(coursecode));
@@ -94584,6 +94899,8 @@ var Allinformation = /*#__PURE__*/function (_React$Component) {
 
       var randNum = 1;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_toastify__WEBPACK_IMPORTED_MODULE_6__["ToastContainer"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        "class": "topMargin"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         "class": "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         "class": "col-md-12"
@@ -94660,14 +94977,14 @@ var Allinformation = /*#__PURE__*/function (_React$Component) {
           it: row.it,
           courseCode: row.course_code
         })));
-      }))))))));
+      })))))))));
     }
   }]);
 
   return Allinformation;
 }(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Allinformation);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Allinformation));
 
 /***/ }),
 
@@ -94906,7 +95223,9 @@ var AttendanceUpdate = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_toastify__WEBPACK_IMPORTED_MODULE_4__["ToastContainer"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Card"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Card"].Body, {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_toastify__WEBPACK_IMPORTED_MODULE_4__["ToastContainer"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        "class": "topMargin"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Card"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Card"].Body, {
         className: "takenclasss"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
         className: "heading"
@@ -94983,7 +95302,7 @@ var AttendanceUpdate = /*#__PURE__*/function (_React$Component) {
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Button"], {
         variant: "primary",
         type: "submit"
-      }, "Submit"))))))));
+      }, "Submit")))))))));
     }
   }]);
 
@@ -95544,7 +95863,9 @@ var Attendance = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_toastify__WEBPACK_IMPORTED_MODULE_4__["ToastContainer"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Card"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Card"].Body, {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_toastify__WEBPACK_IMPORTED_MODULE_4__["ToastContainer"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        "class": "topMargin"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Card"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Card"].Body, {
         "class": "takenclasss"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
         className: "text-center heading"
@@ -95656,7 +95977,7 @@ var Attendance = /*#__PURE__*/function (_React$Component) {
         className: "submitbutton",
         variant: "primary",
         type: "submit"
-      }, "Submit"))))))));
+      }, "Submit")))))))));
     }
   }]);
 
@@ -96170,6 +96491,8 @@ var TakenClasses = /*#__PURE__*/function (_React$Component) {
         var i = 1;
       }
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_toastify__WEBPACK_IMPORTED_MODULE_2__["ToastContainer"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        "class": "topMargin"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         "class": "container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         "class": "row"
@@ -96213,7 +96536,7 @@ var TakenClasses = /*#__PURE__*/function (_React$Component) {
           },
           "class": "btn btn-danger"
         }, "Delete")));
-      }))))))));
+      })))))))));
     }
   }]);
 
@@ -96386,6 +96709,8 @@ var TeacherHome = /*#__PURE__*/function (_React$Component) {
       // }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_toastify__WEBPACK_IMPORTED_MODULE_5__["ToastContainer"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        "class": "topMargin"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         "class": "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         "class": "col-md-12"
@@ -96443,7 +96768,7 @@ var TeacherHome = /*#__PURE__*/function (_React$Component) {
         className: "MainDiv"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         "class": "jumbotron text-center bg-sky"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "Therichpost.com")), abc));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "Therichpost.com")), abc)));
     }
   }]);
 
@@ -96508,6 +96833,8 @@ var TeacherRoutine = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "class": "topMargin"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         "class": "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         "class": "col-md-12"
@@ -96520,7 +96847,7 @@ var TeacherRoutine = /*#__PURE__*/function (_React$Component) {
         style: {
           textAlign: 'center'
         }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "SL"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Day"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Lec-1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Lec-2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Lec-3"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Lec-4"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Lec-5"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Lec-6"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Lec-7"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Saturday"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Semester:4-2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time:10am")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Semester:4-2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time:10am")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Semester:4-2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time:10am")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Semester:4-2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time:10am")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Semester:4-2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time:10am")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Semester:4-2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time:10am")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Semester:4-2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time:10am"))))))))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "SL"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Day"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Lec-1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Lec-2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Lec-3"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Lec-4"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Lec-5"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Lec-6"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Lec-7"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Saturday"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Semester:4-2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time:10am")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Semester:4-2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time:10am")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Semester:4-2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time:10am")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Semester:4-2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time:10am")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Semester:4-2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time:10am")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Semester:4-2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time:10am")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Semester:4-2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time:10am")))))))))));
     }
   }]);
 
@@ -97434,7 +97761,12 @@ var Footer = /*#__PURE__*/function (_React$Component) {
         "class": "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         "class": "col-md-12"
-      }))));
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#",
+        "class": "back-to-top"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        "class": "fa fa-chevron-up"
+      })));
     }
   }]);
 
@@ -97583,30 +97915,36 @@ var Header = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      console.log('emailllll', this.state.email);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("nav", {
-        "class": "navbar navbar-expand-lg navbar-light bg-light"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        "class": "navbar-brand",
+        "class": "navbar navbar-default navbar-trans navbar-expand-lg fixed-top"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        "class": "container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        "class": "navbar-toggler collapsed",
+        type: "button",
+        "data-toggle": "collapse",
+        "data-target": "#navbarDefault",
+        "aria-controls": "navbarDefault",
+        "aria-expanded": "false",
+        "aria-label": "Toggle navigation"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+        "class": "navbar-brand text-brand",
         to: "/OARS/"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
         src: "http://localhost/OARS/storage/app/public/uploads/logo.png",
         width: "60px"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-        href: "#"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-        "class": "navbar-toggler",
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
         type: "button",
+        "class": "btn btn-link nav-search navbar-toggle-box-collapse d-md-none",
         "data-toggle": "collapse",
-        "data-target": "#navbarSupportedContent",
-        "aria-controls": "navbarSupportedContent",
-        "aria-expanded": "false",
-        "aria-label": "Toggle navigation"
+        "data-target": "#navbarTogglerDemo01",
+        "aria-expanded": "false"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-        "class": "navbar-toggler-icon"
+        "class": "fa fa-search",
+        "aria-hidden": "true"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        "class": "collapse navbar-collapse",
-        id: "navbarSupportedContent"
+        "class": "navbar-collapse collapse justify-content-center",
+        id: "navbarDefault"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
         "class": "navbar-nav "
       }, !this.props.authData.isLoggedIn && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
@@ -97687,7 +98025,7 @@ var Header = /*#__PURE__*/function (_React$Component) {
         "aria-labelledby": "navbarDropdown"
       }, this.state.Semester.map(function (sem, index) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-          "class": "nav-link",
+          "class": "dropdown-item",
           onClick: function onClick() {
             return _this2.semesterFunction(sem.session);
           }
@@ -97705,7 +98043,16 @@ var Header = /*#__PURE__*/function (_React$Component) {
           return _this2.Logout();
         },
         "class": "nav-link"
-      }, "Logout ( ", this.props.authData.user12.name, ")"))))));
+      }, "Logout ( ", this.props.authData.user12.name, ")")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        type: "button",
+        "class": "btn btn-b-n navbar-toggle-box-collapse d-none d-md-block",
+        "data-toggle": "collapse",
+        "data-target": "#navbarTogglerDemo01",
+        "aria-expanded": "false"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        "class": "fa fa-search",
+        "aria-hidden": "true"
+      })))));
     }
   }]);
 
@@ -97770,6 +98117,8 @@ var Home = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "class": "topMargin"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         "class": "jumbotron"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Welcome to ICT Online Attendance & Result System"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "To Get the MemberShip Please Registration ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         "class": "Headline"
@@ -97880,7 +98229,7 @@ var Home = /*#__PURE__*/function (_React$Component) {
         "aria-labelledby": "list-settings-list"
       }, "..settings 1.")))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         className: "btn btn-success"
-      }, "okkfd"));
+      }, "okkfd")));
     }
   }]);
 
@@ -98038,7 +98387,7 @@ var Login = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, console.log('urlllll', this.props.location), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         "class": "login"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", null, "Login form"), this.state.isLoading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         "class": "spinner-border",

@@ -62,7 +62,7 @@ class Login extends React.Component {
     render() {
         return (
             <>
-            {console.log('urlllll',this.props.location)}
+
                 <div class="login">
                     <h2>Login form</h2>
                     {this.state.isLoading && (

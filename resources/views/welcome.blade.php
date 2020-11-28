@@ -12,6 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('public/js/app.js') }}" defer></script>
+    <script src="{{ asset('public/ExtraJs/js/main.js')}}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -19,6 +20,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/ExtraJs/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('public/ExtraJs/animate/animate.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('public/ExtraJs/ionicons/css/ionicons.min.css')}}" rel="stylesheet">
      <link href="{{ asset('public/css/style.css') }}" rel="stylesheet">
 
 </head>

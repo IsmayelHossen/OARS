@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link,withRouter } from "react-router-dom";
 import { AttendanceService } from '../Services/AttendanceService';
@@ -34,18 +35,26 @@ import { AttendanceService } from '../Services/AttendanceService';
          }
         render(){
 
-    console.log('emailllll',this.state.email);
+
             return(
                 <div>
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <Link class="navbar-brand" to='/OARS/'><img src={`http://localhost/OARS/storage/app/public/uploads/logo.png`} width="60px"></img></Link>
-                    <a  href="#"></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ">
+  {/* <!--/ Nav Star /--> */}
+  <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
+    <div class="container">
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
+        aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <Link class="navbar-brand text-brand" to='/OARS/'><img src={`http://localhost/OARS/storage/app/public/uploads/logo.png`} width="60px"></img></Link>
+      <button type="button" class="btn btn-link nav-search navbar-toggle-box-collapse d-md-none" data-toggle="collapse"
+        data-target="#navbarTogglerDemo01" aria-expanded="false">
+        <span class="fa fa-search" aria-hidden="true"></span>
+      </button>
+      <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
+      <ul class="navbar-nav ">
                             {!this.props.authData.isLoggedIn && (
                                 <>
                             <li class="nav-item active">
@@ -99,6 +108,7 @@ import { AttendanceService } from '../Services/AttendanceService';
 
                        <Link class="nav-link" to='/OARS/allinformation' >AllInformation</Link>
                         </li>
+
                              <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Semester
@@ -108,7 +118,7 @@ import { AttendanceService } from '../Services/AttendanceService';
                                 {this.state.Semester.map((sem, index) => (
 
 
-                                        <Link  class="nav-link"  onClick={()=>this.semesterFunction(sem.session)}>Semester {sem.semester}</Link>
+                                        <Link  class="dropdown-item"  onClick={()=>this.semesterFunction(sem.session)}>Semester {sem.semester}</Link>
 
                                  ) )}
                                    {this.state.Semester==0 &&(
@@ -132,14 +142,14 @@ import { AttendanceService } from '../Services/AttendanceService';
                                 </li>
                             )}
                              </ul>
-
-                        {/* <form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                         </form> */}
-
-  </div>
-</nav>
+      </div>
+      <button type="button" class="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block" data-toggle="collapse"
+        data-target="#navbarTogglerDemo01" aria-expanded="false">
+        <span class="fa fa-search" aria-hidden="true"></span>
+      </button>
+    </div>
+  </nav>
+  {/* <!--/ Nav End /--> */}
             </div>
 
             );
@@ -147,3 +157,6 @@ import { AttendanceService } from '../Services/AttendanceService';
  }
 
 export default withRouter(Header);
+
+
+

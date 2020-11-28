@@ -79,6 +79,7 @@ class TeacherHome extends React.Component {
         return (
             <>
                <ToastContainer/>
+               <div class="topMargin">
                <div class="row">
                    <div class="col-md-12">
                        <div class="jumbotron">
@@ -150,6 +151,7 @@ class TeacherHome extends React.Component {
       </div>
   {abc}
 
+      </div>
       </div>
         </>
         );

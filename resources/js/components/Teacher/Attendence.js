@@ -220,7 +220,7 @@ paginate=(pageNum)=>{
             <>
             <ToastContainer/>
 
-
+            <div class="topMargin">
                 <Card >
                 <Card.Body class="takenclasss">
                 <h3 className="text-center heading">Attendance Sheet( {this.state.semesterinfo1.slice(0,1).map((student123, index) => (
@@ -329,7 +329,7 @@ paginate=(pageNum)=>{
                 </Card.Body>
                 </Card>
 
-
+</div>
             </>
         );
     }

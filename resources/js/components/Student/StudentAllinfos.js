@@ -33,7 +33,7 @@ class StudentAllinfos extends React.Component {
     render() {
         return (
             <>
-
+                <div class="topMargin">
              <div class="row">
                <div class="col-md-12">
                    <div class="takenclasss">
@@ -59,7 +59,7 @@ class StudentAllinfos extends React.Component {
                </div>
            </div>
 
-
+          </div>
             </>
 
           );
