@@ -12,22 +12,26 @@
 
     <!-- Scripts -->
     <script src="{{ asset('public/js/app.js') }}" defer></script>
+    <script src="{{ asset('public/ExtraJs/jquery/jquery.min.js')}}"></script>
     <script src="{{ asset('public/ExtraJs/js/main.js')}}"></script>
+    <script src="{{ asset('public/ExtraJs/scrollreveal/scrollreveal.min.js')}}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <!-- Styles -->
+    <!-- Styles extra -->
     <link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('public/ExtraJs/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{ asset('public/ExtraJs/animate/animate.min.css')}}" rel="stylesheet">
     <link href="{{ asset('public/ExtraJs/ionicons/css/ionicons.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('public/ExtraJs/style.css')}}" rel="stylesheet">
+       <!-- Styles extra-->
      <link href="{{ asset('public/css/style.css') }}" rel="stylesheet">
 
 </head>
 <body>
-<div class="container">
+<div class="container12">
     <div class="row justify-content-center">
         <div class="col-md-12">
            <div id="example">
@@ -35,6 +39,8 @@
            </div>
         </div>
     </div>
+
+
 </div>
 
 </body>

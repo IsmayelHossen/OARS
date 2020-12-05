@@ -219,7 +219,7 @@ paginate=(pageNum)=>{
         return (
             <>
             <ToastContainer/>
-
+            <div class="containerCustom">
             <div class="topMargin">
                 <Card >
                 <Card.Body class="takenclasss">
@@ -329,6 +329,7 @@ paginate=(pageNum)=>{
                 </Card.Body>
                 </Card>
 
+</div>
 </div>
             </>
         );

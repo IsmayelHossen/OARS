@@ -66,8 +66,9 @@ class TakenClasses extends React.Component {
             <>
 
               <ToastContainer/>
+              <div class="containerCustom">
               <div class="topMargin">
-            <div class="container">
+            <div >
                 <div class="row">
                     <div className=" col-md-12 takenclasss">
 
@@ -103,6 +104,7 @@ class TakenClasses extends React.Component {
 
                     </div>
 
+            </div>
             </div>
             </div>
             </div>

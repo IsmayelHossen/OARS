@@ -26,6 +26,7 @@ class StudentSemesterInfo extends React.Component {
         let randNum=1;
         return (
             <>
+             <div class="containerCustom">
               <div class="topMargin">
              <div class="row ">
                <div class="col-md-12">
@@ -50,6 +51,7 @@ class StudentSemesterInfo extends React.Component {
                </div>
            </div>
 
+          </div>
           </div>
             </>
 

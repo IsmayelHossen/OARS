@@ -33,11 +33,12 @@ class StudentAllinfos extends React.Component {
     render() {
         return (
             <>
+             <div class="containerCustom">
                 <div class="topMargin">
              <div class="row">
                <div class="col-md-12">
                    <div class="takenclasss">
-                        <h3 class="heading"> All Information</h3>
+                        <h3 class="heading animate__bounce"> All Information</h3>
                           <div class="row">
                               {
                                this.state.email
@@ -59,6 +60,7 @@ class StudentAllinfos extends React.Component {
                </div>
            </div>
 
+          </div>
           </div>
             </>
 

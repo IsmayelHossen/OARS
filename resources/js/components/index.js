@@ -19,6 +19,7 @@ import Print from './Student/Print';
 import StudentAllinfos from './Student/StudentAllinfos';
 import StudentHome from './Student/StudentHome';
 import StudentSemesterInfo from './Student/StudentSemesterInfo';
+import AdminHome from './Admin/AdminHome';
 import Allinformation from './Teacher/Allinformation';
 import AttendanceUpdate from './Teacher/AttendanceUpdate';
 import Attendance from './Teacher/Attendence';
@@ -27,6 +28,10 @@ import TakenClasses from './Teacher/TakenClasses';
 import TakenClasss from './Teacher/TakenClasses';
 import TeacherHome from './Teacher/TeacherHome';
 import TeacherRoutine from './Teacher/TeacherRoutine';
+import AddSemesterCourse from './Admin/AddSemesterCourse';
+import EditSemCourse from './Admin/EditSemCourse';
+import ForgetPassword from './CFPassword/ForgetPassword';
+import resetPassword from './CFPassword/resetPassword';
 
 
 class Index extends React.Component {
@@ -56,12 +61,17 @@ class Index extends React.Component {
                     <Route exact path="/OARS/loginuser/">
                          <Login/>
                      </Route>
+                     <Route exact path='/OARS/resetPassword' component={resetPassword}/>
                     <Route exact path="/OARS/registeruser">
                         <Register />
                     </Route>
                     <Route exact path="/OARS/verification">
                         <Verification />
                     </Route>
+                    <Route exact path="/OARS/forgetPassword">
+                        <ForgetPassword />
+                    </Route>
+
                     {/* student routes access check is usr authenticated or not and if hit
                     url with differnt way to access homepage first check is logged?? if logged in, then access otherways redireect to login page */}
                     <AccessRoute
@@ -86,6 +96,26 @@ class Index extends React.Component {
                            />
                         </>
                     )}
+                   { /* after login for Admiin Links and routes start */}
+                   <AccessRoute
+                        authed={this.state.isLoggedIn}
+                      exact  path="/OARS/adminhome/"
+                        component={AdminHome}
+                    />
+                     {this.state.isLoggedIn && this.state.user12.user_rule == 'Admin' && (
+                       <>
+                       <Route exact path="/OARS/">
+                       <AdminHome/>
+                   </Route>
+                   <Route path='/OARS/addSemesterCourse'>
+                         <AddSemesterCourse/>
+                   </Route>
+                   <Route exact path='/OARS/editSCourse/:email/:ccode/:session' component={EditSemCourse} />
+
+                        </>
+                    )}
+                   { /* after login for Admiin Links and routes end */}
+
                     {/* student routes end*/}
                         {/* Teacher routes  start*/}
                     <AccessRoute

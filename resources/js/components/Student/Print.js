@@ -47,6 +47,8 @@ class ComponentToPrint  extends React.Component {
              let PresentCount=0;
       return (
         <div>
+            <div class="containerCustom">
+            <div class="topMargin">
             <div class="row">
                 <div class="col-md-12" >
                     <div style={{paddingLeft:'.6em'}}>
@@ -112,6 +114,8 @@ class ComponentToPrint  extends React.Component {
      </div>
 
      </div>
+            </div>
+            </div>
             </div>
             </div>
       );

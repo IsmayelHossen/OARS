@@ -29,6 +29,9 @@ Route::get('/{path?}/{path2?}', function () {
 Route::get('/{path?}/{path2?}/{path3?}', function () {
     return view('welcome');
 });
+Route::get('/{path?}/{path2?}/{path3?}/{path4?}', function () {
+    return view('welcome');
+});
 
  Auth::routes();
 Route::get('/about',function(){

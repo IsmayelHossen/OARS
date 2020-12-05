@@ -149,6 +149,7 @@ class AttendanceUpdate extends React.Component {
         return (
             <>
             <ToastContainer/>
+            <div class="containerCustom">
             <div class="topMargin">
                 <Card >
                 <Card.Body className="takenclasss">
@@ -234,6 +235,7 @@ class AttendanceUpdate extends React.Component {
         </div>
         </Card.Body>
         </Card>
+        </div>
         </div>
     </>
         );

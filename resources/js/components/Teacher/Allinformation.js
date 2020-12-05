@@ -128,6 +128,7 @@ paginate=(pageNum)=>{
         return (
             <>
             <ToastContainer/>
+            <div class="containerCustom">
             <div class="topMargin">
            <div class="row">
                <div class="col-md-12">
@@ -224,9 +225,12 @@ paginate=(pageNum)=>{
                </div>
            </div>
            </div>
+           </div>
            </>
          );
     }
 }
 
 export default withRouter(Allinformation);
+
+

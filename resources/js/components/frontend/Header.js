@@ -2,6 +2,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link,withRouter } from "react-router-dom";
 import { AttendanceService } from '../Services/AttendanceService';
+import $ from 'jquery';
  class Header extends React.Component{
     constructor(props) {
         super(props);
@@ -39,6 +40,9 @@ import { AttendanceService } from '../Services/AttendanceService';
             return(
                 <div>
 
+
+
+
   {/* <!--/ Nav Star /--> */}
   <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
     <div class="container">
@@ -49,12 +53,10 @@ import { AttendanceService } from '../Services/AttendanceService';
         <span></span>
       </button>
       <Link class="navbar-brand text-brand" to='/OARS/'><img src={`http://localhost/OARS/storage/app/public/uploads/logo.png`} width="60px"></img></Link>
-      <button type="button" class="btn btn-link nav-search navbar-toggle-box-collapse d-md-none" data-toggle="collapse"
-        data-target="#navbarTogglerDemo01" aria-expanded="false">
-        <span class="fa fa-search" aria-hidden="true"></span>
-      </button>
+
       <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
       <ul class="navbar-nav ">
+          {/* before login start */}
                             {!this.props.authData.isLoggedIn && (
                                 <>
                             <li class="nav-item active">
@@ -86,13 +88,45 @@ import { AttendanceService } from '../Services/AttendanceService';
                             </li>
                             </>
                             )}
+    {/* before login end */}
 
+                                     {/* after login for student home start */}
                             {this.props.authData.isLoggedIn && this.props.authData.user12.user_rule == 'Student' && (
                                 <li class="nav-item">
 
                                     <Link class="nav-link" to='/OARS/studentallInfo'>All Info</Link>
                                 </li>
                             )}
+                               {/* after login for student home end */}
+
+
+                                {/* after login for Admiin Links and routes start */}
+                                {this.props.authData.isLoggedIn && this.props.authData.user12.user_rule == 'Admin' && (
+
+                                // mobile menu start
+                                <div class="AdminMMenu">
+                                        <li class="nav-item">
+
+                          <Link class="nav-link" to='/OARS/'>All Info</Link>
+                             </li>
+
+                             <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Teachers
+                                 </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <Link class="dropdown-item" to='/OARS/addSemesterCourse'>addSemesterCourse</Link>
+                                <Link class="dropdown-item" to='/OARS/addSemesterCourse'>add</Link>
+                                </div>
+                            </li>
+
+                                </div>
+
+                                //mobile menu end
+
+                            )}
+
+                                 {/* after login for Admin Links and routes end */}
                             {/* specific routes access after login(teacher) */}
                             {this.props.authData.isLoggedIn && this.props.authData.user12.user_rule == 'Teacher' && (
                               <>
@@ -143,10 +177,10 @@ import { AttendanceService } from '../Services/AttendanceService';
                             )}
                              </ul>
       </div>
-      <button type="button" class="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block" data-toggle="collapse"
+      {/* <button type="button" class="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block" data-toggle="collapse"
         data-target="#navbarTogglerDemo01" aria-expanded="false">
         <span class="fa fa-search" aria-hidden="true"></span>
-      </button>
+      </button> */}
     </div>
   </nav>
   {/* <!--/ Nav End /--> */}

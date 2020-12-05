@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\AttendanceController;
+use App\Http\Controllers\API\ForgetPassword;
+use App\Http\Controllers\API\ForgetPasswordController;
 use App\Http\Controllers\API\ImageController;
 use App\Http\Controllers\API\LoginRegController;
 use App\Http\Controllers\API\StudentController;
@@ -65,6 +68,14 @@ Route::get('SearchByCourseCode/{sbyccode}/{temail}',[AttendanceController::class
 Route::post('upload',[ImageController::class,'uploadimage']);
 
 //admin
+Route::get('Infoteacher',[AdminController::class,'Infoteacher'])->middleware('auth:api');
+Route::post('SaveSemesterCourse1',[AdminController::class,'SaveSemesterCourse1']);
+Route::get('GetSemesterCourseInfo1',[AdminController::class,'GetSemesterCourseInfo1']);
+Route::get('deleteSpecificSemesterCourse1/{email}/{ccode}/{session}',[AdminController::class,'deleteSpecificSemesterCourse1']);
+
+//password forget change password
+Route::post('PasswordForgetEmail1',[ForgetPasswordController::class,'PasswordForgetEmail1']);
+Route::post('ResetPasswordSave1',[ForgetPasswordController::class,'ResetPasswordSave1']);
 
 
 

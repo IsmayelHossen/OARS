@@ -8,6 +8,7 @@ class TeacherRoutine extends React.Component {
         return (
 
            <>
+              <div class="containerCustom">
               <div class="topMargin">
            <div class="row">
                <div class="col-md-12">
@@ -67,6 +68,7 @@ class TeacherRoutine extends React.Component {
              </div>
                    </div>
                </div>
+           </div>
            </div>
            </div>
 

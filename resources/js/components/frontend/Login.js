@@ -42,6 +42,9 @@ class Login extends React.Component {
                 window.location.href = "/OARS/";
                // alert(response.user.user_rule);
             }
+            else if(response.user.user_rule=='Admin'){
+                window.location.href = "/OARS/";
+            }
             else{
                 window.location.href = "/OARS/";
             }
@@ -102,6 +105,7 @@ class Login extends React.Component {
                               <option value="">Select</option>
                                 <option value="Teacher">Teacher</option>
                                 <option value="Student">Student</option>
+                                <option value="Admin">Admin</option>
 
                             </select>
                             {this.state.errors && this.state.errors.user_rule && (
@@ -114,6 +118,7 @@ class Login extends React.Component {
     </label>
   </div> */}
                         <button type="submit" class="btn btn-success btn-block" >Submit</button>
+                        <p><Link to="/OARS/forgetPassword">Forget Password?</Link></p>
                     </form>
                 </div>
             </>
