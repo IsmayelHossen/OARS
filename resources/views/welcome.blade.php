@@ -28,12 +28,41 @@
     <link href="{{ asset('public/ExtraJs/style.css')}}" rel="stylesheet">
        <!-- Styles extra-->
      <link href="{{ asset('public/css/style.css') }}" rel="stylesheet">
+<style>
+.translated-ltr{margin-top:-40px;}
+.translated-ltr{margin-top:-40px;}
+.goog-te-banner-frame {display: none;margin-top:-20px;}
 
+.goog-logo-link {
+   display:none !important;
+}
+
+.goog-te-gadget{
+   color: transparent !important;
+}
+.goog-te-gadget .goog-te-combo {
+    position: absolute;;
+bottom:70px;
+right:8px;
+overflow: hidden;
+}
+
+
+
+
+</style>
+<script src="{{ asset('public/js/translate.js') }}" defer></script>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    }
+    </script>
 </head>
 <body>
-<div class="container12">
+
+<div class="container12" id="google_translate_element">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-12" >
            <div id="example">
 
            </div>

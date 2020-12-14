@@ -3,6 +3,7 @@ import {Form,Card,Button } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CourseCodeUpdate, getSemesterInfo } from '../Services/AttendanceService';
+import { PUBLIC_URL } from "../CommonURL";
 class UpdateCcode extends React.Component{
     state={
         coursecode:'',
@@ -51,7 +52,7 @@ class UpdateCcode extends React.Component{
             localStorage.removeItem("Session");
              console.log('ccode',response.data);
             //  this.props.onCompleteCourseCodeUpdate();
-            history.push(`/OARS/takenclasses/${this.state.ccode}`);
+            history.push(`${PUBLIC_URL}takenclasses/${this.state.ccode}`);
           }
           else if(response.checkcoursecode){
             toast('Duplicat course code');

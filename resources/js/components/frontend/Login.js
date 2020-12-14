@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from "react-router-dom";
 import { loginUser } from '../Services/LoginRegService';
+import { PUBLIC_URL } from "../CommonURL";
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -37,16 +38,18 @@ class Login extends React.Component {
 
           });
              localStorage.setItem("LoginData", JSON.stringify(response));
+          this.props.GetUser(response);
+
             if(response.user.user_rule=='Student'){
                 this.setState({ isLoading:false  });
-                window.location.href = "/OARS/";
+                window.location.href =`${PUBLIC_URL}`;
                // alert(response.user.user_rule);
             }
             else if(response.user.user_rule=='Admin'){
-                window.location.href = "/OARS/";
+                window.location.href = `${PUBLIC_URL}`;
             }
             else{
-                window.location.href = "/OARS/";
+                window.location.href = `${PUBLIC_URL}`;
             }
             console.log(response);
 
@@ -67,7 +70,8 @@ class Login extends React.Component {
             <>
 
                 <div class="login">
-                    <h2>Login form</h2>
+                    <h2><i class="fa fa-user-circle" aria-hidden="true"></i>
+Login </h2>
                     {this.state.isLoading && (
                         <div class="spinner-border" role="status">
                             <span class="sr-only">Loading...</span>
@@ -118,7 +122,7 @@ class Login extends React.Component {
     </label>
   </div> */}
                         <button type="submit" class="btn btn-success btn-block" >Submit</button>
-                        <p><Link to="/OARS/forgetPassword">Forget Password?</Link></p>
+                        <p><Link to={`${PUBLIC_URL}forgetPassword`}>Forget Password?</Link></p>
                     </form>
                 </div>
             </>

@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { deleteSpecificAttendance, gettotalClasses } from '../Services/AttendanceService';
 import Swal from 'sweetalert2';
 import AttendanceView from './AttendanceView';
+import { PUBLIC_URL } from "../CommonURL";
 class TakenClasses extends React.Component {
     constructor(props) {
         super(props);
@@ -55,7 +56,7 @@ class TakenClasses extends React.Component {
    }
    updateT=(ccode,scode)=>{
   const {history}=this.props;
-   history.push(`/OARS/attendanceupdate/${ccode}/${scode}`);
+   history.push(`${PUBLIC_URL}attendanceupdate/${ccode}/${scode}`);
    }
 
     render() {

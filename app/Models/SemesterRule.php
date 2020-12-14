@@ -13,6 +13,8 @@ class SemesterRule extends Model
         'batch',
         'semester',
         'session',
+        'cname',
+        'labtheory ',
         'course_code',
 
     ];

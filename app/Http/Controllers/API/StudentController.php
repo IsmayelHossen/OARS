@@ -127,4 +127,14 @@ class StudentController extends Controller
     return $result;
 
   }
+  public function classmateGet1($session){
+   $result=Student::where('session',$session)->orderBy('it','asc')->get();
+   return response()->json([
+    'success' => true,
+    'message' => 'session waize result !!',
+    'data' => $result,
+
+
+]);
+  }
 }

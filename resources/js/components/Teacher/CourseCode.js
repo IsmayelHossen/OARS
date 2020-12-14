@@ -2,6 +2,7 @@ import React from 'react';
 import {Form,Card,Button } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { PUBLIC_URL } from "../CommonURL";
 class CourseCode extends React.Component{
     state={
         coursecode:'',

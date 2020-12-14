@@ -1,7 +1,7 @@
 import React from 'react';
 import {Form,Card,Button } from 'react-bootstrap';
 import { getAttendanceView } from '../Services/AttendanceService';
-
+import { PUBLIC_URL } from "../CommonURL";
 class AttendanceView extends React.Component{
     state={
         coursecode:'',

@@ -1,8 +1,8 @@
 import Axios from "axios";
-
+import { PUBLIC_URL } from "../CommonURL";
 export const StudentAllInfo =async(email) => {
       //  console.log(data);
-    return await Axios.get(`http://localhost/OARS/api/Student/${email}`).then((res) => {
+    return await Axios.get(`${PUBLIC_URL}api/Student/${email}`).then((res) => {
        return res.data;
        // console.log('data',res.data);
 
@@ -12,7 +12,7 @@ export const StudentAllInfo =async(email) => {
 };
 export const StudenUpdateData = async (email,data) => {
     //  console.log(data);
-    return await Axios.put(`http://localhost/OARS/api/Student/${email}`,data).then((res) => {
+    return await Axios.put(`${PUBLIC_URL}api/Student/${email}`,data).then((res) => {
         return res.data;
         // console.log(res.data);
 
@@ -23,7 +23,7 @@ export const StudenUpdateData = async (email,data) => {
 
 export const AttendanceResultInfo=async(email) => {
     //  console.log(data);
-  return await Axios.get(`http://localhost/OARS/api/AttendanceResultInfo1/${email}`).then((res) => {
+  return await Axios.get(`${PUBLIC_URL}api/AttendanceResultInfo1/${email}`).then((res) => {
      return res.data;
      // console.log('data',res.data);
 
@@ -34,7 +34,7 @@ export const AttendanceResultInfo=async(email) => {
 //StudentSemResultInfo
 export const StudentSemResultInfo=async(it,semester) => {
     //  console.log(data);
-  return await Axios.get(`http://localhost/OARS/api/StudentSemResultInfo1/${it}/${semester}`).then((res) => {
+  return await Axios.get(`${PUBLIC_URL}api/StudentSemResultInfo1/${it}/${semester}`).then((res) => {
      return res.data;
      // console.log('data',res.data);
 
@@ -45,7 +45,7 @@ export const StudentSemResultInfo=async(it,semester) => {
 //IndividualAttendResult course waize
 export const SemesterWithCourseCodeRes=async(it,courseCode) => {
     //  console.log(data);
-  return await Axios.get(`http://localhost/OARS/api/IndividualAttendResult1/${it}/${courseCode}`).then((res) => {
+  return await Axios.get(`${PUBLIC_URL}api/IndividualAttendResult1/${it}/${courseCode}`).then((res) => {
      return res.data;
      // console.log('data',res.data);
 
@@ -57,7 +57,18 @@ export const SemesterWithCourseCodeRes=async(it,courseCode) => {
 //TeacherInformation
 export const TeacherInformation=async(temail) => {
     //  console.log(data);
-  return await Axios.get(`http://localhost/OARS/api/TeacherInformation1/${temail}`).then((res) => {
+  return await Axios.get(`${PUBLIC_URL}api/TeacherInformation1/${temail}`).then((res) => {
+     return res.data;
+     // console.log('data',res.data);
+
+
+
+  });
+};
+// classmateGet
+export const classmateGet=async(session) => {
+    //  console.log(data);
+  return await Axios.get(`${PUBLIC_URL}api/classmateGet1/${session}`).then((res) => {
      return res.data;
      // console.log('data',res.data);
 

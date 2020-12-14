@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attendace;
+use App\Models\CTMark;
 use App\Models\SemesterRule;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Validator;
 class AttendanceController extends Controller
 {
     public function  TakenPermitClass($email){
-          $getpermit=SemesterRule::select('session','batch','semester','email')->distinct()->where('email',$email)->get();
+          $getpermit=SemesterRule::select('session','batch','semester','email')->distinct()->where('email',$email)->where('status',1)->get();
        //  $getpermit =DB::table('semester_rules')->distinct('tyrbatch2')->get();
            return response()->json([
                'success'=> true,
@@ -222,7 +223,7 @@ public function IndividualAttendResult($it,$ccode,$temail)
 {
     $get1=DB::table('students')
     ->join('attendaces','students.it','=','attendaces.it')
-    ->select('students.name','students.phone','students.image','students.session','students.it','attendaces.course_code','attendaces.attend','attendaces.TakenDate')
+    ->select('students.name','students.phone','students.image','students.email','students.session','students.it','attendaces.course_code','attendaces.attend','attendaces.TakenDate')
 
     ->where('attendaces.it',$it)->where('attendaces.course_code',$ccode)->where('attendaces.teacheremail',$temail)->get();
     return response()->json([
@@ -249,6 +250,83 @@ public function SearchByCourseCode($code,$temail){
    ]);
 
 }
+public function SaveAddMark1(Request $request){
+    $formData = $request->all();
+    $validator = Validator::make($formData, [
+        'ctname' => 'required',
+        'ctmark' => 'required',
+
+
+    ], [
+        'ctname.required' => 'Please select CT Name',
+        'ctmark.required' => 'Please Add Mark',
+
+    ]);
+    if ($validator->fails()) {
+        return response()->json([
+            'success' => false,
+            'message' => $validator->getMessageBag()->first(),
+            'errors' => $validator->getMessageBag(),
+        ]);
+    }
+    $checked=CTMark::where('it',$request->it)->where('ccode',$request->ccode)
+    ->where('ctname',$request->ctname)->first();
+    if($checked){
+        return response()->json([
+            'checkedCT'=>true,
+            'message'=>'data save',
+
+
+        ]);
+    }
+    else{
+        $add= new CTMark();
+        $add->it=$request->it;
+        $add->session=$request->session;
+        $add->ccode=$request->ccode;
+        $add->ctname=$request->ctname;
+        $add->marks=$request->ctmark;
+        $add->temail=$request->email;
+        $add->save();
+        return response()->json([
+            'success'=>true,
+            'message'=>'data save',
+            'data'=>$add
+
+        ]);
+    }
 
 
 }
+public function GetStudentCTMarkByCode1($session,$ccode,$temail){
+    $result=Attendace::select('it','session','course_code')->distinct()->where('teacheremail',$temail)
+    ->where('session',$session)->where('course_code',$ccode)->get();
+  return response()->json([
+    'success'=>true,
+    'message'=>'data save',
+    'data'=>$result
+  ]);
+}
+public function GetCTMarks1($it,$ccode,$temail)
+{
+    $get1=DB::table('c_t_marks')
+ ->where('it',$it)->where('ccode',$ccode)->where('temail',$temail)->get();
+    return response()->json([
+        'success'=>true,
+        'message'=>'Get Individual CT mark Result',
+        'data'=>$get1
+    ]);
+
+
+}
+public function DeleteCTMark1($id){
+   $del=CTMark::where('id',$id)->delete();
+   return response()->json([
+    'success'=>true,
+    'message'=>'Get Individual CT mark Result',
+    'data'=>$del
+   ]);
+}
+}
+
+

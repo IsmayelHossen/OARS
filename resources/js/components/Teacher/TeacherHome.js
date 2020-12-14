@@ -5,6 +5,7 @@ import TeacherUpdate from './TeacherUpdate';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ImageUpload from './ImageUpload';
+import { PUBLIC_URL } from "../CommonURL";
 //Datatable Modules
 //import 'jquery/dist/jquery.min.js';
 // import "datatables.net-dt/js/dataTables.dataTables.min.js"
@@ -97,7 +98,7 @@ class TeacherHome extends React.Component {
                       <>
                       <div class="row">
                           <div class="col-md-3">
-                          <img src={`http://localhost/OARS/storage/app/public/uploads/${this.state.teachertdata.image}`} class="student-card-img-top" alt="..."/>
+                          <img src={`${PUBLIC_URL}storage/app/public/uploads/${this.state.teachertdata.image}`} class="student-card-img-top" alt="..."/>
                           </div>
                           <div class="col-md-9 flex-5">
                               <div class="homeimagetop">

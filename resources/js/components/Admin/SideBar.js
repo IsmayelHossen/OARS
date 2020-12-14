@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link,withRouter } from "react-router-dom";
+import { PUBLIC_URL } from "../CommonURL";
 class SideBar extends React.Component {
     constructor(props) {
         super(props);
@@ -16,30 +17,42 @@ class SideBar extends React.Component {
                             <h3 class="sidebar-header">Admin</h3><span class="deleteSidebar" onClick={()=>this.deleteSidebar()}> cross</span>
                             <ul class="list-unstyled components">
                                 <li class="active">
-                                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Teachers</a>
-                                    <ul class="list-unstyled collapse" id="homeSubmenu">
-                                        <li>
-                                        <Link class="hrefa" to='/OARS/addSemesterCourse'>AddSemesterCourse</Link>
+
+                                        <Link class="hrefa" to={`${PUBLIC_URL}addSemesterCourse`}>Add Semester Course</Link>
 
                                         </li>
+                                        <li class="active">
+
+                    <Link class="hrefa" to={`${PUBLIC_URL}addccodetitle`}>
+                   Add Course Code Title</Link>
+
+                    </li>
+
+
+                                <li >
+                                <Link class="hrefa" to={`${PUBLIC_URL}addNotice`}>AddNotice</Link>
+                                </li>
+
+                                <li class="active">
+                                    <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Students</a>
+                                    <ul class="list-unstyled collapse" id="homeSubmenu1">
                                         <li>
-                                            <a href="#565">Home2</a>
+                                        <Link class="hrefa" to={`${PUBLIC_URL}adminStudentInfo`}>Current Student</Link>
+                                        </li>
+                                        <li>
+                                            <a href="#565">Ex Student</a>
                                         </li>
 
                                     </ul>
                                 </li>
-
-                                <li >
-                                    <a href="">About</a>
-                                </li>
                                 <li class="active">
-                                    <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-                                    <ul class="list-unstyled collapse" id="homeSubmenu1">
+                                    <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Result</a>
+                                    <ul class="list-unstyled collapse" id="homeSubmenu2">
                                         <li>
-                                            <a href="#565">Home3</a>
+                                        <Link class="hrefa" to={`${PUBLIC_URL}makeresult`}>Make Result</Link>
                                         </li>
                                         <li>
-                                            <a href="#565">Home4</a>
+                                        <Link class="hrefa" to={`${PUBLIC_URL}getresult`}>Get Result</Link>
                                         </li>
 
                                     </ul>

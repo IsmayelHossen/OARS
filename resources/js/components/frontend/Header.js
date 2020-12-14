@@ -1,16 +1,20 @@
 
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link,withRouter } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link,withRouter, Redirect } from "react-router-dom";
 import { AttendanceService } from '../Services/AttendanceService';
 import $ from 'jquery';
+import { PUBLIC_URL } from "../CommonURL";;
  class Header extends React.Component{
     constructor(props) {
         super(props);
         this.state = { Semester:[],
-            email:this.props.authData.user12.user_rule, }
+            email:this.props.authData.user12.user_rule,
+            userName:this.props.authData.user12.name,
+         }
     }
 
         componentDidMount() {
+            console.log('header punlic',PUBLIC_URL);
             this.getSemester();
             console.log(this.state.email);
         }
@@ -25,17 +29,19 @@ import $ from 'jquery';
         }
         Logout=()=>{
             localStorage.removeItem("LoginData");
-            window.location.href = "/OARS/loginuser";
+            window.location.href =`${PUBLIC_URL}loginuser`;
          }
          semesterFunction=async(session)=>{
              const {history}=this.props;
            //const abd= await history.push(`/OARS/attendance/${session}`);
-          window.location.href = `/OARS/attendance/${session}`;
+          window.location.href = `${PUBLIC_URL}attendance/${session}`;
 
         //    alert('hi');
          }
         render(){
-
+            // if(!localStorage.getItem('LoginData')){
+            //     return <Redirect to={'/OARS/loginuser'} />;
+            // }
 
             return(
                 <div>
@@ -52,27 +58,36 @@ import $ from 'jquery';
         <span></span>
         <span></span>
       </button>
-      <Link class="navbar-brand text-brand" to='/OARS/'><img src={`http://localhost/OARS/storage/app/public/uploads/logo.png`} width="60px"></img></Link>
+      <Link class="navbar-brand text-brand" to={PUBLIC_URL}><img src={`http://localhost/OARS/storage/app/public/uploads/logo.png`} width="60px"></img></Link>
 
       <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
-      <ul class="navbar-nav ">
+
+      <ul class="navbar-nav mx-auto">
           {/* before login start */}
                             {!this.props.authData.isLoggedIn && (
                                 <>
                             <li class="nav-item active">
 
-                                <Link class="nav-link" to='/OARS/' >Home <span class="sr-only">(current)</span></Link>
-                            </li>
-
-                            <li class="nav-item">
-
-                                <Link class="nav-link" to='/OARS/loginuser'>Login</Link>
+                                <Link class="nav-link" to={PUBLIC_URL} ><i class="fa fa-home" aria-hidden="true"></i>
+Home <span class="sr-only">(current)</span></Link>
                             </li>
                             <li class="nav-item">
 
-                                <Link class="nav-link" to='/OARS/registeruser'>Registration</Link>
-                            </li>
-                            <li class="nav-item dropdown">
+             <Link class="nav-link" to={`${PUBLIC_URL}about`}>About</Link>
+                     </li>
+                     <li class="nav-item">
+
+            < Link class="nav-link" to={`${PUBLIC_URL}services`}>Services</Link>
+            </li>
+            <li class="nav-item">
+
+                <Link class="nav-link" to={`${PUBLIC_URL}gallary`}>Gallary</Link>
+                </li>
+                <li class="nav-item">
+
+            <Link class="nav-link" to={`${PUBLIC_URL}contactus`}>Contact Us</Link>
+            </li>
+            <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Dropdown
                                  </a>
@@ -83,19 +98,25 @@ import $ from 'jquery';
                                     <a class="dropdown-item" href="#">Something else here</a>
                                 </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                            </li>
+
+
+
                             </>
                             )}
     {/* before login end */}
 
                                      {/* after login for student home start */}
                             {this.props.authData.isLoggedIn && this.props.authData.user12.user_rule == 'Student' && (
-                                <li class="nav-item">
+                              <>
+                              <li class="nav-item">
 
-                                    <Link class="nav-link" to='/OARS/studentallInfo'>All Info</Link>
+                                    <Link class="nav-link" to={`${PUBLIC_URL}studentallInfo`}>All Info</Link>
                                 </li>
+                                 <li class="nav-item">
+
+                                 <Link class="nav-link" to={`${PUBLIC_URL}seeclassmate`}>See Classmate</Link>
+                             </li>
+                             </>
                             )}
                                {/* after login for student home end */}
 
@@ -107,7 +128,7 @@ import $ from 'jquery';
                                 <div class="AdminMMenu">
                                         <li class="nav-item">
 
-                          <Link class="nav-link" to='/OARS/'>All Info</Link>
+                          <Link class="nav-link" to={PUBLIC_URL}>All Info</Link>
                              </li>
 
                              <li class="nav-item dropdown">
@@ -115,8 +136,8 @@ import $ from 'jquery';
                                     Teachers
                                  </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <Link class="dropdown-item" to='/OARS/addSemesterCourse'>addSemesterCourse</Link>
-                                <Link class="dropdown-item" to='/OARS/addSemesterCourse'>add</Link>
+                                <Link class="dropdown-item" to={`${PUBLIC_URL}addSemesterCourse`}>addSemesterCourse</Link>
+                                <Link class="dropdown-item" to={`${PUBLIC_URL}addSemesterCourse`}>add</Link>
                                 </div>
                             </li>
 
@@ -136,11 +157,11 @@ import $ from 'jquery';
                                 </li> */}
                                  <li class="nav-item">
 
-                                 <Link class="nav-link" to='/OARS/teacherRoutine'>Routine</Link>
+                                 <Link class="nav-link" to={`${PUBLIC_URL}teacherRoutine`}>Routine</Link>
                              </li>
                              <li class="nav-item">
 
-                       <Link class="nav-link" to='/OARS/allinformation' >AllInformation</Link>
+                       <Link class="nav-link" to={`${PUBLIC_URL}allinformation`} >AllInformation</Link>
                         </li>
 
                              <li class="nav-item dropdown">
@@ -163,6 +184,10 @@ import $ from 'jquery';
 
                                 </div>
                             </li>
+                            <li class="nav-item">
+
+               <Link class="nav-link" to={`${PUBLIC_URL}colleague`}>Colleague</Link>
+                            </li>
 
                              </>
                             )}
@@ -172,10 +197,26 @@ import $ from 'jquery';
                              <ul  class="navbar-nav ml-auto">
                             {this.props.authData.isLoggedIn && (
                                 <li class="nav-item ">
-                                    <Link to="/logout" onClick={() => this.Logout()} class="nav-link">Logout ( {this.props.authData.user12.name})</Link>
+                                    <Link to="/logout" onClick={() => this.Logout()} class="nav-link">
+                                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                   Logout ( {this.props.authData.user12.name})</Link>
                                 </li>
                             )}
                              </ul>
+                             {!this.props.authData.isLoggedIn && (
+                                <>
+                             <ul class="navbar-nav navbar-right">
+                                            <li class="nav-item ">
+
+                                <Link class="nav-link" to={`${PUBLIC_URL}loginuser`}>Login</Link>
+                            </li>
+                            <li class="nav-item ">
+
+                                <Link class="nav-link" to={`${PUBLIC_URL}registeruser`}>Registration</Link>
+                            </li>
+                            </ul>
+                            </>
+                             )}
       </div>
       {/* <button type="button" class="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block" data-toggle="collapse"
         data-target="#navbarTogglerDemo01" aria-expanded="false">

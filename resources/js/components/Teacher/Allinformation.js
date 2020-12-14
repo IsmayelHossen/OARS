@@ -1,11 +1,12 @@
 import React from 'react';
-import { withRouter} from "react-router-dom";
+import { Link, withRouter} from "react-router-dom";
 
 import { AllinformationGet1, getAttendaceResult1 ,SearchByCode} from '../Services/AttendanceService';
 import Pagination1 from './Pagination1';
 import ViewAttendanceResult from './ViewAttendanceResult';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { PUBLIC_URL } from "../CommonURL";
 class Allinformation extends React.Component {
     constructor(props) {
         super(props);
@@ -40,7 +41,7 @@ class Allinformation extends React.Component {
       //  alert('hi');
         const {history}=this.props;
         //window.location.href = `/OARS/takenclasses/${coursecode}`;
-      const abc= await history.push(`/OARS/takenclasses/${coursecode}`);
+      const abc= await history.push(`${PUBLIC_URL}takenclasses/${coursecode}`);
 
     }
     // ResultOfAttendance=async()=>{
@@ -151,6 +152,10 @@ paginate=(pageNum)=>{
                    </div>
                </div>
            </div>
+            {/* add ct marks start */}
+
+
+                 {/* add ct marks end */}
            <div class="row">
                <div class="col-md-12">
                    <div class="takenclasss" style={{marginTop:'.5em'}}>
@@ -203,6 +208,7 @@ paginate=(pageNum)=>{
         <th>ID</th>
         <th>Session</th>
         <th>Course Code</th>
+        <th>Add CT Mark</th>
         <th>View</th>
       </tr>
     </thead>
@@ -213,6 +219,7 @@ paginate=(pageNum)=>{
     <td>{row.it}</td>
     <td>{row.session}</td>
     <td>{row.course_code}</td>
+    <td><Link class="btn btn-primary" to={`${PUBLIC_URL}Addctmark/${row.it}/${row.session}/${row.course_code}`}>Add </Link></td>
     <td><ViewAttendanceResult random={randNum++} it={row.it} courseCode={row.course_code}/></td>
       </tr>
     ))}

@@ -1,7 +1,8 @@
 import React from 'react';
 import { AttendanceResultInfo, StudentSemResultInfo } from '../Services/StudentService';
-import { withRouter} from "react-router-dom";
+import { Redirect, withRouter} from "react-router-dom";
 import ViewAttendance from './ViewAttendance';
+import { PUBLIC_URL } from "../CommonURL";
 class StudentSemesterInfo extends React.Component {
     constructor(props) {
         super(props);
@@ -23,6 +24,9 @@ class StudentSemesterInfo extends React.Component {
           console.log('it',this.state.StudentSemInfo);
     }
     render() {
+        if(!localStorage.getItem('LoginData')){
+            return <Redirect to={`${PUBLIC_URL}loginuser`} />;
+        }
         let randNum=1;
         return (
             <>

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactToPrint, { PrintContextConsumer } from 'react-to-print';
+import { GetCTMarks } from '../Services/AttendanceService';
 import { SemesterWithCourseCodeRes, TeacherInformation } from '../Services/StudentService';
 import ViewAttendance from './ViewAttendance';
 
@@ -10,10 +11,11 @@ class ComponentToPrint  extends React.Component {
             AttendanceIndivi:[],
             isLoading:true,
             TeacherInfo:{},
+            CTMark:[],
          }
     }
     componentDidMount() {
-
+     this.GetCTMarksResult();
             this.GetIndividulStudentAttendance();
 
         this.TeacherInformationForStudent();
@@ -38,6 +40,20 @@ class ComponentToPrint  extends React.Component {
               this.setState({ TeacherInfo:result  });
           }
     }
+    GetCTMarksResult=async()=>{
+        const it= localStorage.getItem('it');
+        const coursecode= localStorage.getItem('coursecode');
+        const temail=localStorage.getItem('TeacherEmail');
+        const result= await GetCTMarks(it,coursecode,temail);
+        console.log('show marks',result);
+        if(result.success){
+
+            this.setState({ CTMark:result.data ,isLoading:false });
+            console.log('show marks',this.state.CTMark);
+
+
+         }
+    }
     render() {
         const getLoginData = localStorage.getItem("LoginData");
         const data1 = JSON.parse(getLoginData);
@@ -45,6 +61,8 @@ class ComponentToPrint  extends React.Component {
         const coursecode= localStorage.getItem('coursecode');
              let i=1;
              let PresentCount=0;
+             let ctmark=0;
+             let totalCT=0;
       return (
         <div>
             <div class="containerCustom">
@@ -113,7 +131,49 @@ class ComponentToPrint  extends React.Component {
  </div>
      </div>
 
-     </div>
+     <h5>Class Test Marks</h5>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>CT No.</th>
+                <th>Mark</th>
+
+            </tr>
+            </thead>
+            <tbody>
+                {this.state.CTMark==0 &&(
+                   <tr>
+                       <td colspan="2" style={{color:'red'}}>No CT Mark Added Yet!</td>
+                   </tr>
+                )}
+            {this.state.CTMark.map((row,index)=>(
+                <tr>
+                    <td>{row.ctname}</td>
+                    <td>{row.marks}</td>
+                    <td style={{display:'none'}}>
+
+
+                       { ctmark=ctmark+row.marks}
+                       {  totalCT++}
+
+                    </td>
+
+                </tr>
+
+                 ))}
+                 <tr  >
+                   <td colspan="3" style={{textAlign:'right'}}> Average CT Mark:{ctmark/totalCT}</td>
+
+                 </tr>
+            </tbody>
+
+
+    </table>
+</div>
+
+           </div>
             </div>
             </div>
             </div>

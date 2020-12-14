@@ -7,14 +7,14 @@ const pageNumber=[];
         }
   return(
      <div>
-         <h3>pagination</h3>
+
        <nav>
-           <ul className="pagination">
+           <ul className="pagination justify-content-center">
                {pageNumber.map((page)=>(
 
 
-               <li className="page-item">
-             <a onClick={()=>paginate(page)}  className="page-link">{page}</a>
+               <li className="page-item " >
+             <a onClick={()=>paginate(page)}  className="page-link" style={{textAlign:'center'}}>{page}</a>
                </li>
                  ))}
            </ul>

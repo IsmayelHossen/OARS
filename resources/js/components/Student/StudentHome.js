@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import StudentUpdate from './StudentUpdate';
 import ImageUpload from '../Teacher/ImageUpload';
-
+import { PUBLIC_URL } from "../CommonURL";
 class StudentHome extends React.Component {
 
         state = {
@@ -97,7 +97,7 @@ class StudentHome extends React.Component {
                  {this.state.toggleUpdateTask &&  (
 
                 <>
-                <img src={`http://localhost/OARS/storage/app/public/uploads/${this.state.studentdata.image}`} class="student-card-img-top" alt="..."/>
+                <img src={`${PUBLIC_URL}storage/app/public/uploads/${this.state.studentdata.image}`} class="student-card-img-top" alt="..."/>
                 <ImageUpload  StudentImage={this.StudentImage} />
                 </>
           )}
@@ -113,6 +113,10 @@ class StudentHome extends React.Component {
                                 <p class="card-text">{this.state.studentdata.email}</p>
                                 <p class="card-text">{this.state.studentdata.it}</p>
                                 <p class="card-text">{this.state.studentdata.session}</p>
+                                <p style={{display:'block'}}>
+                                    {localStorage.setItem('session',this.state.studentdata.session)}
+                                </p>
+                                {localStorage.getItem('session')}
                                 <p class="card-text">{this.state.studentdata.bloodg}</p>
                                 <p class="card-text">{this.state.studentdata.phone}</p>
                                 <p class="card-text">{this.state.studentdata.faname}</p>

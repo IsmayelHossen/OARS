@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import CourseCode from './CourseCode';
 import Swal from 'sweetalert2';
 import Pagination1 from './Pagination1';
+import { PUBLIC_URL } from "../CommonURL";
 class Attendance extends React.Component {
 
         state = {
@@ -77,7 +78,7 @@ class Attendance extends React.Component {
         const xyz = $("#attendence").serializeArray();
         const formData = new FormData();
         formData.append('attend', xyz);
-        console.log('serial',xyz)
+        console.log('serial3333333333',xyz)
         // $.each(x, function(i, field){
         //     this.setState({ attend:field.name ,attend:field.value  });
         //  attend.append(field.name + ":" + field.value + " ");
@@ -125,7 +126,7 @@ class Attendance extends React.Component {
             //timer: 1500
           })
           localStorage.removeItem("CCode");
-          history.push(`/OARS/takenclasses/${Coursecode}`);
+          history.push(`${PUBLIC_URL}takenclasses/${Coursecode}`);
       }
       else if(response.checkdate){
 
@@ -139,7 +140,7 @@ class Attendance extends React.Component {
           })
 
 
-        history.push(`/OARS/takenclasses/${Coursecode}`);
+        history.push(`${PUBLIC_URL}takenclasses/${Coursecode}`);
         localStorage.removeItem("CCode");
 
       }
@@ -296,7 +297,7 @@ paginate=(pageNum)=>{
     <tr key={student.id} >
       <td>{student.it}</td>
       <td>{student.name}</td>
-      <td> <img style={{width:"60px"}} src={`http://localhost/OARS/storage/app/public/uploads/${student.image}`} alt={student.name} /></td>
+      <td> <img style={{width:"60px"}} src={`${PUBLIC_URL}storage/app/public/uploads/${student.image}`} alt={student.name} /></td>
       <td>{student.phone}</td>
       <td>
               <>

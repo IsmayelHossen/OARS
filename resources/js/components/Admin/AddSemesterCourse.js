@@ -1,10 +1,12 @@
 import React from 'react';
-import { GetTeacherInfo, SaveSemesterCourse,GetSemesterCourseInfo,deleteSpecificSemesterCourse } from '../Services/Admin/AdminServices';
+import { GetTeacherInfo,getSemesterCode, SaveSemesterCourse,GetSemesterCourseInfo,deleteSpecificSemesterCourse,getSemesterCodeTitle } from '../Services/Admin/AdminServices';
 import SideBar from './SideBar';
 import Swal from 'sweetalert2';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link, withRouter } from "react-router-dom";
+import { PUBLIC_URL } from "../CommonURL";
+
 class AddSemesterCourse extends React.Component {
     constructor(props) {
         super(props);
@@ -15,9 +17,16 @@ class AddSemesterCourse extends React.Component {
             semester:'',
             session:'',
             courseCode:'',
+            cname:'',
             errors:'',
+            labtheory:'',
             errormessage:'',
             SemesterCourseInfo:[],
+            SemesterCourseToggle:'',
+            toggleButton:false,
+            ToggleData:true,
+            SemesterCode:[],
+            SemesterCodeTitle:{}
           }
     }
     componentDidMount() {
@@ -44,10 +53,47 @@ class AddSemesterCourse extends React.Component {
     sidebarMenu=()=>{
 
         $('#sidebar').fadeToggle();
+
     }
 
     changeInput=(e)=>{
         this.setState({ [e.target.name]:e.target.value });
+    }
+    changeInputSemester=async(e)=>{
+        this.setState({ semester:e.target.value  });
+        const abc=e.target.value;
+        if(abc==0){
+            toast.error('field must not be empty');
+        }
+        else{
+            const result= await getSemesterCode(abc);
+            if(result.success){
+                this.setState({ SemesterCode:result.data,  });
+              console.log('ki',result.data);
+            }
+
+        }
+
+
+    //   console.log('semsester',this.state.semester);
+       // alert(this.state.semester);
+    }
+    changeInputGetCode=async(e)=>{
+        this.setState({ courseCode:e.target.value  });
+
+        const ccode=e.target.value;
+        if(ccode==0){
+            toast.error(' Course code field must not be empty');
+        }
+        else{
+            const result= await getSemesterCodeTitle(ccode);
+            if(result.success){
+                this.setState({ SemesterCodeTitle:result.data,  });
+              console.log('course title',result.data);
+            }
+
+        }
+
     }
     formSubmit=async(e)=>{
         e.preventDefault();
@@ -57,7 +103,9 @@ class AddSemesterCourse extends React.Component {
            batch:this.state.batch,
            semester:this.state.semester,
            session:this.state.session,
-           courseCode:this.state.courseCode
+           courseCode:this.state.courseCode,
+           cname:this.state.SemesterCodeTitle.ctitle,
+           labtheory :this.state.labtheory
         }
         const response = await SaveSemesterCourse(postBody);
 
@@ -74,6 +122,8 @@ class AddSemesterCourse extends React.Component {
               errors:"",
               errormessage:"",
               isLoading:true,
+              labtheory:'',
+              cname:''
 
           });
 
@@ -118,9 +168,17 @@ class AddSemesterCourse extends React.Component {
               }
           });
     }
-    EditSemCourse=async(email,ccode,session)=>{
+    EditSemCourse=async(email,ccode,session,id)=>{
      const {history}=this.props;
-     history.push(`/OARS/editSCourse/${email}/${ccode}/${session}`);
+     history.push(`${PUBLIC_URL}editSCourse/${email}/${ccode}/${session}/${id}`);
+    }
+    DataToggle=()=>{
+  $(function() {
+    $('#toggle-one').bootstrapToggle();
+  })
+    }
+    ToggleButtonClick=()=>{
+        this.setState({ toggleButton:!this.state.toggleButton ,ToggleData:!this.state.ToggleData });
     }
     render() {
         let i=1;
@@ -161,7 +219,7 @@ class AddSemesterCourse extends React.Component {
             <select class="form-control" id="exampleFormControlSelect1" name="email"
                 onChange={(e) => this.changeInput(e)}>
                     <option value="">Select</option>
-                    {this.state.TeacherData.map((row,index)=>(
+                    {this.state.TeacherData !=null && this.state.TeacherData.map((row,index)=>(
                <option value={row.email}>{row.email}</option>
                 ))}
 
@@ -182,8 +240,18 @@ class AddSemesterCourse extends React.Component {
                 </div>
         <div class="form-group">
             <label for="password">Semester</label>
-            <input type="text" class="form-control" id="password" placeholder="Enter Semester" name="semester"
-            value={this.state.semester} onChange={(e) => this.changeInput(e)}></input>
+            <select class="form-control" id="exampleFormControlSelect1" name="semester"
+                onChange={(e) => this.changeInputSemester(e)}>
+                    <option value="">Select</option>
+                    <option value="1-1">1-1</option>
+                    <option value="1-2">1-2</option>
+                    <option value="2-1">2-1</option>
+                    <option value="2-2">2-2</option>
+                    <option value="3-1">3-1</option>
+                    <option value="3-2">3-2</option>
+                    <option value="4-1">4-1</option>
+                    <option value="4-2">4-2</option>
+            </select>
             {this.state.errors && this.state.errors.semester && (
                 <p class="text-danger">{this.state.errors.semester[0]}</p>
             )}
@@ -197,21 +265,50 @@ class AddSemesterCourse extends React.Component {
             )}
         </div>
         <div class="form-group">
-            <label for="password">Course Code</label>
-            <input type="text" class="form-control" id="password" placeholder="Enter Course code" name="courseCode"
-            value={this.state.courseCode} onChange={(e) => this.changeInput(e)}></input>
+            <label for="password">Course Code </label>
+            <select class="form-control" id="exampleFormControlSelect1" name="courseCode"
+                onChange={(e) => this.changeInputGetCode(e)}>
+                    <option value="">Select</option>
+
+                  {this.state.SemesterCode !=null && this.state.SemesterCode.map((row,index)=>(
+                    <option value={row.ccode}>{row.ccode}</option>
+                    ))}
+
+            </select>
             {this.state.errors && this.state.errors.courseCode && (
                 <p class="text-danger">{this.state.errors.courseCode[0]}</p>
             )}
         </div>
+        <div class="form-group">
+            <label for="password">Course Name</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="cname"
+                onChange={(e) => this.changeInput(e)}>
+                    <option value="">Select</option>
+
+                  {this.state.SemesterCodeTitle !=null && (
+                    <option value={this.state.SemesterCodeTitle.ctitle}>{this.state.SemesterCodeTitle.ctitle}</option>
+                    )}
+
+            </select>
+            {this.state.errors && this.state.errors.cname && (
+                <p class="text-danger">{this.state.errors.cname[0]}</p>
+            )}
+        </div>
 
 
+        <div class="form-group">
+            <label for="password">Theory/Lab</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="labtheory"
+                onChange={(e) => this.changeInput(e)}>
+                    <option value="">Select</option>
+                    <option value="Lab">Lab</option>
+                    <option value="Theory">Theory</option>
 
-{/* <div class="form-group form-check">
-<label class="form-check-label">
-    <input class="form-check-input" type="checkbox" value="checked"> Remember me</input>
-</label>
-</div> */}
+            </select>
+            {this.state.errors && this.state.errors.labtheory && (
+                <p class="text-danger">{this.state.errors.labtheory[0]}</p>
+            )}
+        </div>
 <button type="submit" class="btn btn-success btn-block" >Submit</button>
 </form>
 </div>
@@ -244,9 +341,11 @@ class AddSemesterCourse extends React.Component {
                              <thead>
                                <tr>
                                    <th>No</th>
-                                   <th>Course Teacher</th>
                                    <th>Email</th>
+                                   <th>Course Name</th>
+
                                    <th>Course Code</th>
+                                   <th>Lab/Theory</th>
                                    <th>Batch</th>
                                    <th>Session</th>
                                    <th>Status</th>
@@ -262,14 +361,31 @@ class AddSemesterCourse extends React.Component {
 
                                   <tr>
                                       <td>{i++}</td>
-                                <td>{row.name}</td>
+
                                 <td>{row.email}</td>
+                                <td>{row.cname}</td>
                                 <td>{row.course_code}</td>
+                                <td>{row.labtheory}</td>
                                 <td>{row.batch}</td>
                                 <td>{row.session}</td>
-                                <td>active inactive</td>
                                 <td>
-                              <button class="btn btn-success" onClick={()=>this.EditSemCourse(row.email,row.course_code,row.session)}>Edit</button>
+
+           {row.status=='1' && (
+                 <div class="example btn btn-success">
+               <span>On</span>
+               </div>
+           )}
+              {row.status=='0' && (
+              <div class="example btn btn-danger">
+              <span>Off</span>
+              </div>
+           )}
+
+
+
+</td>
+                                <td>
+                              <button class="btn btn-success" onClick={()=>this.EditSemCourse(row.email,row.course_code,row.session,row.id)}>Edit</button>
                              </td>
                                 <td> <button onClick={()=>this.deleteSemCourse(row.email,row.course_code,row.session)} class="btn btn-danger">Delete</button> </td>
                                   </tr>

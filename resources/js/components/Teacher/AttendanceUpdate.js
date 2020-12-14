@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import CourseCode from './CourseCode';
 import Swal from 'sweetalert2';
 import UpdateCcode from './UpdateCcode';
+import { PUBLIC_URL } from "../CommonURL";
 class AttendanceUpdate extends React.Component {
 
         state = {
@@ -112,7 +113,7 @@ class AttendanceUpdate extends React.Component {
             text: 'Attendance Updated Successfully!',
 
           })
-           history.push(`/OARS/takenclasses/${this.props.match.params.ccode}`);
+           history.push(`${PUBLIC_URL}takenclasses/${this.props.match.params.ccode}`);
 
 
 
@@ -206,7 +207,7 @@ class AttendanceUpdate extends React.Component {
         <tr key={student.id} >
             <td>{student.it}</td>
             <td>{student.name}</td>
-            <td> <img style={{width:"60px"}} src={`http://localhost/OARS/storage/app/public/uploads/${student.image}`} alt={student.name} /></td>
+            <td> <img style={{width:"60px"}} src={`${PUBLIC_URL}storage/app/public/uploads/${student.image}`} alt={student.name} /></td>
             <td>{student.phone}</td>
             <td>
               <>

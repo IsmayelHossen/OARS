@@ -34,8 +34,8 @@ body{
 	color: #fff;
 }
 .containerCustom{
-    margin-left: .4em;
-    margin-right: .4em;
+    margin-left: .8em;
+    margin-right: .8em;
 }
 
 /* register */
@@ -120,28 +120,24 @@ body{
 }
 /* takenclasss */
 .takenclasss {
-	background: #e3e6ea;
-	border: 2px solid #dadee1;
-    margin-top: 2px;
-    padding-bottom:.9em;
-
+	background: #F8F9FA;
+	/* border: 2px solid #dadee1; */
+	margin-top: 2px;
+	padding-bottom: .9em;
 }
 .takenclasss .heading {
 	text-align: center;
-	/* padding: ; */
 	padding-top: 7px;
-	/* padding-bottom: 10px; */
 	color: #0e9958;
 	font-weight: 600;
 	display: block;
 	border-bottom: 2px solid #becec4;
-	max-width: 385px;
-	/* text-align: ; */
+	/* max-width: 804px; */
 	margin: 0 auto;
-	border-radius: 50px;
 	box-shadow: 0px 3px 3px #4565;
-    margin-top: 6px;
-    margin-bottom: .6em;
+	margin-top: 6px;
+	margin-bottom: .1em;
+	padding-bottom: 7px;
 }
 .takenclasss .heading3 {
 	text-align: center;
@@ -155,7 +151,7 @@ body{
 /* All information */
 
 .AllInfo_course {
-	background: #d4dbe1;
+	background: #f7f7f7;
 	padding-top: 1.4em;
 	/* padding-left: .3em; */
 	padding-bottom: 1.4em;
@@ -218,6 +214,7 @@ body{
 	max-width: 250px;
 	background: #000;
 	box-shadow: 0px 1px 2px #0e0f0f;
+	margin-left: -11px;
 }
 
 #sidebar ul ul li a{
@@ -262,17 +259,20 @@ a[data-toggle="collapse"]{
 } */
 
 #content {
-    width: 100%;
-    padding:6px;
-    min-height: 100vh;
-    transition: all .3s;
+	width: 100%;
+	padding: 6px;
+	min-height: 100vh;
+	transition: all .3s;
+
 }
 /* admin */
+
 .addSemesterCourseForm {
 	max-width: 600px;
 	margin: 0 auto;
-	border: 1px solid #dbe2e8;
+	border: 1px solid #cdd0d2;
 	padding: 7px;
+	box-shadow: 0px 1px 3px #d0d3d5;
 }
 .addSemesterCourseForm h3 {
 	color: #000000;
@@ -288,7 +288,140 @@ a[data-toggle="collapse"]{
 .AdminMMenu{
     display:none;
 }
+.allclassmate {
+	border: 2px solid #fff;
+	box-shadow: 0px 1px 3px #3d3f42;
+	background: #fbfbfb;
+	text-align: center;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	margin-bottom: 1em;
+	margin-top: .5em;
+	/* text-align: center; */
+	margin-left: 7px;
+}
+.allclassmate:hover {
+	box-shadow: 0px 1px 16px #090a0b;
+}
+.allclassmate p {
+	margin-top: 0;
+	margin-bottom: .1rem;
 
+
+}
+.allclassmateImg {
+	width: 100px;
+	height: 100px;
+	border-radius: 100px;
+	margin-bottom: .5em;
+}
+ .allclassmate h6{
+    font-weight: 600;
+    color: #931616;
+ }
+ .adminStudentH3 {
+	text-align: center;
+	/* border-bottom: 1px soild #456; */
+	border-bottom: 1px solid #9fa4a8;
+	/* box-shadow: 0px 1px 1px #c5d0db; */
+	padding-bottom: 2px;
+}
+.currentSession {
+	background: #e8ecec;
+	padding: 30px 5px;
+	margin-bottom: 7px;
+	text-align: center;
+	color: #fff;
+	box-shadow: 0px 1px 2px #141617;
+}
+.currentSession:hover{
+    box-shadow: 0px 2px 20px #343e48;
+}
+.currentSession h3{
+    color:black
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #000000;
+	font-size: 13px;
+}
+.imgtop{
+	margin: 0 auto;
+	width: 50px;
+	margin-bottom: 8px;
+}
+.imgtop img{
+    max-width:60px;
+}
+.sheetheading {
+    padding-left:10px;;
+}
+.sheetheading h1 {
+	font-weight: 600;
+	font-size: 20px;
+}
+.note {
+	font-size: 11px;
+	padding-top:77px;
+}
+.gradesheet_ul {
+	margin-top: 0;
+	margin-bottom: 1rem;
+	margin-left: -18px;
+}
+.gradesheet_ul li {
+	line-height: 28px;
+	list-style-type: none;
+}
+.pointList {
+	padding-left: 60px;
+	padding-top: 30px;
+}
+.sheetheading .middle{
+    padding-left:120px;
+}
+.sheetheading h5 {
+	font-weight: 600;
+	font-size: 17px;
+}
+.sheetheading h6 {
+
+	font-size: 15px;
+}
+.marksheet {
+	margin-top: 7px;
+	margin: 0 auto;
+	margin-top: 12px;
+}
+.marksheet, .marksheettr, .marksheetth, .marksheettd {
+	border-collapse: collapse;
+	border: 1px solid #456;
+	padding-left: 50px;
+	padding-right: 33px;
+	padding-top: 6px;
+	padding-bottom: 5px;
+	font-size: 12px;
+	text-align: center;
+}
+.pointlistTable ,.pointlistTableth,.pointlistTabletr,.pointlistTabletd{
+    border-collapse: collapse;
+    border: 1px solid #456;
+    padding-left:8px;
+    padding-right:8px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+.lettergradeP {
+	font-size: 12px;
+	margin-bottom: .5em;
+	padding-top: 6px;
+}
+.datepublish, .prepared ,.earncredit,.seal,.controller{
+    padding-right:96px;;
+}
+.controller p ,.datepublish p, .prepared p,.earncredit p,.seal p{
+    font-size: 13px;;
+}
 @media(max-width:600px){
     #sidebar, #sidebarCollapse{
 
@@ -310,16 +443,26 @@ a[data-toggle="collapse"]{
     }
 }
 
+
+
+
+
 @media(max-width:600px){
     .homeimagetop{
         padding-top:1em;
     }
 }
 
+
+  @page { size: landscape; }
 @media print {
+    @page { size: landscape; }
     .example-screen {
         display: none;
      }
+   .Notprinttopmargin{
+    margin-top:0px;
+   }
      .example-print {
         display: block;
      }

@@ -103,5 +103,15 @@ class TeacherController extends Controller
   }
 
 }
+public function getColleagueInfo1(){
+    $result=Teacher::get();
+    return response()->json([
+        'success' => true,
+        'message' => 'get colleague info !!',
+        'data' => $result,
+
+
+    ]);
+}
 
 }

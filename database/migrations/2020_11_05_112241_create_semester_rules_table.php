@@ -20,6 +20,9 @@ class CreateSemesterRulesTable extends Migration
             $table->string('semester');
             $table->string('session');
             $table->string('course_code');
+            $table->string('cname');
+            $table->string('labtheory');
+            $table->string('status')->default(1);
             $table->timestamps();
         });
     }

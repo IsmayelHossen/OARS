@@ -3,6 +3,7 @@ import Alert from 'react-bootstrap/Alert';
 import { Form, Button, Card} from 'react-bootstrap';
 import { StudenUpdateData } from '../Services/StudentService';
 import StudentHome from './StudentHome';
+import { PUBLIC_URL } from "../CommonURL";
 class StudentUpdate extends React.Component {
     constructor(props) {
         super(props);
@@ -93,6 +94,9 @@ class StudentUpdate extends React.Component {
 
     }
     render() {
+        if(!localStorage.getItem('LoginData')){
+            return <Redirect to={`${PUBLIC_URL}loginuser`} />;
+        }
         return (
             <>
 

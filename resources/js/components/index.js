@@ -32,7 +32,17 @@ import AddSemesterCourse from './Admin/AddSemesterCourse';
 import EditSemCourse from './Admin/EditSemCourse';
 import ForgetPassword from './CFPassword/ForgetPassword';
 import resetPassword from './CFPassword/resetPassword';
-
+import { PUBLIC_URL } from "./CommonURL";
+import AddNotice from './Admin/AddNotice';
+import AdminStudentInfo from './Admin/AdminStudentInfo';
+import AddCtMark from './Teacher/AddCtMark';
+import SeeClassMate from './Student/SeeClassMate';
+import Colleague from './Teacher/Colleague';
+import ViewStudents from './Admin/ViewStudents';
+import CCodeTitle from './Admin/CCodeTitle';
+import MakeResult from './Admin/MakeResult';
+import GetResult from './Admin/GetResult';
+import GradeSheet from './Admin/GradeSheet';
 
 class Index extends React.Component {
     constructor(props){
@@ -40,10 +50,14 @@ class Index extends React.Component {
             this.state={
               user12:"",
                 isLoggedIn:false,
+                getUserData:{},
+                userData1:{},
+                PUBLIC_URL:PUBLIC_URL,
             }
 
     }
     componentDidMount() {
+          console.log('public url',PUBLIC_URL)
         if (checkIfAuthenticated()) {
             this.setState({
                 user12: checkIfAuthenticated(),
@@ -53,22 +67,28 @@ class Index extends React.Component {
         }
 
     }
+    GetUser=(data)=>{
+        this.setState({ userData1:data.user });
+        console.log('userdata12',this.state.userData1);
+
+    }
     render(){
+
         return (
             <Router>
-                <Header authData={this.state}/>
+                <Header authData={this.state} />
                 <Switch>
-                    <Route exact path="/OARS/loginuser/">
-                         <Login/>
+                    <Route exact     path={`${PUBLIC_URL}loginuser`}>
+                         <Login GetUser={this.GetUser}/>
                      </Route>
-                     <Route exact path='/OARS/resetPassword' component={resetPassword}/>
-                    <Route exact path="/OARS/registeruser">
+                     <Route exact path={`${PUBLIC_URL}resetPassword`} component={resetPassword}/>
+                    <Route exact path={`${PUBLIC_URL}registeruser`}>
                         <Register />
                     </Route>
-                    <Route exact path="/OARS/verification">
+                    <Route exact path={`${PUBLIC_URL}verification`}>
                         <Verification />
                     </Route>
-                    <Route exact path="/OARS/forgetPassword">
+                    <Route exact path={`${PUBLIC_URL}forgetPassword`}>
                         <ForgetPassword />
                     </Route>
 
@@ -76,22 +96,22 @@ class Index extends React.Component {
                     url with differnt way to access homepage first check is logged?? if logged in, then access otherways redireect to login page */}
                     <AccessRoute
                         authed={this.state.isLoggedIn}
-                      exact  path="/OARS/studenthome/"
+                      exact  path={`${PUBLIC_URL}studenthome`}
                         component={StudentHome}
                     />
                     {/* after login specific user access specific routes */}
                     {this.state.isLoggedIn && this.state.user12.user_rule == 'Student' && (
                        <>
-                       <Route exact path="/OARS/">
+                       <Route exact path={PUBLIC_URL}>
                        <StudentHome />
                    </Route>
-                       <Route exact path="/OARS/studentallInfo">
-                            <StudentAllinfos />
-                        </Route>
-                        <Route exact path="/OARS/studentsemesterinfo/:it/:semester" component={StudentSemesterInfo}
+                       <Route exact path={`${PUBLIC_URL}studentallInfo`} component={StudentAllinfos}/>
+                       <Route exact path= {`${PUBLIC_URL}seeclassmate`} component={SeeClassMate}/>
+
+                        <Route exact path={`${PUBLIC_URL}studentsemesterinfo/:it/:semester`} component={StudentSemesterInfo}
                             isSession={true}
                            />
-                             <Route exact path="/OARS/print/:it/:coursecode" component={Print}
+                             <Route exact path={`${PUBLIC_URL}print/:it/:coursecode`} component={Print}
                             isSession={true}
                            />
                         </>
@@ -99,28 +119,49 @@ class Index extends React.Component {
                    { /* after login for Admiin Links and routes start */}
                    <AccessRoute
                         authed={this.state.isLoggedIn}
-                      exact  path="/OARS/adminhome/"
+                      exact  path={`${PUBLIC_URL}adminhome`}
                         component={AdminHome}
                     />
                      {this.state.isLoggedIn && this.state.user12.user_rule == 'Admin' && (
                        <>
-                       <Route exact path="/OARS/">
-                       <AdminHome/>
+                       <Route exact path={PUBLIC_URL}>
+                    <AdminHome userData1={this.state.userData1}/>
                    </Route>
-                   <Route path='/OARS/addSemesterCourse'>
+                   <Route exact path={`${PUBLIC_URL}adminStudentInfo`}>
+                           <AdminStudentInfo/>
+
+                        </Route>
+                   <Route path={`${PUBLIC_URL}addSemesterCourse`}>
                          <AddSemesterCourse/>
                    </Route>
-                   <Route exact path='/OARS/editSCourse/:email/:ccode/:session' component={EditSemCourse} />
+                   <Route exact path={`${PUBLIC_URL}addNotice`}>
+                       <AddNotice/>
+                   </Route>
+
+                   <Route exact path={`${PUBLIC_URL}viewstudent/:session`}
+                    component={ViewStudents}  />
+                        <Route exact path={`${PUBLIC_URL}makeresult`}
+                    component={MakeResult}  />
+                      <Route exact path={`${PUBLIC_URL}getresult`}
+                    component={GetResult}  />
+                      <Route exact path={`${PUBLIC_URL}printmarksheet/:it/:semester`}
+                    component={GradeSheet}  />
+
+
+                      <Route exact path={`${PUBLIC_URL}addccodetitle`}
+                    component={CCodeTitle}  />
+                     <Route exact path={`${PUBLIC_URL}editSCourse/:email/:ccode/:session/:editSemCourseId`}  component={() => <EditSemCourse userData1={this.state.userData1} />}  />
 
                         </>
                     )}
+                        {/* student routes end*/}
                    { /* after login for Admiin Links and routes end */}
 
-                    {/* student routes end*/}
+
                         {/* Teacher routes  start*/}
                     <AccessRoute
                         authed={this.state.isLoggedIn}
-                      exact  path="/OARS/teacherhome"
+                      exact  path={`${PUBLIC_URL}teacherhome`}
                         component={TeacherHome}
                     />
 
@@ -130,7 +171,7 @@ class Index extends React.Component {
                         <>
                          {/* after login specific user access specific routes */}
 
-                        <Route exact path="/OARS/">
+                        <Route exact path={PUBLIC_URL}>
                             <TeacherHome />
                         </Route>
                         {/* <Route exact path="/OARS/attendance/:session">
@@ -139,18 +180,25 @@ class Index extends React.Component {
                         </Route>
                        {* if declare route this way , parameter is not pass by componenet
                         */}
-                           <Route exact path="/OARS/attendance/:session" component={Attendance}
+                           <Route exact path={`${PUBLIC_URL}attendance/:session`} component={Attendance}
                             isSession={true}
                            />
-                        <Route exact path='/OARS/teacherRoutine'>
+                            <Route exact path={`${PUBLIC_URL}colleague`} component={Colleague}
+                            isSession={true}
+                           />
+                              <Route exact path={`${PUBLIC_URL}Addctmark/:it/:session/:ccode`} component={AddCtMark}
+                            isSession={true}
+                           />
+                        <Route exact path={`${PUBLIC_URL}teacherRoutine`}>
                            <TeacherRoutine/>
 
                         </Route>
-                        <Route exact path='/OARS/takenclasses/:course_code' component={TakenClasses} />
-                        <Route exact path='/OARS/allinformation'>
+
+                        <Route exact path={`${PUBLIC_URL}takenclasses/:course_code`} component={TakenClasses} />
+                        <Route exact path={`${PUBLIC_URL}allinformation`}>
                             <Allinformation/>
                         </Route>
-                        <Route path='/OARS/suceessClasses'>
+                        <Route path={`${PUBLIC_URL}suceessClasses`}>
                             <successClasses/>
                         </Route>
 
@@ -159,14 +207,14 @@ class Index extends React.Component {
                       exact  path="/OARS/successclasses"
                         component={successClasses}
                     /> */}
-                       <Route exact path="/OARS/attendanceupdate/:ccode/:scode" component={AttendanceUpdate}
+                       <Route exact path={`${PUBLIC_URL}attendanceupdate/:ccode/:scode`} component={AttendanceUpdate}
                             isSession={true}
                            />
 
                         </>
                     )}
                {/* end teacher routes */}
-                    <Route exact path="/OARS/">
+                    <Route exact path={PUBLIC_URL}>
                         <Home />
                     </Route>
 

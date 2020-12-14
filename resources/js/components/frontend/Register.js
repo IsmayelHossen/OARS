@@ -1,6 +1,7 @@
 import React from 'react';
 import { storeRegistration } from '../Services/LoginRegService';
 import { Link, withRouter } from "react-router-dom";
+import { PUBLIC_URL } from "../CommonURL";
 class Register extends React.Component {
     constructor(props) {
         super(props);
@@ -45,7 +46,7 @@ class Register extends React.Component {
                 // isLoading:false,
             });
            // alert('add successfully');
-            history.push('/OARS/verification');
+            history.push(`${PUBLIC_URL}verification`);
         }
         else {
             console.log("response.errors", response.errors);
@@ -62,7 +63,8 @@ class Register extends React.Component {
         return (
             <>
             <div class="register">
-                <h2>Registration form</h2>
+                <h2><i class="fa fa-registered" aria-hidden="true"></i>
+Registration </h2>
                     <form onSubmit={this.submitform} >
                     <div class="row">
 

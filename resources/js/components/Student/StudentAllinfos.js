@@ -1,15 +1,21 @@
 import React from 'react';
 import { AttendanceResultInfo } from '../Services/StudentService';
 import { withRouter} from "react-router-dom";
+import { PUBLIC_URL } from "../CommonURL";
 class StudentAllinfos extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             email:'',
             StudentAttendanceInfo:[],
+            isLoading:true,
           }
     }
    componentDidMount() {
+      setTimeout(() => {
+
+
+       }, 3000);
        this.StudentResultInfo();
    }
     StudentResultInfo=async()=>{
@@ -19,7 +25,9 @@ class StudentAllinfos extends React.Component {
 
           const result= await AttendanceResultInfo(email);
           if(result.success){
-              this.setState({StudentAttendanceInfo:result.data  });
+              this.setState({StudentAttendanceInfo:result.data ,
+              isLoading:false
+            });
           }
           console.log('it',this.state.StudentAttendanceInfo);
     }
@@ -27,7 +35,7 @@ class StudentAllinfos extends React.Component {
     SeeDetails=async(it,semester)=>{
         const {history}=this.props;
        // window.location.href = `/OARS/takenclasses/${coursecode}`;
-       const abc= await history.push(`/OARS/studentsemesterinfo/${it}/${semester}`);
+       const abc= await history.push(`${PUBLIC_URL}studentsemesterinfo/${it}/${semester}`);
 
     }
     render() {
@@ -39,11 +47,15 @@ class StudentAllinfos extends React.Component {
                <div class="col-md-12">
                    <div class="takenclasss">
                         <h3 class="heading animate__bounce"> All Information</h3>
-                          <div class="row">
-                              {
-                               this.state.email
+                        {this.state.isLoading && (
+                        <div class="spinner-border1" role="status" style={{margin:'0 auto'}}>
+                            <span >Loading...</span>
 
-                              }
+
+                        </div>
+                    )}
+                          <div class="row">
+
                               {this.state.StudentAttendanceInfo.map((row,index)=>(
 
 
@@ -55,6 +67,12 @@ class StudentAllinfos extends React.Component {
                                   </div>
                               </div>
                                    ))}
+                                    {this.state.StudentAttendanceInfo.length==0 && (
+                              <>
+
+                              <h3 style={{color:" red", padding:" 10px 20px;", margin:"0 auto",marginTop:'6em',marginBottom:'6em'}}>No Data Available</h3>
+                              </>
+                          )}
                           </div>
                    </div>
                </div>

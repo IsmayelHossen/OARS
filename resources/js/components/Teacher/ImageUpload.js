@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import React, { Component } from 'react';
-
+import { PUBLIC_URL } from "../CommonURL";
 
 class ImageUpload extends Component {
   constructor(props){
@@ -20,7 +20,7 @@ class ImageUpload extends Component {
     formData.append('email', email);
     formData.append('user_rule',user_rule);
 
-    Axios('/OARS/api/upload', {
+    Axios(`${PUBLIC_URL}api/upload`, {
       method: 'POST',
       data:formData
 

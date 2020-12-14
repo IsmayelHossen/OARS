@@ -3,6 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link, withRouter } from "react-router-dom";
 import { PasswordForgetEmail } from '../Services/CFPasswordService';
+import { PUBLIC_URL } from "../CommonURL";
 class ForgetPassword extends React.Component {
     constructor(props) {
         super(props);
@@ -34,7 +35,7 @@ class ForgetPassword extends React.Component {
                 toast('An email has sent to your email');
                 this.setState({  email:''  });
                   const {history}=this.props;
-                 history.push('/OARS/resetPassword');
+                 history.push(`${PUBLIC_URL}resetPassword`);
             }
 
         }
@@ -47,7 +48,7 @@ class ForgetPassword extends React.Component {
         <div class="topMargin">
 	<div class="row justify-content-center">
 		<div class="col-md-4 col-md-offset-4">
-            <div class="panel panel-default">
+            <div class="panel panel-default" style={{marginTop:'3em',marginBottom:'4em'}}>
               <div class="panel-body">
                 <div class="text-center">
                   <h3><i class="fa fa-lock fa-4x"></i></h3>

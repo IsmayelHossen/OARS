@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-
+import { PUBLIC_URL } from "../CommonURL";
 
 function AccessRoute({ component: Component, authed, ...rest }) {
     return (
@@ -12,7 +12,7 @@ function AccessRoute({ component: Component, authed, ...rest }) {
                 ) : (
                         <Redirect
                             to={{
-                                pathname: `/OARS/loginuser`,
+                                pathname: `${PUBLIC_URL}loginuser`,
                                 state: { from: props.location },
                             }}
                         />

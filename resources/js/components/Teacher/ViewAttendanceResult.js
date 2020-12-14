@@ -1,14 +1,20 @@
 import React from 'react';
-import { IndividualAttendResult1 } from '../Services/AttendanceService';
+import { IndividualAttendResult1,GetCTMarks, DeleteCTMark } from '../Services/AttendanceService';
+import { PUBLIC_URL } from "../CommonURL";
+import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 class ViewAttendanceResult extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             AttendanceIndivi:[],
             isLoading:true,
+            CTMark:[],
+
          }
     }
     componentDidMount() {
+    this.GetCTMarksResult();
 
         setTimeout(() => {
             this.GetIndividulStudentAttendance();
@@ -26,9 +32,49 @@ class ViewAttendanceResult extends React.Component {
            console.log('AttendanceIndivi',this.state.AttendanceIndivi);
         }
     }
+    GetCTMarksResult=async()=>{
+        const getLoginData = localStorage.getItem("LoginData");
+        const data1 = JSON.parse(getLoginData);
+        const email = data1.user.email;
+        const result= await GetCTMarks(this.props.it,this.props.courseCode,email);
+        if(result.success){
+
+            this.setState({ CTMark:result.data ,isLoading:false });
+            console.log('show marks',this.state.CTMark);
+            this.props.ctmarkResult(this.state.CTMark);
+
+         }
+    }
+    CTMarkDelete=async(id)=>{
+        Swal.fire({
+            title: 'Are you sure?',
+        text: 'Want To delete',
+          icon: 'warning',
+            showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+       confirmButtonText: 'Yes!'})
+       .then(async(result) => {
+            if(result.value){
+                const response=await DeleteCTMark(id);
+                if(response.success){
+                    this.GetCTMarksResult();
+                    toast.info('Deleted CT Mark Successfully')
+                }
+            }
+
+
+        })
+
+
+    }
+
     render() {
              let i=1;
              let PresentCount=0;
+             let ctmark=0;
+            let totalCT=0;
+
         return (
             <>
               {this.state.isLoading && (
@@ -53,11 +99,13 @@ class ViewAttendanceResult extends React.Component {
 
                  <div class="col-md-12">
                  <img style={{maxWidth:"100px"}}
-            src={`http://localhost/OARS/storage/app/public/uploads/${row.image}`} alt={row.name} />
+            src={`${PUBLIC_URL}storage/app/public/uploads/${row.image}`} alt={row.name} />
                  </div>
                  <div class="col-md-12">
                  <h6>Name:{row.name}</h6>
               <h6>ID:IT-{row.it}</h6>
+              <h6>Phone-{row.phone}</h6>
+              <h6>Email-{row.email}</h6>
               <h6>Course Code:{this.props.courseCode}</h6>
             </div>
 
@@ -110,6 +158,43 @@ class ViewAttendanceResult extends React.Component {
        <h6>Total Absent:{this.state.AttendanceIndivi.length-PresentCount}</h6>
        <h6>Attendance Percentance:{(PresentCount*100)/this.state.AttendanceIndivi.length}%</h6>
  </div>
+ <h5>Class Test Marks</h5>
+ <div class="table-responsive">
+     <table class="table table-striped">
+         <thead>
+             <tr>
+                 <th>CT No.</th>
+                 <th>Mark</th>
+                 <th>Delete</th>
+             </tr>
+             </thead>
+             <tbody>
+             {this.state.CTMark.map((row,index)=>(
+                 <tr>
+                     <td>{row.ctname}</td>
+                     <td>{row.marks}</td>
+                     <td style={{display:'none'}}>
+
+
+                        { ctmark=ctmark+row.marks}
+                        {  totalCT++}
+
+                     </td>
+                     <td><button class="btn btn-danger btn-sm" onClick={()=>this.CTMarkDelete(row.id)}>Delete</button></td>
+                 </tr>
+
+                  ))}
+                  <tr  >
+                    <td colspan="3" style={{textAlign:'center'}}> Average CT Mark:{ctmark/totalCT}</td>
+
+                  </tr>
+             </tbody>
+
+
+     </table>
+ </div>
+
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
