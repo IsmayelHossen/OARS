@@ -147,13 +147,7 @@ class TeacherHome extends React.Component {
                 </div>
                    </div>
                </div>
-               <div className="MainDiv">
-      <div class="jumbotron text-center bg-sky">
-          <h3>Therichpost.com</h3>
-      </div>
-  {abc}
 
-      </div>
       </div>
       </div>
         </>

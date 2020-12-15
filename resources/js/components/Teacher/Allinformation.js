@@ -7,7 +7,6 @@ import ViewAttendanceResult from './ViewAttendanceResult';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { PUBLIC_URL } from "../CommonURL";
-import Bounce from 'react-reveal/Bounce';
 class Allinformation extends React.Component {
     constructor(props) {
         super(props);
@@ -135,7 +134,7 @@ paginate=(pageNum)=>{
            <div class="row">
                <div class="col-md-12">
                    <div class="takenclasss">
-                  <h3 class="heading"> <Bounce left ><div>All Information</div> </Bounce></h3>
+                        <h3 class="heading"> All Information</h3>
                           <div class="row">
                               {this.state.getallInfo.map((row,index)=>(
 

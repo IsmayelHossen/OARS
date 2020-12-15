@@ -195,7 +195,7 @@ public function CourseCodeUpdate($scode,$temail,$ccode){
 }
 
 public function AllinformationGet($email){
-  $get=Attendace::select('session','course_code','semester')->distinct()->where('teacheremail',$email)->orderBy('course_code','desc')->get();
+  $get=SemesterRule::select('session','course_code','semester')->distinct()->where('email',$email)->orderBy('course_code','desc')->where('status',1)->get();
   return response()->json([
     'success'=>true,
     'message'=>'get all course ',

@@ -10,6 +10,7 @@ import AccessRoute from './AuthenticatedRoutes/AccessRoutes';
 import Footer from './frontend/Footer';
 import Header from './frontend/Header';
 import Home from './frontend/Home';
+import About from './frontend/About';
 import Login from './frontend/Login';
 import Register from './frontend/Register';
 import Verification from './frontend/Verification';
@@ -87,6 +88,9 @@ class Index extends React.Component {
                     </Route>
                     <Route exact path={`${PUBLIC_URL}verification`}>
                         <Verification />
+                    </Route>
+                       <Route exact path={`${PUBLIC_URL}about`}>
+                        <About />
                     </Route>
                     <Route exact path={`${PUBLIC_URL}forgetPassword`}>
                         <ForgetPassword />

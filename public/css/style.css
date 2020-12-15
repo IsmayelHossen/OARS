@@ -426,6 +426,7 @@ a[data-toggle="collapse"]{
 .controller p ,.datepublish p, .prepared p,.earncredit p,.seal p{
     font-size: 13px;;
 }
+
 @media(max-width:600px){
     #sidebar, #sidebarCollapse{
 

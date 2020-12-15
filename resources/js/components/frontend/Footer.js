@@ -1,14 +1,44 @@
 import React from 'react';
-import Fade from 'react-reveal/Fade';
+import Scroll from 'react-scroll';
+var Link1 = Scroll.Link;
+var DirectLink = Scroll.DirectLink;
+var Element = Scroll.Element;
+var Events = Scroll.Events;
+var scroll = Scroll.animateScroll;
+var scrollSpy = Scroll.scrollSpy;
+const styles = {
+  fontFamily: 'sans-serif',
+  textAlign: 'center',
+};
 class Footer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {  }
+        this.scrollToTop = this.scrollToTop.bind(this);
     }
+    componentDidMount() {
+        Events.scrollEvent.register('begin', function () {
+            console.log("begin", arguments);
+          });
+
+          Events.scrollEvent.register('end', function () {
+            console.log("end", arguments);
+          });
+
+        scrollSpy.update();
+    }
+    scrollToTop() {
+        scroll.scrollToTop({
+           duration:2500,
+           delay: 0,
+           smooth: 'easeInOutQuart'
+        });
+
+     }
     render() {
         return (
             <div>
-                <Fade bottom>
+
                 <div>
 
                 <div class="footer1">
@@ -21,10 +51,11 @@ class Footer extends React.Component {
                         </div>
                     </div>
                 </div>
-                <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-  {/* <div id="preloader"></div> */}
+
+                <a  onClick={this.scrollToTop} href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  <div id="preloader"></div>
             </div>
-            </Fade>
+
             </div>
 
           );
