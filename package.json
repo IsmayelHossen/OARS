@@ -28,6 +28,7 @@
         "@tinymce/tinymce-react": "^3.8.2",
         "datatables.net-dt": "^1.10.22",
         "react-bootstrap": "^1.4.0",
+        "react-images": "^1.1.7",
         "react-moment": "^1.0.0",
         "react-photo-gallery": "^8.0.0",
         "react-reveal": "^1.2.2",

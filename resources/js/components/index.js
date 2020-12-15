@@ -44,6 +44,7 @@ import CCodeTitle from './Admin/CCodeTitle';
 import MakeResult from './Admin/MakeResult';
 import GetResult from './Admin/GetResult';
 import GradeSheet from './Admin/GradeSheet';
+import Gallary from './frontend/Gallary';
 
 class Index extends React.Component {
     constructor(props){
@@ -91,6 +92,9 @@ class Index extends React.Component {
                     </Route>
                        <Route exact path={`${PUBLIC_URL}about`}>
                         <About />
+                    </Route>
+                    <Route exact path={`${PUBLIC_URL}gallary`}>
+                        <Gallary />
                     </Route>
                     <Route exact path={`${PUBLIC_URL}forgetPassword`}>
                         <ForgetPassword />

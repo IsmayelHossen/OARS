@@ -25,8 +25,9 @@ class Home extends React.Component {
             <>
             <div class="topMargin">
                <Slider/>
+
                 <div class="jumbotron">
-                
+
                     <h1 style={{textAlign:"center"}}>Welcome to ICT Online Attendance & Result System</h1>
                     <p style={{textAlign:"center"}}>To Get the MemberShip Please Registration </p>
 
@@ -56,22 +57,22 @@ class Home extends React.Component {
                         </div>
                          <div class="col-md-8">
                          <h3>Message from Chairman</h3>
-                         <p>Computer Science and Engineering is at the intellectual forefront of the digital 
-                         revolution that will define the 21st century. That revolution is in its early stages 
+                         <p>Computer Science and Engineering is at the intellectual forefront of the digital
+                         revolution that will define the 21st century. That revolution is in its early stages
                          but is visible all around us. New scientific, economic and social paradigms are arising
-                          from computing science and being felt across all sectors of the economy and society at 
-                          large. For accepting this technological challenge of 21st century, the Department of 
-                          Computer Science and Engineering is one of the most pioneering soloist of MBSTU and the 
-                          country since its commencement in 2003. The department is keen on pushing the boundaries 
+                          from computing science and being felt across all sectors of the economy and society at
+                          large. For accepting this technological challenge of 21st century, the Department of
+                          Computer Science and Engineering is one of the most pioneering soloist of MBSTU and the
+                          country since its commencement in 2003. The department is keen on pushing the boundaries
                           of traditional education system and it is the optimum combination of knowledge
                           generation and application that makes the distinctive feature of the Department.</p>
                         </div>
                         </div>
-                           
+
                         </div>
                         <div class="col-md-4 col-sm-12">
-                          
-                        
+
+
 <ul class="nav nav-tabs" style={{marginTop:'10px'}}>
   <li class="nav-item">
     <a class="nav-link active" data-toggle="tab" href="#home">Notice</a>
@@ -96,7 +97,7 @@ class Home extends React.Component {
   <li class="list-group-item list-group-item-primary">Primary item</li>
   <li class="list-group-item list-group-item-dark">Dark item</li>
   <li class="list-group-item list-group-item-light">Light item</li>
-</ul> 
+</ul>
 </div>
   <div class="tab-pane container fade" id="menu1">
    <ul class="list-group">
@@ -112,14 +113,14 @@ class Home extends React.Component {
     Junk
     <span class="badge badge-primary badge-pill">99</span>
   </li>
-</ul> 
+</ul>
   </div>
   <div class="tab-pane container fade" id="menu2">...</div>
 </div>
-                          
+
                         </div>
                     </div>
-                   
+
               </div>
             </>
          );
