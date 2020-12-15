@@ -2,6 +2,8 @@ import React from 'react';
 import { Link, withRouter } from "react-router-dom";
 import { loginUser } from '../Services/LoginRegService';
 import { PUBLIC_URL } from "../CommonURL";
+
+
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -70,6 +72,7 @@ class Login extends React.Component {
             <>
 
                 <div class="login">
+
                     <h2><i class="fa fa-user-circle" aria-hidden="true"></i>
 Login </h2>
                     {this.state.isLoading && (
@@ -124,7 +127,9 @@ Login </h2>
                         <button type="submit" class="btn btn-success btn-block" >Submit</button>
                         <p><Link to={`${PUBLIC_URL}forgetPassword`}>Forget Password?</Link></p>
                     </form>
+
                 </div>
+
             </>
         );
     }

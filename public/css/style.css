@@ -72,6 +72,13 @@ body{
     margin-top: 9em;
     margin-bottom:3em;;
 }
+.login {
+    animation-fill-mode: both;
+animation-duration: 1000ms;
+animation-delay: 0ms;
+animation-iteration-count: 1;
+opacity: 1;
+}
 .login h2 {
 	font-size: 1.8rem;
 	text-align: center;
@@ -341,10 +348,7 @@ a[data-toggle="collapse"]{
     color:black
 }
 
-h1, h2, h3, h4, h5, h6 {
-	color: #000000;
-	font-size: 13px;
-}
+
 .imgtop{
 	margin: 0 auto;
 	width: 50px;

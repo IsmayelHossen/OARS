@@ -3,7 +3,8 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link,withRouter, Redirect } from "react-router-dom";
 import { AttendanceService } from '../Services/AttendanceService';
 import $ from 'jquery';
-import { PUBLIC_URL } from "../CommonURL";;
+import { PUBLIC_URL } from "../CommonURL";
+import Zoom from 'react-reveal/Zoom';
  class Header extends React.Component{
     constructor(props) {
         super(props);
@@ -50,8 +51,11 @@ import { PUBLIC_URL } from "../CommonURL";;
 
 
   {/* <!--/ Nav Star /--> */}
+
   <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
+
     <div class="container">
+
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
         aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span></span>
@@ -218,12 +222,15 @@ Home <span class="sr-only">(current)</span></Link>
                             </>
                              )}
       </div>
+
       {/* <button type="button" class="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block" data-toggle="collapse"
         data-target="#navbarTogglerDemo01" aria-expanded="false">
         <span class="fa fa-search" aria-hidden="true"></span>
       </button> */}
     </div>
+
   </nav>
+
   {/* <!--/ Nav End /--> */}
             </div>
 

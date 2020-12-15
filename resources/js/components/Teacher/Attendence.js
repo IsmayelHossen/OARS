@@ -7,6 +7,9 @@ import CourseCode from './CourseCode';
 import Swal from 'sweetalert2';
 import Pagination1 from './Pagination1';
 import { PUBLIC_URL } from "../CommonURL";
+import Spin from 'react-reveal/Spin';
+import Rotate from 'react-reveal/Spin';
+
 class Attendance extends React.Component {
 
         state = {
@@ -222,6 +225,7 @@ paginate=(pageNum)=>{
             <ToastContainer/>
             <div class="containerCustom">
             <div class="topMargin">
+
                 <Card >
                 <Card.Body class="takenclasss">
                 <h3 className="text-center heading">Attendance Sheet( {this.state.semesterinfo1.slice(0,1).map((student123, index) => (
