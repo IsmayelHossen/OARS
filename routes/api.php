@@ -30,6 +30,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('token', [LoginRegController::class, 'createToken']);
 Route::post('login', [LoginRegController::class, 'login']);
 Route::post('register', [LoginRegController::class, 'register']);
+Route::post('storeVcode1', [LoginRegController::class, 'storeVcode1']);
+
 
 //student all api
 Route::apiResource('Student', StudentController::class);
@@ -104,6 +106,17 @@ Route::get('SearchSemesterWiseResult1/{session}/{semester}',[AdminController::cl
 Route::get('GPAMark1/{it}/{semester}',[AdminController::class,'GPAMark1']);
 Route::get('GradeSheetResult1/{it}/{semester}',[AdminController::class,'GradeSheetResult1']);
 Route::get('getlpgrade1',[AdminController::class,'getlpgrade1']);
+Route::get('getmemberRequest1',[AdminController::class,'getmemberRequest1']);
+Route::get('getmemberRequest2',[AdminController::class,'getmemberRequest2']);
+Route::get('RequestInfoData1/{infoData}',[AdminController::class,'RequestInfoData1']);
+Route::get('AcceptRequestDone1/{who}/{email}',[AdminController::class,'AcceptRequestDone1']);
+Route::get('GetAllMsg1/{friendid}/{myid}',[AdminController::class,'GetAllMsg1']);
+Route::post('saveMsg1',[AdminController::class,'saveMsg1']);
+Route::get('AllFriendData1/{myid}',[AdminController::class,'AllFriendData1']);
+
+
+
+
 
 
 

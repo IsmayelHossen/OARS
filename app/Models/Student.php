@@ -21,5 +21,6 @@ class Student extends Model
         'phone',
         'email',
         'password',
+        'status',
     ];
 }

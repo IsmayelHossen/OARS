@@ -3,17 +3,21 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Mail\AcceptRequest;
 use App\Models\Attendace;
 use App\Models\Ccodetitle;
 use App\Models\CTMark;
 use App\Models\Lpgrade;
+use App\Models\Message;
 use App\Models\Notice;
 use App\Models\Result;
 use App\Models\SemesterRule;
 use App\Models\Student;
 use App\Models\Teacher;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -620,7 +624,9 @@ public function GPAMark1($it,$semester){
     ]);
 }
 public function GradeSheetResult1($it,$semester){
-    $result=Result::where('it',$it)->where('semester',$semester)
+    $result=DB::table('results')->join('students','results.it','=','students.it')->select('results.*','students.name')
+    // $result=Result::where('it',$it)->where('semester',$semester)
+    ->where('results.it',$it)->where('results.semester',$semester)
     ->get();
     return response()->json([
         'success'=>true,
@@ -636,6 +642,131 @@ public function getlpgrade1(){
         'data'=>$result
     ]);
 
+}
+
+public function getmemberRequest1(){
+    $result=Student::where('status',1)->get();
+    return response()->json([
+        'success'=>true,
+        'message'=>'insert data',
+        'data'=>$result
+    ]);
+}
+public function getmemberRequest2(){
+    $result=Teacher::where('status',1)->get();
+    return response()->json([
+        'success'=>true,
+        'message'=>'insert data',
+        'data'=>$result
+    ]);
+}
+public function RequestInfoData1($infoData){
+    if($infoData=='Student'){
+        $result=Student::where('status',1)->get();
+        return response()->json([
+            'success'=>true,
+            'message'=>'insert data',
+            'data'=>$result
+        ]);
+
+    }
+    else{
+        $result=Teacher::where('status',1)->get();
+    return response()->json([
+        'success'=>true,
+        'message'=>'insert data',
+        'data'=>$result
+    ]);
+
+    }
+
+}
+public function AcceptRequestDone1($who,$email){
+    if($who=='Student'){
+        $result=User::where('email',$email)->update(['status'=>1 ]);
+        $result1=Student::where('email',$email)->update([ 'status'=>2 ]);
+
+        if($result){
+            $mail=Mail::to($email)->send(new AcceptRequest());
+            return response()->json([
+                'success'=>true,
+                'message'=>'insert data',
+                'data'=>$result
+            ]);
+
+        }
+
+
+    }
+    else{
+        $result=User::where('email',$email)->update(['status'=>1 ]);
+        $result1=Teacher::where('email',$email)->update([ 'status'=>2 ]);
+
+        if($result){
+            $mail=Mail::to($email)->send(new AcceptRequest());
+            return response()->json([
+                'success'=>true,
+                'message'=>'insert data',
+                'data'=>$result
+            ]);
+
+        }
+
+
+
+    }
+
+}
+public function GetAllMsg1($user_id,$my_id){
+   // $result=Message::where('from',$myid)->where('to',$friendid)->get();
+    $result = Message::where(function ($query) use ($user_id, $my_id) {
+        $query->where('from', $user_id)->where('to', $my_id);
+    })->oRwhere(function ($query) use ($user_id, $my_id) {
+        $query->where('from', $my_id)->where('to', $user_id);
+    })->get();
+    return response()->json([
+        'success'=>true,
+        'message'=>'insert data',
+        'data'=>$result
+    ]);
+}
+public function saveMsg1(Request $request){
+    $formData = $request->all();
+    $validator = Validator::make($formData, [
+        'msg' => 'required',
+    ], [
+        'msg.required' => 'Please Write something',
+
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'success' => false,
+            'message' => $validator->getMessageBag()->first(),
+            'errors' => $validator->getMessageBag(),
+        ]);
+    }
+    $msg=new Message();
+    $msg->from=$request->myid;
+    $msg->to=$request->friendid;
+    $msg->msg=$request->msg;
+    $msg->save();
+    if($msg){
+        return response()->json([
+            'success' => true,
+            'data' =>$request->msg,
+        ]);
+
+    }
+
+}
+public function AllFriendData1($myid){
+    $data=User::where('status',1)->Where('id','!=',$myid)->get();
+    return response()->json([
+        'success'=>true,
+        'message'=>'get  data',
+        'data'=>$data
+    ]);
 }
 
 

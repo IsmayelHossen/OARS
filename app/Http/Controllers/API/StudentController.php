@@ -77,6 +77,8 @@ class StudentController extends Controller
         $studentData->maname = $request->maname;
         $studentData->caddress = $request->caddress;
         $studentData->paddress = $request->paddress;
+        $studentData->status ='1';
+
         $studentData->save();
         return response()->json([
             'success' => true,

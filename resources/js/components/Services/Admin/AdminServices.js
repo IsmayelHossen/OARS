@@ -283,3 +283,65 @@ export const getlpgrade= async() => {
 
     });
 };
+// getmemberRequest
+export const getmemberRequest= async() => {
+
+    return await Axios.get(`${PUBLIC_URL}api/getmemberRequest1`).then((res) => {
+       return res.data;
+      console.log('attendance data',res.data.data);
+
+    });
+};
+export const getmemberRequest2= async() => {
+
+    return await Axios.get(`${PUBLIC_URL}api/getmemberRequest2`).then((res) => {
+       return res.data;
+      console.log('attendance data',res.data.data);
+
+    });
+};
+// RequestInfoData
+export const RequestInfoData= async(infodata) => {
+   // console.log('info',infodata);
+    return await Axios.get(`${PUBLIC_URL}api/RequestInfoData1/${infodata}`).then((res) => {
+       return res.data;
+      console.log('attendance data',res.data.data);
+
+    });
+};
+// AcceptRequestDone
+export const AcceptRequestDone= async(who,email) => {
+    // console.log('info',infodata);
+     return await Axios.get(`${PUBLIC_URL}api/AcceptRequestDone1/${who}/${email}`).then((res) => {
+        return res.data;
+       console.log('attendance data',res.data.data);
+
+     });
+ };
+//  GetAllMsg
+export const GetAllMsg= async(friendid,myid) => {
+    // console.log('info',infodata);
+     return await Axios.get(`${PUBLIC_URL}api/GetAllMsg1/${friendid}/${myid}`).then((res) => {
+        return res.data;
+       console.log('attendance data',res.data.data);
+
+     });
+ };
+//  saveMsg
+ export const saveMsg= async(data) => {
+
+    return await Axios.post(`${PUBLIC_URL}api/saveMsg1`,data).then((res) => {
+       return res.data;
+      console.log('attendance data',res.data.data);
+
+    });
+};
+// AllFriendData
+export const AllFriendData= async(myid) => {
+    // console.log('info',infodata);
+     return await Axios.get(`${PUBLIC_URL}api/AllFriendData1/${myid}`).then((res) => {
+        return res.data;
+       console.log('attendance data',res.data.data);
+
+     });
+ };

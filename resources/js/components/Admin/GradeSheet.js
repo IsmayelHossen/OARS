@@ -122,9 +122,13 @@ class ComponentToPrint  extends React.Component {
                  ))}</h6>
                 <h6><strong>Department:</strong>Information And Comminication Technology(ICT)</h6>
                 <h6><strong>Faculty:</strong>Engineering</h6>
-                <h6><strong>Name of the candidate:</strong>Ismayel Hossen</h6>
-                <h6><strong>Student ID:</strong><strong>IT-</strong>16054</h6>
-                <h6><strong>Session:</strong>2015-16</h6>
+                {this.state.MarksheetResult.slice(0,1).map((row,index)=>(
+                    <>
+                <h6><strong>Name of the candidate:</strong>{row.name}</h6>
+                <h6><strong>Student ID:</strong><strong>IT-</strong>{row.it}</h6>
+                <h6><strong>Session:</strong>{row.session}</h6>
+                </>
+                ))}
                 </div>
 
                </div>
@@ -160,7 +164,7 @@ shall be determined as follows:</p>
               </div>
        {/* display flex part-1 end */}
         {/* marksheet start */}
-        {this.state.MarksheetResult.slice(0,1).map((row,index)=>(
+        {this.state.MarksheetResult.map((row,index)=>(
 
             <span style={{display:'none'}}>
                 {gpa=row.gp+gpa}

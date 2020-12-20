@@ -15,7 +15,7 @@
     <script src="{{ asset('public/ExtraJs/jquery/jquery.min.js')}}"></script>
     <script src="{{ asset('public/ExtraJs/js/main.js')}}"></script>
     <script src="{{ asset('public/ExtraJs/scrollreveal/scrollreveal.min.js')}}"></script>
-
+    <script src="{{ asset('public/ExtraJs/counterup/counterup.min.js')}}"></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -40,14 +40,10 @@
 .goog-te-gadget{
    color: transparent !important;
 }
-.goog-te-gadget .goog-te-combo {
-    position: absolute;;
-bottom:70px;
-right:8px;
-overflow: hidden;
+
+.goog-te-gadget{
+   color: transparent !important;
 }
-
-
 
 
 </style>
@@ -60,7 +56,7 @@ overflow: hidden;
 </head>
 <body>
 
-<div class="container12" id="google_translate_element">
+<div class="container12" >
     <div class="row justify-content-center">
         <div class="col-md-12" >
            <div id="example">

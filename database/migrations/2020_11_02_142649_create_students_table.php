@@ -26,6 +26,7 @@ class CreateStudentsTable extends Migration
             $table->string('maname')->nullable();
             $table->text('caddress')->nullable();
             $table->text('paddress')->nullable();
+            $table->integer('status')->nullable();
             $table->string('password');
             $table->timestamps();
         });

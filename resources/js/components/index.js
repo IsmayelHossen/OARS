@@ -45,6 +45,11 @@ import MakeResult from './Admin/MakeResult';
 import GetResult from './Admin/GetResult';
 import GradeSheet from './Admin/GradeSheet';
 import Gallary from './frontend/Gallary';
+import ContactUs from './frontend/ContactUs';
+import Admission from './frontend/Admission';
+import Thanks from './frontend/Thanks';
+import RequestInfo from './Admin/RequestInfo';
+import Message from './Admin/Message';
 
 class Index extends React.Component {
     constructor(props){
@@ -84,6 +89,7 @@ class Index extends React.Component {
                          <Login GetUser={this.GetUser}/>
                      </Route>
                      <Route exact path={`${PUBLIC_URL}resetPassword`} component={resetPassword}/>
+                     <Route exact path={`${PUBLIC_URL}thanks`} component={Thanks}/>
                     <Route exact path={`${PUBLIC_URL}registeruser`}>
                         <Register />
                     </Route>
@@ -93,8 +99,15 @@ class Index extends React.Component {
                        <Route exact path={`${PUBLIC_URL}about`}>
                         <About />
                     </Route>
+                    <Route exact path={`${PUBLIC_URL}admission`}>
+                        <Admission />
+                    </Route>
+
                     <Route exact path={`${PUBLIC_URL}gallary`}>
                         <Gallary />
+                    </Route>
+                    <Route exact path={`${PUBLIC_URL}contactus`}>
+                        <ContactUs />
                     </Route>
                     <Route exact path={`${PUBLIC_URL}forgetPassword`}>
                         <ForgetPassword />
@@ -113,6 +126,9 @@ class Index extends React.Component {
                        <Route exact path={PUBLIC_URL}>
                        <StudentHome />
                    </Route>
+                   <Route exact path={`${PUBLIC_URL}message`}>
+                        <Message />
+                    </Route>
                        <Route exact path={`${PUBLIC_URL}studentallInfo`} component={StudentAllinfos}/>
                        <Route exact path= {`${PUBLIC_URL}seeclassmate`} component={SeeClassMate}/>
 
@@ -145,7 +161,9 @@ class Index extends React.Component {
                    <Route exact path={`${PUBLIC_URL}addNotice`}>
                        <AddNotice/>
                    </Route>
-
+                   <Route exact path={`${PUBLIC_URL}message`}>
+                        <Message />
+                    </Route>
                    <Route exact path={`${PUBLIC_URL}viewstudent/:session`}
                     component={ViewStudents}  />
                         <Route exact path={`${PUBLIC_URL}makeresult`}
@@ -154,7 +172,8 @@ class Index extends React.Component {
                     component={GetResult}  />
                       <Route exact path={`${PUBLIC_URL}printmarksheet/:it/:semester`}
                     component={GradeSheet}  />
-
+                      <Route exact path={`${PUBLIC_URL}requestinfo/:request`}
+                    component={RequestInfo}  />
 
                       <Route exact path={`${PUBLIC_URL}addccodetitle`}
                     component={CCodeTitle}  />
@@ -188,6 +207,9 @@ class Index extends React.Component {
                         </Route>
                        {* if declare route this way , parameter is not pass by componenet
                         */}
+                         <Route exact path={`${PUBLIC_URL}message`}>
+                        <Message />
+                    </Route>
                            <Route exact path={`${PUBLIC_URL}attendance/:session`} component={Attendance}
                             isSession={true}
                            />

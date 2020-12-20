@@ -42,11 +42,13 @@ class Footer extends React.Component {
                 <div>
 
                 <div class="footer1">
-                    <h3>@copy 2020.All right reserved by depertment of ICT</h3>
+                <div class="copyright">
+        © Copyright <strong>DEPT. Of ICT,MBSTU 2019</strong>. All Rights Reserved
+      </div>
                     <div class="row">
 
-                        <div class="col-md-12">
-
+                        <div class="col-md-12" >
+                        <p>Change Language <span id="google_translate_element"></span></p>
 
                         </div>
                     </div>

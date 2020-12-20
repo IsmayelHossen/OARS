@@ -24,6 +24,7 @@ class CreateTeachersTable extends Migration
             $table->string('bloodg')->nullable();
             $table->text('caddress')->nullable();
             $table->text('paddress')->nullable();
+            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }

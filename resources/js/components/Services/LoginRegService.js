@@ -27,3 +27,11 @@ export const loginUser = async (data) => {
 
     });
 };
+// storeVcode
+export const storeVcode = async (data) => {
+
+    return await Axios.post(`${PUBLIC_URL}api/storeVcode1`,data).then((res) => {
+        return res.data;
+
+    });
+};

@@ -2,6 +2,7 @@ import React, { useState, useCallback } from "react";
 import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from "react-images";
 import { photos } from "./photos";
+import { photos2 } from "./photos2";
 
 function Gallary() {
   const [currentImage, setCurrentImage] = useState(0);
@@ -19,7 +20,13 @@ function Gallary() {
 
   return (
     <div class="topMargin">
+   <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a href="#">Gallary</a></li>
 
+  </ol>
+</nav>
       <Gallery photos={photos} onClick={openLightbox} />
       <ModalGateway>
         {viewerIsOpen ? (
@@ -35,7 +42,8 @@ function Gallary() {
           </Modal>
         ) : null}
       </ModalGateway>
-      <h3>Gallary</h3>
+ <div class="line" style={{marginTop:"10px"}}></div>
+      <Gallery photos={photos2} />;
     </div>
   );
 }

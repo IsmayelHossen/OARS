@@ -2,6 +2,8 @@ import React from 'react';
 import { Link, withRouter } from "react-router-dom";
 import { loginUser } from '../Services/LoginRegService';
 import { PUBLIC_URL } from "../CommonURL";
+import Pulse from 'react-reveal/Pulse';
+import { ToastContainer, toast } from 'react-toastify';
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -27,7 +29,13 @@ class Login extends React.Component {
            user_rule:this.state.user_rule,
         }
         const response = await loginUser(postBody);
-        if(response.success){
+        if(response.evalid){
+          toast.error('please verify your email');
+        }
+        else if(response.status){
+            toast.info('Authority send you a conformation email.Thanks to being with us(ICT Family)');
+          }
+       else if(response.success){
          this.setState({
             //   email:"",
             //   password:"",
@@ -67,9 +75,15 @@ class Login extends React.Component {
     }
     render() {
         return (
-            <>
+             <>
+               <ToastContainer/>
+            <Pulse>
 
+                 <div>
                 <div class="login">
+
+
+
                     <h2><i class="fa fa-user-circle" aria-hidden="true"></i>
 Login </h2>
                     {this.state.isLoading && (
@@ -124,8 +138,12 @@ Login </h2>
                         <button type="submit" class="btn btn-success btn-block" >Submit</button>
                         <p><Link to={`${PUBLIC_URL}forgetPassword`}>Forget Password?</Link></p>
                     </form>
+
                 </div>
-            </>
+                </div>
+                </Pulse>
+                </>
+
         );
     }
 }

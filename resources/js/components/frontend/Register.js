@@ -2,6 +2,8 @@ import React from 'react';
 import { storeRegistration } from '../Services/LoginRegService';
 import { Link, withRouter } from "react-router-dom";
 import { PUBLIC_URL } from "../CommonURL";
+import Pulse from 'react-reveal/Pulse';
+import { ToastContainer, toast } from 'react-toastify';
 class Register extends React.Component {
     constructor(props) {
         super(props);
@@ -45,8 +47,10 @@ class Register extends React.Component {
                 errors: false,
                 // isLoading:false,
             });
-           // alert('add successfully');
-            history.push(`${PUBLIC_URL}verification`);
+            // alert('add successfully');
+             //toast.info('check your email for verification');
+             history.push(`${PUBLIC_URL}verification`);
+            console.log('register',response.data);
         }
         else {
             console.log("response.errors", response.errors);
@@ -62,6 +66,9 @@ class Register extends React.Component {
   render() {
         return (
             <>
+            <ToastContainer/>
+       <Pulse>
+           <div>
             <div class="register">
                 <h2><i class="fa fa-registered" aria-hidden="true"></i>
 Registration </h2>
@@ -132,7 +139,9 @@ Registration </h2>
                                 <button type="submit" class="btn btn-success btn-block" >Submit</button>
                                </form>
                                </div>
-            </>
+           </div>
+           </Pulse>
+           </>
           );
     }
 }

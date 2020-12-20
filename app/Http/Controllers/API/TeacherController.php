@@ -63,6 +63,7 @@ class TeacherController extends Controller
   $data['phone']=$request->phone;
   $data['caddress']=$request->caddress;
   $data['paddress']=$request->paddress;
+  $data['status']='1';
  //$data['image']=$request->image;
  $image = $request->image;
 

@@ -2,6 +2,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link,withRouter, Redirect } from "react-router-dom";
 import { AttendanceService } from '../Services/AttendanceService';
+import { getmemberRequest ,getmemberRequest2} from '../Services/Admin/AdminServices';
+
 import $ from 'jquery';
 import { PUBLIC_URL } from "../CommonURL";;
  class Header extends React.Component{
@@ -10,6 +12,8 @@ import { PUBLIC_URL } from "../CommonURL";;
         this.state = { Semester:[],
             email:this.props.authData.user12.user_rule,
             userName:this.props.authData.user12.name,
+            memberRequest:[],
+            memberRequest2:[],
          }
     }
 
@@ -17,6 +21,8 @@ import { PUBLIC_URL } from "../CommonURL";;
             console.log('header punlic',PUBLIC_URL);
             this.getSemester();
             console.log(this.state.email);
+            this.memberRequest();
+            this.memberRequest2();
         }
         getSemester=async()=>{
             const getLoginData = localStorage.getItem("LoginData");
@@ -27,6 +33,21 @@ import { PUBLIC_URL } from "../CommonURL";;
             console.warn('get',this.state.Semester);
             console.log('email4545',this.state.email);
         }
+        memberRequest=async()=>{
+            const response=await getmemberRequest();
+            if(response.success){
+                this.setState({ memberRequest:response.data  });
+                console.log('member',this.state.memberRequest);
+            }
+        }
+        memberRequest2=async()=>{
+            const response=await getmemberRequest2();
+            if(response.success){
+                this.setState({ memberRequest2:response.data  });
+                console.log('member',this.state.memberRequest);
+            }
+        }
+
         Logout=()=>{
             localStorage.removeItem("LoginData");
             window.location.href =`${PUBLIC_URL}loginuser`;
@@ -37,6 +58,12 @@ import { PUBLIC_URL } from "../CommonURL";;
           window.location.href = `${PUBLIC_URL}attendance/${session}`;
 
         //    alert('hi');
+         }
+         studentRequest=(abc)=>{
+            const {history}=this.props;
+            window.location.href = `${PUBLIC_URL}requestinfo/${abc}`;
+      //  history.push(`${PUBLIC_URL}requestinfo/${abc}`);
+            // alert(abc);
          }
         render(){
             // if(!localStorage.getItem('LoginData')){
@@ -77,8 +104,9 @@ Home <span class="sr-only">(current)</span></Link>
                      </li>
                      <li class="nav-item">
 
-            < Link class="nav-link" to={`${PUBLIC_URL}services`}>Services</Link>
+            < Link class="nav-link" to={`${PUBLIC_URL}admission`}>Admission</Link>
             </li>
+
             <li class="nav-item">
 
                 <Link class="nav-link" to={`${PUBLIC_URL}gallary`}>Gallary</Link>
@@ -106,17 +134,21 @@ Home <span class="sr-only">(current)</span></Link>
     {/* before login end */}
 
                                      {/* after login for student home start */}
-                            {this.props.authData.isLoggedIn && this.props.authData.user12.user_rule == 'Student' && (
+                            {this.props.authData.isLoggedIn && this.props.authData.user12.user_rule == 'Student' && this.props.authData.user12.status == 1 && (
                               <>
                               <li class="nav-item">
 
                                     <Link class="nav-link" to={`${PUBLIC_URL}studentallInfo`}>All Info</Link>
                                 </li>
-                                 <li class="nav-item">
+                             <li class="nav-item">
 
                                  <Link class="nav-link" to={`${PUBLIC_URL}seeclassmate`}>See Classmate</Link>
                              </li>
-                             </>
+                             <li class="nav-item">
+
+                <Link class="nav-link" to={`${PUBLIC_URL}message`}>Message</Link>
+                </li>
+                                            </>
                             )}
                                {/* after login for student home end */}
 
@@ -124,13 +156,51 @@ Home <span class="sr-only">(current)</span></Link>
                                 {/* after login for Admiin Links and routes start */}
                                 {this.props.authData.isLoggedIn && this.props.authData.user12.user_rule == 'Admin' && (
 
-                                // mobile menu start
+                               <>
+                                 <li class="nav-item">
+
+                        <Link class="nav-link" to={PUBLIC_URL}>Teachers Info</Link>
+                          </li>
+                          <li class="nav-item">
+
+                        <Link class="nav-link" to={PUBLIC_URL}>Stuffs Info</Link>
+                        </li>
+                        <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Member Request <span class="badge badge-primary badge-pill">{this.state.memberRequest.length+this.state.memberRequest2.length}</span>
+                                 </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                    <Link class="dropdown-item" onClick={()=>this.studentRequest('Student')}>Student Request <span class="badge badge-primary badge-pill">{this.state.memberRequest.length}</span></Link>
+                                    <Link class="dropdown-item" onClick={()=>this.studentRequest('Teacher')}>Teacher Request <span class="badge badge-primary badge-pill">{this.state.memberRequest2.length}</span></Link>
+
+                                </div>
+                            </li>
+                            <li class="nav-item">
+
+                <Link class="nav-link" to={`${PUBLIC_URL}message`}>Message</Link>
+                </li>
+
+                            {/* // mobile menu start */}
                                 <div class="AdminMMenu">
-                                        <li class="nav-item">
+                             <li class="nav-item">
 
                           <Link class="nav-link" to={PUBLIC_URL}>All Info</Link>
                              </li>
+                             <li class="nav-item">
 
+                        <Link class="nav-link" to={PUBLIC_URL}>Add Notice</Link>
+                        </li>
+
+                             <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   Add Semester Info
+                                 </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <Link class="dropdown-item" to={`${PUBLIC_URL}addSemesterCourse`}>Add Teacher Wise Course</Link>
+                                <Link class="dropdown-item" to={`${PUBLIC_URL}addSemesterCourse`}>Add Course </Link>
+                                </div>
+                            </li>
                              <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Teachers
@@ -140,16 +210,26 @@ Home <span class="sr-only">(current)</span></Link>
                                 <Link class="dropdown-item" to={`${PUBLIC_URL}addSemesterCourse`}>add</Link>
                                 </div>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   Result
+                                 </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <Link class="dropdown-item" to={`${PUBLIC_URL}addSemesterCourse`}>Add Result</Link>
+                                <Link class="dropdown-item" to={`${PUBLIC_URL}addSemesterCourse`}>Get Result </Link>
+                                </div>
+                            </li>
 
                                 </div>
 
-                                //mobile menu end
+                                {/* //mobile menu end */}
+                                </>
 
                             )}
 
                                  {/* after login for Admin Links and routes end */}
                             {/* specific routes access after login(teacher) */}
-                            {this.props.authData.isLoggedIn && this.props.authData.user12.user_rule == 'Teacher' && (
+                            {this.props.authData.isLoggedIn && this.props.authData.user12.user_rule == 'Teacher' &&  this.props.authData.user12.status == 1 && (
                               <>
                               {/* <li class="nav-item">
 
@@ -186,8 +266,12 @@ Home <span class="sr-only">(current)</span></Link>
                             </li>
                             <li class="nav-item">
 
-               <Link class="nav-link" to={`${PUBLIC_URL}colleague`}>Colleague</Link>
-                            </li>
+                    <Link class="nav-link" to={`${PUBLIC_URL}colleague`}>Colleague</Link>
+                                    </li>
+                            <li class="nav-item">
+
+                    <Link class="nav-link" to={`${PUBLIC_URL}message`}>Message</Link>
+                    </li>
 
                              </>
                             )}

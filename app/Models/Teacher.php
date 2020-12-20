@@ -18,6 +18,7 @@ class Teacher extends Model
         'bloodg',
         'caddress',
         'paddress',
+        'status',
 
     ];
 }

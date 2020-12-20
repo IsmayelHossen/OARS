@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from './Slider';
 import { GetTeacherInfo, getNoticeData,GetSemesterCourseInfo,deleteSpecificSemesterCourse } from '../Services/Admin/AdminServices';
+import Fade from 'react-reveal/Fade';
 class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -23,15 +24,22 @@ class Home extends React.Component {
         const lengthR=this.state.NoticeResult.length;
         return (
             <>
-            <div class="topMargin">
+            <div class="topMargin ">
+                <div>
+                    <Fade top>
                <Slider/>
-
+               </Fade>
+               </div>
+                <Fade bottom>
+                    <div>
                 <div class="jumbotron">
 
                     <h1 style={{textAlign:"center"}}>Welcome to ICT Online Attendance & Result System</h1>
                     <p style={{textAlign:"center"}}>To Get the MemberShip Please Registration </p>
 
                 </div>
+                </div>
+                </Fade>
                 <div class="Headline">
                     <marquee direction="left" onmouseout="this.start()" onmouseover="this.stop()" scrolldelay="1" scrollamount="4">
 
@@ -86,21 +94,25 @@ class Home extends React.Component {
 </ul>
 
 
-<div class="tab-content">
+<div class="tab-content" style={{marginLeft:'-15px;'}}>
   <div class="tab-pane container active" id="home">
-   <ul class="list-group">
-  <li class="list-group-item list-group-item-success">Success item</li>
-  <li class="list-group-item list-group-item-secondary">Secondary item</li>
-  <li class="list-group-item list-group-item-info">Info item</li>
-  <li class="list-group-item list-group-item-warning">Warning item</li>
-  <li class="list-group-item list-group-item-danger">Danger item</li>
-  <li class="list-group-item list-group-item-primary">Primary item</li>
-  <li class="list-group-item list-group-item-dark">Dark item</li>
-  <li class="list-group-item list-group-item-light">Light item</li>
+  <ul class="list-group" style={{marginLeft:'-15px'}}>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Inbox
+    <span class="badge badge-primary badge-pill">12</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Ads
+    <span class="badge badge-primary badge-pill">50</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Junk
+    <span class="badge badge-primary badge-pill">99</span>
+  </li>
 </ul>
 </div>
   <div class="tab-pane container fade" id="menu1">
-   <ul class="list-group">
+   <ul class="list-group" style={{marginLeft:'-15px'}}>
   <li class="list-group-item d-flex justify-content-between align-items-center">
     Inbox
     <span class="badge badge-primary badge-pill">12</span>
@@ -120,6 +132,28 @@ class Home extends React.Component {
 
                         </div>
                     </div>
+                     <div class="row counter">
+
+                         <div class="col-md-4">
+                             <div class="counterin">
+                             <h3>Teachers</h3>
+                             <span>16</span>
+                         </div>
+                         </div>
+                         <div class="col-md-4">
+                         <div class="counterin">
+                             <h3>Students</h3>
+                             <span>320</span>
+                             </div>
+                         </div>
+                         <div class="col-md-4">
+                         <div class="counterin">
+                             <h3>Stuffs</h3>
+                             <span>20</span>
+                           </div>
+                         </div>
+
+                     </div>
 
               </div>
             </>

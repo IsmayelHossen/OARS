@@ -2,14 +2,14 @@
 namespace App\Repositories;
 
 use App\Interfaces\LoginRegI;
-
+use App\Mail\LoginReg;
 use App\Models\User;
 use App\Models\Student;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Mail;
 class LoginRegR implements LoginRegI
 {
     public function checkIfAuthenticated(Request $request)
@@ -40,15 +40,21 @@ class LoginRegR implements LoginRegI
 
 
         }
-
+        $vcode=rand(100,100000);
         $user = new User();
         $user->name = $request->name;
         $user->user_rule = $request->user_rule;
         $user->email = $request->email;
+        $user->vcode=$vcode;
         $user->password =Hash::make($request->password);
         $user->save();
+        $mail=Mail::to($request->email)->send(new LoginReg($request->email,$vcode));
+        if($mail){
+            return $user;
+        }
 
-        return $user;
+
+
     }
 
     public function findUserByEmailAddress($email)
