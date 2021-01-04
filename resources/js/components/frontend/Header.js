@@ -15,14 +15,50 @@ import { PUBLIC_URL } from "../CommonURL";;
             memberRequest:[],
             memberRequest2:[],
          }
+
     }
 
         componentDidMount() {
             console.log('header punlic',PUBLIC_URL);
             this.getSemester();
             console.log(this.state.email);
-            this.memberRequest();
-            this.memberRequest2();
+            const getLoginData = localStorage.getItem("LoginData");
+            if (getLoginData != null) {
+                this.memberRequest();
+                this.memberRequest2();
+            }
+
+            this.userId();
+          this.removeAfterTabclose();
+        }
+        removeAfterTabclose=()=>{
+
+            // window.onaftereunload = function (e) {
+            //     var storage = window.localStorage;
+            //     storage.clear()
+            // }
+        }
+
+        userId=()=>{
+            const getLoginData = localStorage.getItem("LoginData");
+            if (getLoginData != null) {
+
+            const getLoginData = localStorage.getItem("LoginData");
+            const data1 = JSON.parse(getLoginData);
+            window.axios.defaults.headers.common['Authorization']='Bearer' +data1.access_token;
+            const email = data1.user.email;
+
+                window.user = {
+                    email:data1.user.email,
+                    id:data1.user.id,
+                    name:data1.user.name,
+                    user_rule:data1.user.user_rule,
+                    token:data1.access_token,
+                };
+
+                window.csrfToken =data1.access_token;
+             }
+
         }
         getSemester=async()=>{
             const getLoginData = localStorage.getItem("LoginData");
@@ -49,6 +85,7 @@ import { PUBLIC_URL } from "../CommonURL";;
         }
 
         Logout=()=>{
+
             localStorage.removeItem("LoginData");
             window.location.href =`${PUBLIC_URL}loginuser`;
          }
@@ -115,7 +152,7 @@ Home <span class="sr-only">(current)</span></Link>
 
             <Link class="nav-link" to={`${PUBLIC_URL}contactus`}>Contact Us</Link>
             </li>
-            <li class="nav-item dropdown">
+            {/* <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Dropdown
                                  </a>
@@ -126,7 +163,7 @@ Home <span class="sr-only">(current)</span></Link>
                                     <a class="dropdown-item" href="#">Something else here</a>
                                 </div>
                             </li>
-
+ */}
 
 
                             </>
@@ -148,7 +185,17 @@ Home <span class="sr-only">(current)</span></Link>
 
                 <Link class="nav-link" to={`${PUBLIC_URL}message`}>Message</Link>
                 </li>
-                                            </>
+                <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Post
+                                 </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <Link class="dropdown-item" to={`${PUBLIC_URL}post`}>Add Post</Link>
+                                <Link class="dropdown-item" to={`${PUBLIC_URL}newsfeed`}>News Feed</Link>
+                                </div>
+                            </li>
+
+                                     </>
                             )}
                                {/* after login for student home end */}
 
@@ -180,6 +227,16 @@ Home <span class="sr-only">(current)</span></Link>
 
                 <Link class="nav-link" to={`${PUBLIC_URL}message`}>Message</Link>
                 </li>
+                <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Post
+                                 </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <Link class="dropdown-item" to={`${PUBLIC_URL}post`}>Add Post</Link>
+                                <Link class="dropdown-item" to={`${PUBLIC_URL}newsfeed`}>News Feed</Link>
+                                </div>
+                            </li>
+
 
                             {/* // mobile menu start */}
                                 <div class="AdminMMenu">
@@ -191,7 +248,10 @@ Home <span class="sr-only">(current)</span></Link>
 
                         <Link class="nav-link" to={PUBLIC_URL}>Add Notice</Link>
                         </li>
+                        {/* <li class="nav-item ">
 
+<Link class="nav-link" to={`${PUBLIC_URL}live`}>Live</Link>
+</li> */}
                              <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                    Add Semester Info
@@ -272,6 +332,20 @@ Home <span class="sr-only">(current)</span></Link>
 
                     <Link class="nav-link" to={`${PUBLIC_URL}message`}>Message</Link>
                     </li>
+                    <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Post
+                                 </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <Link class="dropdown-item" to={`${PUBLIC_URL}post`}>Add Post</Link>
+                                <Link class="dropdown-item" to={`${PUBLIC_URL}newsfeed`}>News Feed</Link>
+                                </div>
+                            </li>
+
+        {/* <li class="nav-item ">
+
+<Link class="nav-link" to={`${PUBLIC_URL}live`}>Live</Link>
+</li> */}
 
                              </>
                             )}

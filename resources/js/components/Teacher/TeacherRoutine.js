@@ -1,10 +1,36 @@
 import React from 'react';
+import { GetRoutineResult} from '../Services/Admin/AdminServices';
+import Swal from 'sweetalert2';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Link, withRouter } from "react-router-dom";
+import { PUBLIC_URL } from "../CommonURL";
 class TeacherRoutine extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = {IndividualRoutine:[]  }
+        this.user = window.user;
     }
+    componentDidMount() {
+        this.GetRoutine();
+
+    }
+
+    GetRoutine=async()=>{
+        const response=await GetRoutineResult(this.user.email);
+        if(response.success){
+            this.setState({ IndividualRoutine:response.data  });
+        }
+        console.log('routine',this.state.IndividualRoutine)
+         console.log('email',this.user.email);
+    }
+
     render() {
+        let i=1;
+        let i1=1;
+        let i2=1;
+        let i3=1;
+        let i4=1;
         return (
 
            <>
@@ -13,59 +39,173 @@ class TeacherRoutine extends React.Component {
            <div class="row">
                <div class="col-md-12">
                    <div class="takenclasss">
-               <div class="table-responsive">
-               <table class="table table-striped" style={{textAlign:'center'}}>
-                    <thead>
-                        <tr>
-                    <th>SL</th>
-                    <th>Day</th>
-                    <th>Lec-1</th>
-                    <th>Lec-2</th>
-                    <th>Lec-3</th>
-                    <th>Lec-4</th>
-                    <th>Lec-5</th>
-                    <th>Lec-6</th>
-                    <th>Lec-7</th>
+                   <div class="table-responsive">
+                         <table class="table table-bordered">
+                             <thead>
+                               {/* <tr>
+                                   <th>Day</th>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Saturday</td>
-                            <td>
-                            <p>Semester:4-2</p>
-                            <p>Time:10am</p>
-                            </td>
-                            <td>
-                            <p>Semester:4-2</p>
-                            <p>Time:10am</p>
-                            </td>
-                            <td>
-                            <p>Semester:4-2</p>
-                            <p>Time:10am</p>
-                            </td>
-                            <td>
-                            <p>Semester:4-2</p>
-                            <p>Time:10am</p>
-                            </td>
-                            <td>
-                            <p>Semester:4-2</p>
-                            <p>Time:10am</p>
-                            </td>
-                            <td>
-                            <p>Semester:4-2</p>
-                            <p>Time:10am</p>
-                            </td>
-                            <td>
-                            <p>Semester:4-2</p>
-                            <p>Time:10am</p>
-                            </td>
+                                   <th>Edit</th>
+                                   <th>Delete</th>
 
-                        </tr>
-                 </tbody>
-             </table>
-             </div>
+
+
+                               </tr> */}
+                             </thead>
+                             <tbody>
+                             <tr>
+                                 {this.state.IndividualRoutine.map((row,index)=>(
+                                <>
+
+                                   {row.day=='Saturday' &&(
+                                   <>
+                                   {i=='1' &&(
+                                       <>
+                                <th>{row.day}</th>
+                                <span style={{display:'none'}}>{i++}</span>
+                                </>
+                                   )}
+
+                                        <td>
+                                            <p style={{color:'#208a71'}}>Lecture:{row.lecture}</p>
+                                            Semester:{row.semester}<p>Course Code:{row.ccode}</p>
+                                    <p>Course Title:{row.ctitle}</p>
+                                    <p>Time:{row.time1}<span>{row.ampm}</span></p>
+                                    </td>
+
+
+                                  </>
+                                   )}
+
+
+                                </>
+                                 ))}
+
+
+                                  </tr>
+                                  <tr>
+                                 {this.state.IndividualRoutine.map((row,index)=>(
+                                <>
+
+                                   {row.day=='Sunday' &&(
+                                   <>
+                                   {i1=='1' &&(
+                                       <>
+                                <th>{row.day}</th>
+                                <span style={{display:'none'}}>{i++}</span>
+                                </>
+                                   )}
+
+                                        <td>
+                                            <p>Lecture:{row.lecture}</p>
+                                            Semester:{row.semester}<p>Course Code:{row.ccode}</p>
+                                    <p>Course Title:{row.ctitle}</p>
+                                    <p>Time:{row.time1}<span>{row.ampm}</span></p>
+                                    </td>
+
+
+                                  </>
+                                   )}
+
+
+                                </>
+                                 ))}
+
+                                  </tr>
+                                  <tr>
+                                 {this.state.IndividualRoutine.map((row,index)=>(
+                                <>
+
+                                   {row.day=='Monday' &&(
+                                   <>
+                                   {i2=='1' &&(
+                                       <>
+                                <th>{row.day}</th>
+                                <span style={{display:'none'}}>{i++}</span>
+                                </>
+                                   )}
+
+                                        <td>
+                                            <p>Lecture:{row.lecture}</p>
+                                            Semester:{row.semester}<p>Course Code:{row.ccode}</p>
+                                    <p>Course Title:{row.ctitle}</p>
+                                    <p>Time:{row.time1}<span>{row.ampm}</span></p>
+                                    </td>
+
+
+                                  </>
+                                   )}
+
+
+                                </>
+                                 ))}
+
+                                  </tr>
+                                  <tr>
+                                 {this.state.IndividualRoutine.map((row,index)=>(
+                                <>
+
+                                   {row.day=='Tuesday' &&(
+                                   <>
+                                   {i3=='1' &&(
+                                       <>
+                                <th>{row.day}</th>
+                                <span style={{display:'none'}}>{i++}</span>
+                                </>
+                                   )}
+
+                                        <td>
+                                            <p>Lecture:{row.lecture}</p>
+                                            Semester:{row.semester}<p>Course Code:{row.ccode}</p>
+                                    <p>Course Title:{row.ctitle}</p>
+                                    <p>Time:{row.time1}<span>{row.ampm}</span></p>
+                                    </td>
+
+
+                                  </>
+                                   )}
+
+
+                                </>
+                                 ))}
+
+                                  </tr>
+                                  <tr>
+                                 {this.state.IndividualRoutine.map((row,index)=>(
+                                <>
+
+                                   {row.day=='Wednesday' &&(
+                                   <>
+                                   {i4=='1' &&(
+                                       <>
+                                <th>{row.day}</th>
+                                <span style={{display:'none'}}>{i++}</span>
+                                </>
+                                   )}
+
+                                        <td>
+                                            <p>Lecture:{row.lecture}</p>
+                                            Semester:{row.semester}<p>Course Code:{row.ccode}</p>
+                                    <p>Course Title:{row.ctitle}</p>
+                                    <p>Time:{row.time1}<span>{row.ampm}</span></p>
+                                    </td>
+
+
+                                  </>
+                                   )}
+
+
+                                </>
+                                 ))}
+
+                                  </tr>
+
+
+
+
+                             </tbody>
+                         </table>
+                         </div>
                    </div>
                </div>
            </div>

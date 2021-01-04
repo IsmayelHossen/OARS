@@ -30,8 +30,9 @@ import Fade from 'react-reveal/Fade';
                   </div>
                   <div class="row">
                       <div class="col-md-12">
-                      <Fade bottom>
                       <div class="ictabout">
+                      <Fade bottom>
+
                       <h2>Aims and Objectives</h2>
                 <p class="lead">
                     The Department of Information and Communication Technology (ICT) offers a 4-year bachelor degree on Bachelor of Science in Information and Communication Technology (ICT).
@@ -39,30 +40,34 @@ import Fade from 'react-reveal/Fade';
                     The main objective of this Department is to offer such program of study and related functions as will be directly linked to socio-economics empowerment of the people of the country.
                      It also initiates, organizes and performs research on practical applications of ICT.
                 </p>
-                </div>
                 </Fade>
+                </div>
+
                       </div>
                   </div>
                  <div class="row">
                      <div class="col-md-12">
-                     <Fade bottom>
                      <div class="ictabout">
-                     <p>The Department is leading to achieve the following objectives:</p>
+                     <Fade bottom>
+
+                     <h2>The Department is leading to achieve the following objectives</h2>
                 <ul>
                     <li>To actively pursue advanced research in ICT in order to develop knowledge based products and services.</li>
                     <li>To develop ICT facilities in order to create an on-campus environment conducive to enthusiasm, innovation and enterprise and to nurture innovative ideas and incubate promising initiatives.</li>
                     <li>To produce manpower and expertise in ICT by carrying out training in diverse areas.</li>
                     <li>To provide consulting and advisory services to public and private organizations.</li>
                 </ul>
-                </div>
                 </Fade>
+                </div>
+
                      </div>
 
                  </div>
                  <div class="row">
                      <div class="col-md-12">
-                     <Fade bottom>
                      <div class="ictabout">
+                     <Fade bottom>
+
                      <h2>Education System</h2>
                 <p class="lead">
                     The Department offers a 4-year program of Bachelor of Science (Engg.) in Information and Communication Technology (ICT).
@@ -72,15 +77,17 @@ import Fade from 'react-reveal/Fade';
                         Moreover there are sufficient number of Mathematics, Electrical Engineering, Communication Engineering, Basic sciences, Commerce and Arts courses. The purpose of the Department is to provide a platform for teaching, learning and research in information and communication technology (ICT) that will contribute to industrial and infrastructural development,
                      economic growth and social prosperity in Bangladesh.
                 </p>
-                </div>
                 </Fade>
+                </div>
+
                      </div>
 
                  </div>
                  <div class="row">
                      <div class="col-md-12">
-                     <Fade bottom>
                      <div class="ictabout">
+                     <Fade bottom>
+
 
                      <h2>Officers and Staffs of the Department</h2>
                 <p class="lead">
@@ -90,14 +97,16 @@ import Fade from 'react-reveal/Fade';
                       Mr. Mohammad Ataur Rahman Khan is serving as a section officer to run the different activities of the
                       Department smoothly with all staffs under the guidance of the Chairman.
                 </p>
-                </div>
                 </Fade>
+                </div>
+
                      </div>
                  </div>
                  <div class="row">
                      <div class="col-md-12">
-                     <Fade bottom>
                      <div class="ictabout">
+                     <Fade bottom>
+
                      <h2>Resources of ICT Department</h2>
                 <p class="lead">
                     The Department has a spacious lounge, office room with internet facility, 04(four) modern class rooms with Laptop,
@@ -109,38 +118,44 @@ import Fade from 'react-reveal/Fade';
                          the Department has very modern Network and Communication Laboratory with Wireless LAN, CISCO Routers, CISCO switches, Microwave Trainer Kits,
                          Analog & Digital Trainer Kits. The computer Labs are connected with submarine cable network through BTCL and for high speed internet connectivity.
                 </p>
-                </div>
                 </Fade>
+                </div>
+
                      </div>
                    </div>
                    <div class="row">
                        <div class="col-md-12">
-                       <Fade bottom>
+
                        <div class="ictabout">
+                       <Fade bottom>
                        <h2>Seminar Library</h2>
                 <p class="lead">
                     The Department of ICT has developed a rich and well organized seminar library with 1,000 of books available for students use. Besides, it has a lot of research journals, magazines and periodicals are also stocked at seminal library.
                 </p>
-                </div>
                 </Fade>
+                </div>
+
                        </div>
                    </div>
                    <div class="row">
                        <div class="col-md-12">
-                       <Fade bottom>
+
                        <div class="ictabout">
+                       <Fade bottom>
                        <p class="lead">
                        <h2>Research Activities</h2>
                     The Department of ICT encourages its students and teachers to research on IT related topics like data structure and algorithm, software engineering, information system design, computer network, bioinformatics, wireless networks, database and distributed systems, e-governance, artificial intelligence, neural network, fuzzy systems, machine learning, human computer interaction, pattern and speech recognition etc. Students are bound to take thesis under the course Research Project (ICT 400).
                 </p>
-                </div>
                 </Fade>
+                </div>
+
                        </div>
                    </div>
                    <div class="row">
                        <div class="col-md-12">
-                       <Fade bottom>
+
                        <div class="ictabout">
+                       <Fade bottom>
                        <h2>Conclusion</h2>
                 <p class="lead">
                     Since the Department has establishment on 2003, it is running its program with great success and dedication.
@@ -148,8 +163,9 @@ import Fade from 'react-reveal/Fade';
                       and Red Hat Certifications to expertise the students in different IT fields in computer hardware, network administration,
                        database, software development, web development etc.
                 </p>
-                </div>
                 </Fade>
+                </div>
+
                        </div>
                    </div>
 

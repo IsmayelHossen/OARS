@@ -34,8 +34,8 @@ class Home extends React.Component {
                     <div>
                 <div class="jumbotron">
 
-                    <h1 style={{textAlign:"center"}}>Welcome to ICT Online Attendance & Result System</h1>
-                    <p style={{textAlign:"center"}}>To Get the MemberShip Please Registration </p>
+                    <h2 style={{textAlign:"center"}}>Welcome To Dept. Of ICT Online Attendance & Result System</h2>
+                    <p style={{textAlign:"center"}} class="homeP">To Get the MemberShip Please Registration </p>
 
                 </div>
                 </div>
@@ -43,7 +43,7 @@ class Home extends React.Component {
                 <div class="Headline">
                     <marquee direction="left" onmouseout="this.start()" onmouseover="this.stop()" scrolldelay="1" scrollamount="4">
 
-        <span><a href="#" style={{color:'#fff'}}>●&nbsp;৪র্থ রেফারী কেন ইস্তাম্বুলের কর্মকর্তাকে নিগ্রো বলে ডেকেছে সেটা জানতে ম্যাচ অফিশিয়ালের কাছে নেইমার </a>&nbsp;&nbsp;&nbsp;</span>
+          <span><a href="#" style={{color:'#fff'}}>&nbsp;In aliquet mattis volutpat. Maecenas tempor augue a orci tempus, sed tempor eros maximus.</a>&nbsp;&nbsp;&nbsp;</span>
 
 
                   </marquee>
@@ -53,28 +53,38 @@ class Home extends React.Component {
                         <div class="col-md-8 col-sm-12">
                         <div class="row">
                         <div class="col-md-4">
+                        <Fade bottom>
+                            <div>
                          <div class="card chairmanprofile">
                                 <img class="card-img-top" src="public/Images/shahin.jpg" alt="Card image" style={{width:'100%'}}></img>
                                     <div class="card-body">
-                                <h5 class="card-title">Professor Dr. Mohammad Shain Uddin</h5>
-                                <h5>Chairman</h5>
-                                <p class="card-text">Dept. Of ICT,MBSTU</p>
+                                <h5 class="card-title" style={{color:'#ae3333',fontWeight:'600',}}>Professor Dr. Mohammad Shain Uddin</h5>
+                                <h5 style={{fontWeight:'600'}}>Chairman</h5>
+                                <p class="card-text" style={{fontWeight:'600',color:'#291b37'}}>Dept. Of ICT,MBSTU</p>
 
                               </div>
                             </div>
+                            </div>
+                            </Fade>
                         </div>
+
                          <div class="col-md-8">
-                         <h3>Message from Chairman</h3>
-                         <p>Computer Science and Engineering is at the intellectual forefront of the digital
-                         revolution that will define the 21st century. That revolution is in its early stages
-                         but is visible all around us. New scientific, economic and social paradigms are arising
-                          from computing science and being felt across all sectors of the economy and society at
-                          large. For accepting this technological challenge of 21st century, the Department of
-                          Computer Science and Engineering is one of the most pioneering soloist of MBSTU and the
-                          country since its commencement in 2003. The department is keen on pushing the boundaries
-                          of traditional education system and it is the optimum combination of knowledge
-                          generation and application that makes the distinctive feature of the Department.</p>
+                         <Fade bottom>
+                         <h4 style={{paddingTop:'5px',color:'#242b29',fontWeight:'600'}}>Message from Chairman</h4>
+                         <p>Vestibulum nisi quam, sodales a egestas sagittis, suscipit et risus.
+                             Aenean fermentum, eros pharetra tincidunt pretium, libero sem posuere sapien,
+                              ac pellentesque quam metus sit amet dui. Pellentesque ut elit dapibus, imperdiet odio et,
+                               commodo est. Vivamus pretium orci ut posuere mattis. Sed volutpat aliquam dui ut consequat.
+                                In aliquet mattis volutpat. Maecenas tempor augue a orci tempus, sed tempor eros maximus.
+                                 Phasellus molestie velit augue, vitae dignissim nisl imperdiet eu.
+                                  Ut vehicula euismod imperdiet. Sed ut sapien eget diam convallis pharetra.
+                                   Proin mollis ultrices vestibulum. Integer dapibus condimentum blandit.
+                                   Vestibulum luctus, sem vitae vestibulum pretium, odio dui sodales nisi, in dapibus purus augue nec dolor.
+                                   Class aptent taciti sociosqu ad litora torquent per conubia nostra,
+                              per inceptos himenaeos. Praesent a fermentum tellus.</p>
+                              </Fade>
                         </div>
+
                         </div>
 
                         </div>
@@ -83,13 +93,13 @@ class Home extends React.Component {
 
 <ul class="nav nav-tabs" style={{marginTop:'10px'}}>
   <li class="nav-item">
-    <a class="nav-link active" data-toggle="tab" href="#home">Notice</a>
+    <a class="nav-link active" data-toggle="tab" href="#home">Notice   <span class="badge badge-primary badge-pill">12</span></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#menu1">News</a>
+    <a class="nav-link" data-toggle="tab" href="#menu1">News<span class="badge badge-primary badge-pill">4</span></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#menu2">Events</a>
+    <a class="nav-link" data-toggle="tab" href="#menu2">Events<span class="badge badge-primary badge-pill">2</span></a>
   </li>
 </ul>
 
@@ -98,32 +108,33 @@ class Home extends React.Component {
   <div class="tab-pane container active" id="home">
   <ul class="list-group" style={{marginLeft:'-15px'}}>
   <li class="list-group-item d-flex justify-content-between align-items-center">
-    Inbox
-    <span class="badge badge-primary badge-pill">12</span>
+  Vivamus pretium orci ut posuere mattis.  Class aptent taciti sociosqu
+
   </li>
   <li class="list-group-item d-flex justify-content-between align-items-center">
-    Ads
-    <span class="badge badge-primary badge-pill">50</span>
+  Vivamus pretium orci ut posuere mattis.  Class aptent taciti sociosqu
+
   </li>
   <li class="list-group-item d-flex justify-content-between align-items-center">
-    Junk
-    <span class="badge badge-primary badge-pill">99</span>
+  Vivamus pretium orci ut posuere mattis.  Class aptent taciti sociosqu
+
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+  Vivamus pretium orci ut posuere mattis.  Class aptent taciti sociosqu
+
   </li>
 </ul>
 </div>
   <div class="tab-pane container fade" id="menu1">
    <ul class="list-group" style={{marginLeft:'-15px'}}>
   <li class="list-group-item d-flex justify-content-between align-items-center">
-    Inbox
-    <span class="badge badge-primary badge-pill">12</span>
+  Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos
   </li>
   <li class="list-group-item d-flex justify-content-between align-items-center">
-    Ads
-    <span class="badge badge-primary badge-pill">50</span>
+  Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos
   </li>
   <li class="list-group-item d-flex justify-content-between align-items-center">
-    Junk
-    <span class="badge badge-primary badge-pill">99</span>
+  Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos
   </li>
 </ul>
   </div>
@@ -132,6 +143,8 @@ class Home extends React.Component {
 
                         </div>
                     </div>
+                    <Fade top>
+                        <div>
                      <div class="row counter">
 
                          <div class="col-md-4">
@@ -154,7 +167,8 @@ class Home extends React.Component {
                          </div>
 
                      </div>
-
+                     </div>
+               </Fade>
               </div>
             </>
          );

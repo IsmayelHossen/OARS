@@ -32,6 +32,9 @@ class SideBar extends React.Component {
                                 <li >
                                 <Link class="hrefa" to={`${PUBLIC_URL}addNotice`}>AddNotice</Link>
                                 </li>
+                                <li >
+                                <Link class="hrefa" to={`${PUBLIC_URL}addroutine`}>Add Routine</Link>
+                                </li>
 
                                 <li class="active">
                                     <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Students</a>

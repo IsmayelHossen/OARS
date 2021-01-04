@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Events\NewMessage;
 use App\Http\Controllers\Controller;
 use App\Mail\AcceptRequest;
 use App\Models\Attendace;
@@ -10,15 +11,20 @@ use App\Models\CTMark;
 use App\Models\Lpgrade;
 use App\Models\Message;
 use App\Models\Notice;
+use App\Models\Post;
 use App\Models\Result;
+use App\Models\Routine;
 use App\Models\SemesterRule;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Pusher\Pusher;
 
 class AdminController extends Controller
 {
@@ -746,12 +752,15 @@ public function saveMsg1(Request $request){
             'errors' => $validator->getMessageBag(),
         ]);
     }
-    $msg=new Message();
-    $msg->from=$request->myid;
-    $msg->to=$request->friendid;
-    $msg->msg=$request->msg;
-    $msg->save();
-    if($msg){
+    $message=Message::create([
+        'from'=>$request->myid,
+        'to'=>$request->friendid,
+        'msg'=>$request->msg,
+    ]);
+
+   broadcast(new NewMessage($message))->toOthers();
+    if($message){
+
         return response()->json([
             'success' => true,
             'data' =>$request->msg,
@@ -769,6 +778,270 @@ public function AllFriendData1($myid){
     ]);
 }
 
+public function authenticate(Request $request) {
 
+    //  dd($request);
+      // $data=User::where('id',$id)->first();
+      // if($data){
+      //     $name=$data->name;
+      // }
+
+      $socketId = $request->socket_id;
+      $channelName = $request->channel_name;
+      $pusher = new Pusher('c16ed6e7ee46ab7b014f', '4ed985cc53a7ef2acdc5', '749394', [
+          'cluster' => 'mt1',
+          'encrypted' => true
+      ]);
+      $user=Auth::user();
+      $presence_data = ['name' => auth()->user()->name];
+      $key = $pusher->presence_auth('presence-video-channel', $socketId,$user->id);
+
+      return response ($key);
+  }
+  //     $msg=new Message();
+//     $msg->from=$request->myid;
+//     $msg->to=$request->friendid;
+//     $msg->msg=$request->msg;
+//    $abc=$msg->save();
+//   SavePost1
+public function SavePost1(Request $request){
+   $formData = $request->all();
+  $validator =Validator::make($formData, [
+      'text' => 'required|min:3',
+      'people' => 'required',
+], [
+      'text.required' => 'Write something',
+      'people.required' => 'Please Select Audience',
+
+
+  ]);
+  if ($validator->fails()) {
+      return response()->json([
+          'success' => false,
+          'message' => $validator->getMessageBag()->first(),
+          'errors' => $validator->getMessageBag(),
+      ]);
+  }
+  $data=array();
+  $data['text']=$request->text;
+  $data['email']=$request->email;
+  $data['people']=$request->people;
+  if($request->user_rule=='Student'){
+  $creator=Student::where('email',$request->email)->first();
+  $data['creatorimg']=$creator->image;
+  $data['creatorname']=$creator->name;
+  $data['user_rule']=$request->user_rule;
+  }
+  elseif($request->user_rule=='Teacher'){
+    $creator=Teacher::where('email',$request->email)->first();
+    $data['creatorimg']=$creator->image;
+    $data['creatorname']=$creator->name;
+    $data['user_rule']=$request->user_rule;
+  }
+  else{
+    $creator=User::where('email',$request->email)->first();
+    $data['creatorname']=$creator->name;
+    $data['user_rule']='Admin';
+  }
+
+
+  $data['date1']=$request->date1;
+  if ($request->hasFile('image'))
+  {
+    $uniqueid=uniqid();
+    $original_name=$request->file('image')->getClientOriginalName();
+    $size=$request->file('image')->getSize();
+    $extension=$request->file('image')->getClientOriginalExtension();
+    $name=$uniqueid.'.'.$extension;
+    $path=$request->file('image')->storeAs('public/uploads/post',$name);
+    $data['image']=$name;
+ $post=DB::table('posts')->insert($data);
+
+ return response()->json([
+    'success' => true,
+    'message' => 'Update Data successully !!',
+    'data' =>$post,
+
+
+]);
+  }
+  else{
+    $post=DB::table('posts')->insert($data);
+    return response()->json([
+       'success' => true,
+       'message' => 'Update Data successully from else !!',
+       'data' =>$post,
+
+
+   ]);
+
+  }
+}
+public function PostGet1($email){
+    $result=Post::where('email',$email)->get();
+    return response()->json([
+        'success' => true,
+        'message' => 'Update Data successully from else !!',
+        'data' =>$result,
+
+
+    ]);
+}
+public function PostDelete1($id){
+    $delete=Post::where('id',$id)->delete();
+    return response()->json([
+        'success' => true,
+        'message' => ' Data successully',
+        'data' =>$delete,
+
+
+    ]);
+
+}
+public function EditDataget1($id,$email){
+    $editdata=Post::where('id',$id)->first();
+    return response()->json([
+        'success' => true,
+        'message' => ' Data successully',
+        'data' =>$editdata,
+
+
+    ]);
+}
+public function EditPostData1(Request $request){
+    $formData = $request->all();
+    $validator =Validator::make($formData, [
+        'text' => 'required|min:3',
+  ], [
+        'text.required' => 'Write something',
+
+
+    ]);
+    if ($validator->fails()) {
+        return response()->json([
+            'success' => false,
+            'message' => $validator->getMessageBag()->first(),
+            'errors' => $validator->getMessageBag(),
+        ]);
+    }
+    $data=array();
+    $data['text']=$request->text;
+    $data['email']=$request->email;
+    $data['status']=$request->status;
+    if ($request->hasFile('image'))
+    {
+      $uniqueid=uniqid();
+      $original_name=$request->file('image')->getClientOriginalName();
+      $size=$request->file('image')->getSize();
+      $extension=$request->file('image')->getClientOriginalExtension();
+      $name=$uniqueid.'.'.$extension;
+      $path=$request->file('image')->storeAs('public/uploads/post',$name);
+      $data['image']=$name;
+      $deleteImage=Post::where('id',$request->id)->first();
+
+      if($deleteImage){
+        $file_path =('/public/uploads/post/') .$deleteImage->image;
+        Storage::delete($file_path);
+        $post=DB::table('posts')->where('id',$request->id)->update($data);
+      }
+
+
+
+   return response()->json([
+      'success' => true,
+      'message' => 'Update Data successully !!',
+      'data' =>$post,
+
+
+  ]);
+    }
+    else{
+
+        $post=DB::table('posts')->where('id',$request->id)->update($data);
+      return response()->json([
+         'success' => true,
+         'message' => 'Update Data successully from else !!',
+         'data' =>$post,
+
+
+     ]);
+
+    }
+}
+//SaveSemesterRoutine
+public function SaveSemesterRoutine1(Request $request){
+    $formData = $request->all();
+    $validator = Validator::make($formData, [
+        'email' => 'required',
+        'day' => 'required',
+        'semester' => 'required|min:3|max:3',
+        'courseCode' => 'required',
+        'cname' => 'required',
+       'time'=>'required|min:5|max:5',
+       'ampm'=>'required',
+       'lecture'=>'required'
+
+
+
+    ], [
+
+        'session.required' => 'Session  required',
+        'time.required' => 'Time required',
+    ]);
+    if ($validator->fails()) {
+        return response()->json([
+            'success' => false,
+            'message' => $validator->getMessageBag()->first(),
+            'errors' => $validator->getMessageBag(),
+        ]);
+    }
+     $checkData=Routine::where('email',$request->email)->
+     where('day',$request->day)->where('lecture',$request->lecture)->first();
+    if($checkData !=null){
+        return response()->json([
+            'checkedData'=>true,
+            'message'=>'insert data',
+            'data'=>$checkData
+        ]);
+
+    }
+    else{
+        $obj=new Routine();
+        $obj->email=$request->email;
+        $obj->day=$request->day;
+        $obj->semester=$request->semester;
+        $obj->ccode=$request->courseCode;
+        $obj->ctitle=$request->cname;
+        $obj->time1=$request->time;
+        $obj->ampm=$request->ampm;
+        $obj->lecture=$request->lecture;
+
+        $obj->save();
+        return response()->json([
+            'success'=>true,
+            'message'=>'insert data',
+            'data'=>$obj
+        ]);
+
+    }
+
+
+}
+public function RoutineResult1(){
+    $result=Routine::select('email')->distinct()->get();
+    return response()->json([
+        'success'=>true,
+        'message'=>'get data',
+        'data'=>$result
+    ]);
+}
+public function GetRoutineResult1($email){
+    $result=Routine::where('email',$email)->get();
+    return response()->json([
+        'success'=>true,
+        'message'=>'get data',
+        'data'=>$result
+    ]);
+}
 
 }

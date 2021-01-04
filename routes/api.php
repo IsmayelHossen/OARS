@@ -6,6 +6,7 @@ use App\Http\Controllers\API\ForgetPassword;
 use App\Http\Controllers\API\ForgetPasswordController;
 use App\Http\Controllers\API\ImageController;
 use App\Http\Controllers\API\LoginRegController;
+use App\Http\Controllers\API\SocialController;
 use App\Http\Controllers\API\StudentController;
 use App\Http\Controllers\API\TeacherController;
 use Illuminate\Http\Request;
@@ -31,7 +32,7 @@ Route::get('token', [LoginRegController::class, 'createToken']);
 Route::post('login', [LoginRegController::class, 'login']);
 Route::post('register', [LoginRegController::class, 'register']);
 Route::post('storeVcode1', [LoginRegController::class, 'storeVcode1']);
-
+Route::get('user', [LoginRegController::class, 'user']);
 
 //student all api
 Route::apiResource('Student', StudentController::class);
@@ -113,6 +114,22 @@ Route::get('AcceptRequestDone1/{who}/{email}',[AdminController::class,'AcceptReq
 Route::get('GetAllMsg1/{friendid}/{myid}',[AdminController::class,'GetAllMsg1']);
 Route::post('saveMsg1',[AdminController::class,'saveMsg1']);
 Route::get('AllFriendData1/{myid}',[AdminController::class,'AllFriendData1']);
+
+Route::post('pusher/auth',[AdminController::class,'authenticate']);
+Route::post('SavePost1',[AdminController::class,'SavePost1']);
+Route::get('PostGet1/{email}',[AdminController::class,'PostGet1']);
+Route::get('PostDelete1/{id}',[AdminController::class,'PostDelete1']);
+Route::get('EditDataget1/{id}/{email}',[AdminController::class,'EditDataget1']);
+Route::post('EditPostData1',[AdminController::class,'EditPostData1']);
+Route::post('SaveSemesterRoutine1',[AdminController::class,'SaveSemesterRoutine1']);
+Route::get('RoutineResult1',[AdminController::class,'RoutineResult1']);
+Route::get('GetRoutineResult1/{email}',[AdminController::class,'GetRoutineResult1']);
+
+
+
+//social api
+
+Route::get('AllPostRetrive1',[SocialController::class,'AllPostRetrive1']);
 
 
 

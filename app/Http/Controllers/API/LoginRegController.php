@@ -9,6 +9,7 @@ use App\Models\Student;
 use App\Models\Teacher;
 use App\Repositories\LoginRegR;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -19,6 +20,14 @@ class LoginRegController extends Controller
     public function __construct(LoginRegR $useraccess)
     {
         $this->useraccess= $useraccess;
+    }
+    public function user(){
+        $user=Auth::user();
+        return response()->json([
+           'success' =>true,
+           'message' =>"get user",
+           'data' =>$user,
+       ]);
     }
     public function createToken()
     {

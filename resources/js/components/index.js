@@ -49,7 +49,13 @@ import ContactUs from './frontend/ContactUs';
 import Admission from './frontend/Admission';
 import Thanks from './frontend/Thanks';
 import RequestInfo from './Admin/RequestInfo';
-import Message from './Admin/Message';
+import Message from './Social/Message';
+import Vedio from './Social/Vedio';
+import Post from './Social/Post';
+import EditPost from './Social/EditPost';
+import Newsfeed from './Social/Newsfeed';
+import AddRoutine from './Admin/AddRoutine';
+import ViewRoutine from './Admin/ViewRoutine';
 
 class Index extends React.Component {
     constructor(props){
@@ -123,11 +129,21 @@ class Index extends React.Component {
                     {/* after login specific user access specific routes */}
                     {this.state.isLoggedIn && this.state.user12.user_rule == 'Student' && (
                        <>
+                          <Route exact path={`${PUBLIC_URL}vedio`}>
+                        <Vedio/>
+                        </Route>
+
                        <Route exact path={PUBLIC_URL}>
                        <StudentHome />
                    </Route>
                    <Route exact path={`${PUBLIC_URL}message`}>
                         <Message />
+                    </Route>
+                    <Route exact path={`${PUBLIC_URL}post`}>
+                        <Post />
+                    </Route>
+                    <Route exact path={`${PUBLIC_URL}newsfeed`}>
+                        <Newsfeed />
                     </Route>
                        <Route exact path={`${PUBLIC_URL}studentallInfo`} component={StudentAllinfos}/>
                        <Route exact path= {`${PUBLIC_URL}seeclassmate`} component={SeeClassMate}/>
@@ -136,6 +152,9 @@ class Index extends React.Component {
                             isSession={true}
                            />
                              <Route exact path={`${PUBLIC_URL}print/:it/:coursecode`} component={Print}
+                            isSession={true}
+                           />
+                              <Route exact path={`${PUBLIC_URL}editpost/:id/:email`} component={EditPost}
                             isSession={true}
                            />
                         </>
@@ -148,9 +167,27 @@ class Index extends React.Component {
                     />
                      {this.state.isLoggedIn && this.state.user12.user_rule == 'Admin' && (
                        <>
+                        <Route exact path={`${PUBLIC_URL}editpost/:id/:email`} component={EditPost}
+                            isSession={true}
+                           />
+                             <Route exact path={`${PUBLIC_URL}viewroutine/:email`} component={ViewRoutine}
+                            isSession={true}
+                           />
+                            <Route exact path={`${PUBLIC_URL}addroutine`} component={AddRoutine}
+                            isSession={true}
+                           />
+                      <Route exact path={`${PUBLIC_URL}post`}>
+                        <Post />
+                    </Route>
+                    <Route exact path={`${PUBLIC_URL}newsfeed`}>
+                        <Newsfeed />
+                    </Route>
                        <Route exact path={PUBLIC_URL}>
                     <AdminHome userData1={this.state.userData1}/>
                    </Route>
+                   <Route exact path={`${PUBLIC_URL}vedio`}>
+                        <Vedio />
+                        </Route>
                    <Route exact path={`${PUBLIC_URL}adminStudentInfo`}>
                            <AdminStudentInfo/>
 
@@ -197,7 +234,15 @@ class Index extends React.Component {
 
                         <>
                          {/* after login specific user access specific routes */}
-
+                         <Route exact path={`${PUBLIC_URL}editpost/:id/:email`} component={EditPost}
+                            isSession={true}
+                           />
+                         <Route exact path={`${PUBLIC_URL}post`}>
+                        <Post />
+                    </Route>
+                    <Route exact path={`${PUBLIC_URL}newsfeed`}>
+                        <Newsfeed />
+                    </Route>
                         <Route exact path={PUBLIC_URL}>
                             <TeacherHome />
                         </Route>
@@ -209,6 +254,9 @@ class Index extends React.Component {
                         */}
                          <Route exact path={`${PUBLIC_URL}message`}>
                         <Message />
+                    </Route>
+                    <Route exact path={`${PUBLIC_URL}vedio`}>
+                        <Vedio/>
                     </Route>
                            <Route exact path={`${PUBLIC_URL}attendance/:session`} component={Attendance}
                             isSession={true}

@@ -345,3 +345,84 @@ export const AllFriendData= async(myid) => {
 
      });
  };
+//  export const usermethod1= async(id,data) => {
+//     // console.log('info',infodata);
+//      return await Axios.post(`${PUBLIC_URL}api/pusher/auth/${id}`,data).then((res) => {
+//         return res.data;
+//        console.log('attendance data',res.data.data);
+
+//      });
+//  };
+
+//SavePost
+export const SavePost= async(data) => {
+
+    return await Axios.post(`${PUBLIC_URL}api/SavePost1`,data).then((res) => {
+       return res.data;
+      console.log('attendance data',res.data.data);
+
+    });
+};
+// PostGet
+export const PostGet= async(email) => {
+    // console.log('info',infodata);
+     return await Axios.get(`${PUBLIC_URL}api/PostGet1/${email}`).then((res) => {
+        return res.data;
+       console.log('attendance data',res.data.data);
+
+     });
+ };
+//  PostDelete
+export const PostDelete= async(id) => {
+    // console.log('info',infodata);
+     return await Axios.get(`${PUBLIC_URL}api/PostDelete1/${id}`).then((res) => {
+        return res.data;
+       console.log('attendance data',res.data.data);
+
+     });
+ }
+//  EditDataget
+export const EditDataget= async(id,email) => {
+    // console.log('info',infodata);
+     return await Axios.get(`${PUBLIC_URL}api/EditDataget1/${id}/${email}`).then((res) => {
+        return res.data;
+       console.log('attendance data',res.data.data);
+
+     });
+ }
+//  EditPostData
+ export const EditPostData= async(data) => {
+
+    return await Axios.post(`${PUBLIC_URL}api/EditPostData1`,data).then((res) => {
+       return res.data;
+      console.log('attendance data',res.data.data);
+
+    });
+};
+// SaveSemesterRoutine
+export const SaveSemesterRoutine= async(data) => {
+
+    return await Axios.post(`${PUBLIC_URL}api/SaveSemesterRoutine1`,data).then((res) => {
+       return res.data;
+      console.log('attendance data',res.data.data);
+
+    });
+};
+// RoutineResult
+export const RoutineResult= async() => {
+
+    return await Axios.get(`${PUBLIC_URL}api/RoutineResult1`).then((res) => {
+       return res.data;
+      console.log('attendance data',res.data.data);
+
+    });
+};
+// GetRoutineResult
+export const GetRoutineResult= async(email) => {
+    // console.log('info',infodata);
+     return await Axios.get(`${PUBLIC_URL}api/GetRoutineResult1/${email}`).then((res) => {
+        return res.data;
+       console.log('attendance data',res.data.data);
+
+     });
+ }

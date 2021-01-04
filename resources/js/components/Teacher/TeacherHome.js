@@ -23,15 +23,11 @@ class TeacherHome extends React.Component {
     }
     componentDidMount() {
         this.TeacherGetAllInfo();
-            this.table();
+
 
 
     }
-    table=()=>{
-        $(document).ready(function () {
-            $('.display').DataTable();
-        });
-    }
+
 
     TeacherGetAllInfo = async () => {
         const getLoginData = localStorage.getItem("LoginData");
@@ -79,62 +75,93 @@ class TeacherHome extends React.Component {
         // }
         return (
             <>
-               <ToastContainer/>
-               <div class="containerCustom">
-               <div class="topMargin">
-               <div class="row">
-                   <div class="col-md-12">
-                       <div class="jumbotron">
+            <ToastContainer/>
+            <div class="containerCustom">
+            <div class="topMargin">
+            <div class="jumbotron">
+                   <div class="row">
 
-                 {this.state.isLoading && (
+
+                {this.state.isLoading && (
                     <div class="spinner-border" role="status">
                         <span class="sr-only">Loading...</span>
                     </div>
                 )}
+                 <div class="col-md-4">
+                 {/* image show when toggleUpdateTask true */}
+                 {this.state.toggleUpdateTask &&  (
 
-                  {/* image show when toggleUpdateTask true */}
-                  {this.state.toggleUpdateTask  &&(
-
-                      <>
-                      <div class="row">
-                          <div class="col-md-3">
-                          <img src={`${PUBLIC_URL}storage/app/public/uploads/${this.state.teachertdata.image}`} class="student-card-img-top" alt="..."/>
-                          </div>
-                          <div class="col-md-9 flex-5">
-                              <div class="homeimagetop">
-                          <ImageUpload  onCompleteTeacherUpdateimage={this.onCompleteTeacherUpdateImage} />
-                          </div>
-                          </div>
-                      </div>
-
-
-             </>
-                  )}
-
+                <>
+                <img src={`${PUBLIC_URL}storage/app/public/uploads/${this.state.teachertdata.image}`} class="student-card-img-top" alt="..."/>
+                <ImageUpload  onCompleteTeacherUpdateimage={this.onCompleteTeacherUpdateImage} />
+                </>
+          )}
+          </div>
+          <div class="col-md-8">
                {/* here show all data after redirect from login */}
                   { this.state.toggleUpdateTask && (
                <>
 
-                        <div class="card1" style={{ width: "18rem;" }}>
+                      <div class="table-responsive">
+                          <table>
+                              <tbody>
+                                  <tr>
+                                      <th>{this.state.teachertdata.name}</th>
+                                  </tr>
+                                  <tr>
+                                      <th>Designation</th>
+                                      <td>{this.state.teachertdata.designation}</td>
+                                  </tr>
+
+                                  <tr>
+                                      <th>Blood Group</th>
+                                      <td>{this.state.teachertdata.bloodg}</td>
+                                  </tr>
+                                  <tr>
+                                      <th>Phone</th>
+                                      <td>{this.state.teachertdata.phone}</td>
+                                  </tr>
+                                  <tr>
+                                      <th>Email</th>
+                                      <td>{this.state.teachertdata.email}</td>
+                                  </tr>
+
+                                  <tr>
+                                      <th>Current Address</th>
+                                      <td>{this.state.teachertdata.caddress}</td>
+                                  </tr>
+                                  <tr>
+                                      <th>Permanent Address</th>
+                                      <td>{this.state.teachertdata.paddress}</td>
+                                  </tr>
+
+                              </tbody>
+                          </table>
+                      </div>
 
                             <div class="card-body">
-                                <h5 class="card-title">{this.state.teachertdata.name}</h5>
-                                <p class="card-text">{this.state.teachertdata.designation}</p>
-                                <p class="card-text">{this.state.teachertdata.bloodg}</p>
-                                <p class="card-text">{this.state.teachertdata.phone}</p>
-                                <p class="card-text">{this.state.teachertdata.email}</p>
-                                <p class="card-text">{this.state.teachertdata.caddress}</p>
-                                <p class="card-text">{this.state.teachertdata.paddress}</p>
+
+                                <p style={{display:'block'}}>
+                                    {localStorage.setItem('session',this.state.teachertdata.session)}
+                                </p>
+
+
                             </div>
-                        </div>
+
 
             </>
                 )}
-                {/* after clicked the update button show update from StudentUpdate.js component */}
-                {! this.state.toggleUpdateTask && (
-                    <TeacherUpdate teacherDataPass={this.state.teachertdata}
-                    onCompleteTeacherUpdate={this.onCompleteTeacherUpdate}  />
-                )}
+                </div>
+                  </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                      {/* after clicked the update button show update from StudentUpdate.js component */}
+                      {! this.state.toggleUpdateTask && (
+    <TeacherUpdate teacherDataPass={this.state.teachertdata}
+    onCompleteTeacherUpdate={this.onCompleteTeacherUpdate}  />
+)}
 
                 <button
                     class="btn btn-success mr-2"
@@ -143,13 +170,15 @@ class TeacherHome extends React.Component {
                     {this.state.toggleUpdateTask && <span>Update </span>}
                     {!this.state.toggleUpdateTask && <span>Cancel Updating</span>}
                 </button>
-
                 </div>
-                   </div>
-               </div>
+            </div>
 
-      </div>
-      </div>
+
+           </div>
+           </div>
+           </div>
+
+
         </>
         );
     }

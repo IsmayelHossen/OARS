@@ -169,7 +169,7 @@ class CCodeTitle extends React.Component {
         </div>
         <div class="form-group">
             <label for="password">Credit Hour(s)</label>
-            <input type="text" class="form-control" id="password" placeholder="Enter Course title" name="credit"
+            <input type="text" class="form-control" id="password" placeholder="Enter Credit Hour(s)" name="credit"
             value={this.state.credit} onChange={(e) => this.changeInput(e)}></input>
             {this.state.errors && this.state.errors.credit && (
                 <p class="text-danger">{this.state.errors.credit[0]}</p>
@@ -177,7 +177,7 @@ class CCodeTitle extends React.Component {
         </div>
         <div class="form-group">
             <label for="password">Semester</label>
-            <input type="text" class="form-control" id="password" placeholder="Enter Course title" name="semester"
+            <input type="text" class="form-control" id="password" placeholder="Enter Semester" name="semester"
             value={this.state.semester} onChange={(e) => this.changeInput(e)}></input>
             {this.state.errors && this.state.errors.semester && (
                 <p class="text-danger">{this.state.errors.semester[0]}</p>

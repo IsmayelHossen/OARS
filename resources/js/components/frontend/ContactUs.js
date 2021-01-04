@@ -15,7 +15,7 @@ export class ContactUs extends Component {
                    <div class="row" >
 
                        <div class="col-md-6">
-                         <div >
+                         <div class="table-responsive">
 
                        <table class="table table-bordered">
                        <Fade left>
@@ -68,23 +68,24 @@ export class ContactUs extends Component {
                        <Fade right>
                            <div>
                            <div class="contactusForm">
+                               <h5>Send Us Email</h5>
 
                        <form>
   <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Name</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name"/>
   </div>
   <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Email</label>
-    <input type="email" class="form-control" id="exampleInputPassword1"/>
+
+    <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Email"/>
   </div>
   <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Subject</label>
-    <input type="text" class="form-control" id="exampleInputPassword1"/>
+
+    <input type="text" class="form-control" id="exampleInputPassword1"  placeholder="Subject"/>
   </div>
   <div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description"></textarea>
 </div>
   <button type="submit" class="btn btn-success float-right clearfix">Send</button>
 </form>
@@ -96,16 +97,41 @@ export class ContactUs extends Component {
                    </div>
                 <div class="row">
                     <div>
-                        <div class="gmap" id="googleMap">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58210.75156622155!2d89.86115077365098!3d24.23576323736838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xda791ddc1ce793bd!2sMawlana%20Bhashani%20Science%20and%20Technology%20University(MBSTU)!5e0!3m2!1sen!2sus!4v1608051978723!5m2!1sen!2sus"
-                        width="1400" height="550" frameborder="0" style={{border:"0;"}}
+                        <div class="googlemap" id="googleMap">
+                        <iframe class="googlemap" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58210.75156622155!2d89.86115077365098!3d24.23576323736838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xda791ddc1ce793bd!2sMawlana%20Bhashani%20Science%20and%20Technology%20University(MBSTU)!5e0!3m2!1sen!2sus!4v1608051978723!5m2!1sen!2sus"
+                     frameborder="0" style={{border:"0;"}}
                         allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                         </div>
                     </div>
                     </div>
+                    {/* contact us footer start */}
+                    <div class="contactUs_footer">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <ul>
+                                    <li><i class="fa fa-phone"></i> 01952152883,01952152883</li>
+                                    <li><i class="fa fa-envelope-o"></i> abc@gmail.com</li>
+                                    <li><i class="fa fa-location-arrow"></i> Santosh-1902,Tangail,Bangladesh</li>
+                                </ul>
+
+
+                            </div>
+                            <div class="col-md-4">
+                               <div class="social">
+                                   <div>
+                                       <h1 class="facebook"><i class="fa fa-facebook-square"></i></h1>
+                                       </div>
+                                       <div>
+                                       <h1 class="instragram">  <i class="fa fa-instagram"></i></h1>
+                                       </div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                      {/* contact us footer end */}
             </div>
             </div>
-        )
+        );
     }
 }
 

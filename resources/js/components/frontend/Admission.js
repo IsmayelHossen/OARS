@@ -15,7 +15,7 @@ import Fade from 'react-reveal/Fade';
 </nav>
              <div class="row">
 
-             <div class="col-lg-8">
+             <div class="col-lg-12">
              <Fade bottom>
          <div class="Admission_head">
 
@@ -32,7 +32,9 @@ import Fade from 'react-reveal/Fade';
 
           </ul>
           <p>
-               Department of Information and Communication Technology in MBSTU, popularly known as ICT MBSTU, is under Faculty of Engineering , and interested students must appear in the Ka (A) unit exam for the admission. Currently, there are 50 seats in ICT MBSTU.</p>
+        Department of Information and Communication Technology in MBSTU, popularly known as ICT MBSTU,
+        is under Faculty of Engineering , and interested students must appear in the Ka (A) unit exam for the admission.
+            Currently, there are 50 seats in ICT MBSTU.</p>
 
                <p>To appear in the admission exam of a session, a student must fulfill the criteria of one of the following categories:</p>
 
@@ -45,15 +47,7 @@ import Fade from 'react-reveal/Fade';
 
        </div>
        </Fade>
-      <Fade bottom style={{animationFillMode:' both', animationDuration:'1000ms',animationDelay:' 0ms', animationIterationCount: '1;', opacity:' 1', animationName:' react-reveal-226128904364017-27'}}> <p class="react-reveal" >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blandit faucibus mollis. Praesent ultrices vehicula hendrerit. Maecenas ut
-       ante ut magna viverra consequat. Sed pretium viverra quam non blandit.
-        Nullam bibendum odio non posuere venenatis. Aliquam a quam non velit pharetra convallis.
-         Duis lorem libero, vehicula fermentum elementum vel, finibus at purus. Curabitur feugiat
-          felis a dolor ultricies interdum. Pellentesque habitant morbi tristique senectus et
-           netus et malesuada fames ac turpis egestas.
-       Cras sit amet sem interdum, lacinia nulla ac, tincidunt odio. </p>
-       </Fade>
+
     </div>
 
   </div>
