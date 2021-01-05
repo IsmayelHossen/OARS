@@ -757,8 +757,8 @@ public function saveMsg1(Request $request){
         'to'=>$request->friendid,
         'msg'=>$request->msg,
     ]);
-
-   broadcast(new NewMessage($message))->toOthers();
+   $auth=User::find(Auth::id());
+   broadcast(new NewMessage($message,$auth))->toOthers();
     if($message){
 
         return response()->json([
