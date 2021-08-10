@@ -18,14 +18,14 @@ use Illuminate\Support\Facades\Broadcast;
 //     return (int) $user->id === (int) $id;
 // });
 Broadcast::channel('messages.{id}', function ($user, $id) {
-   // dd($id);
-   // return User::find($id)->id === (int) $id;
-   return (int) $user->id === (int) $id;
-
+    // dd($id);
+    // return User::find($id)->id === (int) $id;
+    return (int) $user->id === (int) $id;
 });
+
+
 // Broadcast::channel('messages.{id}', function () {
-//     // dd($id);
-//      return true;
 
-//  });
-
+//   //  return $user->id === (int) $id;
+//   return true;
+// });

@@ -221,7 +221,7 @@ class AddRoutine extends React.Component {
                     <div id="content">
 
                 <button type="button" class=" btn btn-success float-right clearfix"   style={{marginRight:"5px"}} data-toggle="modal" data-target="#exampleModal">
-  Add Semester Course
+  Add
 </button>
 
 {/* modal start */}

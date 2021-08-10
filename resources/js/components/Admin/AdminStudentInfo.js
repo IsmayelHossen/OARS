@@ -45,7 +45,7 @@ class AdminStudentInfo extends React.Component {
             <i class="fa fa-align-right"></i>  <span class="glyphicon glyphicon-align-right " aria-hidden="true">Toggle</span>
             </button>
              <br></br>
-             <h3 class="adminStudentH3"> Current Batch Student Informations</h3>
+             <h3 class="adminStudentH3"> Current Batch Student Information</h3>
 
                  <div class="row">
                      {this.state.CurrentSession.map((row,index)=>(

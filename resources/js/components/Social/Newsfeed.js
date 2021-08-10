@@ -125,7 +125,7 @@ export default class Newsfeed extends React.Component {
                                                         <img  style={{maxWidth:'60px'}} src={`${PUBLIC_URL}storage/app/public/uploads/post/5fe3b193e14a9.JPG`} class="" alt="Image"/>
                                                         </div>
                                                         <div class="commentName">
-                                                            <h6>Abir hossain</h6>
+                                                            <h6>Sabbi hossain</h6>
                                                         </div>
 
                                                             <p> that can be accessed (and autocompleted) from within an
@@ -140,7 +140,7 @@ export default class Newsfeed extends React.Component {
 <img  style={{maxWidth:'60px'}} src={`${PUBLIC_URL}storage/app/public/uploads/post/5fe3b193e14a9.JPG`} class="" alt="Image"/>
 </div>
 <div class="commentName">
-   <h6>Abir hossain</h6>
+   <h6>Sopnil khan</h6>
 </div>
 
    <p> that can be accessed (and autocompleted) from within an

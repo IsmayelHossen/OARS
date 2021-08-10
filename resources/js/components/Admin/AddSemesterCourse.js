@@ -195,7 +195,7 @@ class AddSemesterCourse extends React.Component {
                     <div id="content">
 
                 <button type="button" class=" btn btn-success float-right clearfix"   style={{marginRight:"5px"}} data-toggle="modal" data-target="#exampleModal">
-  Add Semester Course
+ Add
 </button>
 
 {/* modal start */}
@@ -211,7 +211,7 @@ class AddSemesterCourse extends React.Component {
       <div class="modal-body">
 
       <div class="addSemesterCourseForm">
-                            <h3>Add Semester Course</h3>
+                            <h3> Assign  Semester Course to teacher</h3>
 
                             <form onSubmit={this.formSubmit} >
                             <div class="form-group">

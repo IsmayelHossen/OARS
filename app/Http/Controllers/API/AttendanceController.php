@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Attendace;
 use App\Models\CTMark;
+use App\Models\Routine;
 use App\Models\SemesterRule;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -27,7 +28,7 @@ class AttendanceController extends Controller
 
     }
     public function SessionStudent($session){
-        $getSessionStudent=Student::where('session',$session)->orderBy('it','asc')->get();
+        $getSessionStudent=Student::where('session',$session)->where('status',2)->orderBy('it','asc')->get();
         return response()->json([
             'success'=>true,
             'message'=>'ok get sessionwaz all student',
@@ -87,6 +88,92 @@ class AttendanceController extends Controller
         }
 
     }
+    //save CT mark  SaveCtMark1
+    public function SaveCtMark1($temail,$session,$Coursecode,$ct,Request $request){
+
+        $attend=$request->all();
+        $checkCt=CTMark::where('session',$session)
+       ->where('temail',$temail)
+       ->where('ctname',$ct)
+       ->where('ccode',$Coursecode)->first();
+         if($checkCt){
+            return response()->json([
+                'checkct'=>true,
+                'message'=>'You have already taken attendence',
+
+            ]);
+         }
+         else{
+            if($request){
+                foreach ($request->all() as $attend2) {
+             //        # code...
+
+
+                      $attend1=new CTMark();
+                      $attend1->temail=$temail;
+                      $attend1->session=$session;
+             //         // $attend1->TakenDate=$date;
+             //        //  $attend1->successCode=$successCode;
+                     $attend1->ccode=$Coursecode;
+                     if($attend2['name']=='ct'){
+                         continue;
+                     }
+                      $attend1->it=$attend2['name'];
+                      $attend1->marks=$attend2['value'];
+                       $attend1->ctname=$ct;
+                      $attend1->save();
+                 }
+                  return response()->json([
+                      'success'=>true,
+                      'message'=>'ok student attendance have been taken successfully',
+                      'data'=>$attend,
+
+                  ]);
+
+                  }
+                  else{
+                     return response()->json([
+                         'unableAdd'=>true,
+                         'message'=>'ok student attendance have been taken successfully',
+
+                     ]);
+
+                  }
+
+
+         }
+     }
+     //number of best ct count
+     public function GetCountCTMark1($session,$ccode,$count,$temail){
+        $get=CTMark::select('It')->distinct()->where('session',$session)->where('ccode',$ccode)->where('temail',$temail)->orderBy('It','ASC')->get();
+    //    $get=DB::statement('select It, marks from ( select * , row_number() over(partition by It order by marks desc ) v1 from c_t_marks where ccode='."$ccode".' and temail='."$temail".' and session='."$session".')  v2 where v1 <= 2');
+
+        return response()->json([
+          'success'=> true,
+          'message'=> 'Get Semester Info',
+         // 'data'=> $getinfo,
+          'data'=> $get,
+      ]);
+     }
+     public function SemesterCtMark1($session,$ccode,$temail){
+      $get=CTMark::select('ctname')->distinct()->where('session',$session)->where('ccode',$ccode)->where('temail',$temail)->orderBy('ctname','desc')->get();
+      return response()->json([
+        'success'=> true,
+        'message'=> 'Get Semester Info',
+       // 'data'=> $getinfo,
+        'data'=> $get,
+    ]);
+     }
+     public function IndividualCtMark1($session,$ccode,$temail,$ctnum){
+         $ct='ct';
+        $get=CTMark::where('session',$session)->where('ccode',$ccode)->where('temail',$temail)->where('ctname',$ctnum)->whereNotIn('It', [$ct])->get();
+        return response()->json([
+          'success'=> true,
+          'message'=> 'Get Semester Info',
+         // 'data'=> $getinfo,
+          'data'=> $get,
+      ]);
+     }
     public function SemesterInfo($session,$email){
        // $getinfo=SemesterRule::where('session',$session)->where('email',$email)->get();
         $getinfo1=SemesterRule::where('session',$session)->where('email',$email)->get();
@@ -253,13 +340,13 @@ public function SearchByCourseCode($code,$temail){
 public function SaveAddMark1(Request $request){
     $formData = $request->all();
     $validator = Validator::make($formData, [
-        'ctname' => 'required',
-        'ctmark' => 'required',
+        'it' => 'required',
+        'ctmarks' => 'required',
 
 
     ], [
-        'ctname.required' => 'Please select CT Name',
-        'ctmark.required' => 'Please Add Mark',
+        'it.required' => 'For Update it Required',
+        'ctmarks.required' => 'For Update Marks Required',
 
     ]);
     if ($validator->fails()) {
@@ -269,32 +356,21 @@ public function SaveAddMark1(Request $request){
             'errors' => $validator->getMessageBag(),
         ]);
     }
-    $checked=CTMark::where('it',$request->it)->where('ccode',$request->ccode)
-    ->where('ctname',$request->ctname)->first();
-    if($checked){
-        return response()->json([
-            'checkedCT'=>true,
-            'message'=>'data save',
+    $add=DB::table('c_t_marks')
+            ->where('It', $request->it)
+            ->where('session', $request->session)
+            ->where('ccode', $request->ccode)
+            ->where('temail', $request->email)
+            ->where('ctname', $request->ctname)
+            ->update(['marks' =>$request->ctmarks]);
 
-
-        ]);
-    }
-    else{
-        $add= new CTMark();
-        $add->it=$request->it;
-        $add->session=$request->session;
-        $add->ccode=$request->ccode;
-        $add->ctname=$request->ctname;
-        $add->marks=$request->ctmark;
-        $add->temail=$request->email;
-        $add->save();
         return response()->json([
             'success'=>true,
             'message'=>'data save',
             'data'=>$add
 
         ]);
-    }
+
 
 
 }
@@ -307,16 +383,97 @@ public function GetStudentCTMarkByCode1($session,$ccode,$temail){
     'data'=>$result
   ]);
 }
-public function GetCTMarks1($it,$ccode,$temail)
+public function GetCTMarks1($it,$ccode,$bestct,$temail)
 {
     $get1=DB::table('c_t_marks')
- ->where('it',$it)->where('ccode',$ccode)->where('temail',$temail)->get();
+ ->where('it',$it)->where('ccode',$ccode)->where('temail',$temail)->orderBy('marks','DESC')->take($bestct)->get();
     return response()->json([
         'success'=>true,
         'message'=>'Get Individual CT mark Result',
         'data'=>$get1
     ]);
 
+
+}
+public function GetRoutineCcode1($email){
+ $get1=DB::table('semester_rules')->where('email',$email)->get();
+ return response()->json([
+    'success'=>true,
+    'message'=>'Get Individual Course code',
+    'data'=>$get1
+]);
+}
+public function getSemesterCodeIndivi1($email,$semester){
+    $get1=DB::table('semester_rules')->where('email',$email)->where('semester',$semester)->get();
+    return response()->json([
+       'success'=>true,
+       'message'=>'Get Individual Course code',
+       'data'=>$get1
+   ]);
+}
+// save routine from teacher page and access admin service
+
+public function SaveSemesterRoutinefromTacher1(Request $request)
+{
+    $formData = $request->all();
+    $validator = Validator::make($formData, [
+        'day' => 'required',
+        'semester' => 'required|min:3|max:3',
+        'courseCode' => 'required',
+        'cname' => 'required',
+        'time' => 'required|min:5|max:5',
+        'ampm' => 'required',
+        'lecture' => 'required'
+
+
+
+    ], [
+
+        'session.required' => 'Session  required',
+        'time.required' => 'Time required',
+    ]);
+    if ($validator->fails()) {
+        return response()->json([
+            'success' => false,
+            'message' => $validator->getMessageBag()->first(),
+            'errors' => $validator->getMessageBag(),
+        ]);
+    }
+    $checkData = Routine::where('email', $request->email)->where('day', $request->day)->where('lecture', $request->lecture)->first();
+    if ($checkData != null) {
+        return response()->json([
+            'checkedData' => true,
+            'message' => 'insert data',
+            'data' => $checkData
+        ]);
+    } else {
+        $obj = new Routine();
+        $obj->email = $request->email;
+        $obj->day = $request->day;
+        $obj->semester = $request->semester;
+        $obj->ccode = $request->courseCode;
+        $obj->ctitle = $request->cname;
+        $obj->time1 = $request->time;
+        $obj->ampm = $request->ampm;
+        $obj->lecture = $request->lecture;
+        $obj->status='0';
+
+        $obj->save();
+        return response()->json([
+            'success' => true,
+            'message' => 'insert data',
+            'data' => $obj
+        ]);
+    }
+}
+public function deleteSpecificRoutine1($email,$day){
+    $del=DB::table('routines')->where('email',$email)->where('day',$day)->delete();
+//$del=Routine::where('email',$email)->where('day',$day)->delete();
+    return response()->json([
+     'success'=>true,
+     'message'=>'Get Individual CT mark Result',
+     'data'=>$del
+    ]);
 
 }
 public function DeleteCTMark1($id){

@@ -56,6 +56,10 @@ import EditPost from './Social/EditPost';
 import Newsfeed from './Social/Newsfeed';
 import AddRoutine from './Admin/AddRoutine';
 import ViewRoutine from './Admin/ViewRoutine';
+import CourseCodeAllInfo from './Teacher/CourseCodeAllInfo';
+import AddCTMarkF from './Teacher/AddCTMarkF';
+import DetailsCt from './Teacher/detailsCt';
+import IndividualDetailsCT from './Teacher/IndividualDetailsCT';
 
 class Index extends React.Component {
     constructor(props){
@@ -246,6 +250,20 @@ class Index extends React.Component {
                         <Route exact path={PUBLIC_URL}>
                             <TeacherHome />
                         </Route>
+                        <Route exact path={`${PUBLIC_URL}courseCodeAllInfo`}>
+                            <CourseCodeAllInfo />
+                        </Route>
+                        <Route exact path={`${PUBLIC_URL}addCtMarkF/:session/:ccode`}>
+                            <AddCTMarkF />
+                        </Route>
+                        <Route exact path={`${PUBLIC_URL}detailsCt/:session/:ccode`}>
+                            <DetailsCt />
+                        </Route>
+                        <Route exact path={`${PUBLIC_URL}individualDetailsCt/:session/:ccode/:ctnum`}>
+                            <IndividualDetailsCT />
+                        </Route>
+
+
                         {/* <Route exact path="/OARS/attendance/:session">
                             <Attendance/>
 
@@ -258,7 +276,7 @@ class Index extends React.Component {
                     <Route exact path={`${PUBLIC_URL}vedio`}>
                         <Vedio/>
                     </Route>
-                           <Route exact path={`${PUBLIC_URL}attendance/:session`} component={Attendance}
+                           <Route exact path={`${PUBLIC_URL}attendance/:session/:ccode`} component={Attendance}
                             isSession={true}
                            />
                             <Route exact path={`${PUBLIC_URL}colleague`} component={Colleague}

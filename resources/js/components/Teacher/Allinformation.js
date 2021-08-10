@@ -159,7 +159,7 @@ paginate=(pageNum)=>{
            <div class="row">
                <div class="col-md-12">
                    <div class="takenclasss" style={{marginTop:'.5em'}}>
-                       <h4 class="Allinformation_h4">Search here to get individual student all informations </h4>
+                       <h4 class="Allinformation_h4">Search here to get individual student all information </h4>
 
                      <h5 style={{marginBottom: ".1em",paddingLeft:"10px"}}>Course Code: {this.state.getallInfo.map((row,index)=>(
                         <span>{ row.course_code},</span>

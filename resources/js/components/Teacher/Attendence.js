@@ -13,6 +13,7 @@ class Attendance extends React.Component {
             SemesterStudent:[],
             TotalSemesterStu:[],
             session:this.props.match.params.session,
+            ccode:this.props.match.params.ccode,
             attend:[],
             teacheremail:'',
             CCode:'123',
@@ -23,7 +24,7 @@ class Attendance extends React.Component {
             searchProject:[],
             IndexOfFirst:'0',
             IndexOfLast:'3',
-            checked1:false,
+            checked1:true,
 
          }
 
@@ -76,8 +77,8 @@ class Attendance extends React.Component {
 
 
         const xyz = $("#attendence").serializeArray();
-        const formData = new FormData();
-        formData.append('attend', xyz);
+        // const formData = new FormData();
+        // formData.append('attend', xyz);
         console.log('serial3333333333',xyz)
         // $.each(x, function(i, field){
         //     this.setState({ attend:field.name ,attend:field.value  });
@@ -95,20 +96,20 @@ class Attendance extends React.Component {
          this.setState({ teacheremail:Teacheremail  });
          const Usemester =localStorage.getItem('setSemester');
          console.log('unique semester',Usemester);
-         if(!Coursecode){
-            toast("Course Code Missing");
-            console.log('serial',xyz.length)
-            console.log('serial',this.state.SemesterStudent.length)
-         }
-         else if(this.state.SemesterStudent.length !=xyz.length){
-             var total=this.state.SemesterStudent.length;
-             var taken=xyz.length;
-            toast(" Attendance Taken "+" "+taken+" "+" From  "+" "+total+" "+"Students ");
-         }
+        //  if(!Coursecode){
+        //     toast("Course Code Missing");
+        //     console.log('serial',xyz.length)
+        //     console.log('serial',this.state.SemesterStudent.length)
+        //  }
+        //  else if(this.state.SemesterStudent.length !=xyz.length){
+        //      var total=this.state.SemesterStudent.length;
+        //      var taken=xyz.length;
+        //     toast(" Attendance Taken "+" "+taken+" "+" From  "+" "+total+" "+"Students ");
+        //  }
 
-         else{
+        //  else{
            //here call the SaveAttendance method from Services AttendanceService
-            const response = await SaveAttendance(Teacheremail,this.state.session,Coursecode,Usemester,xyz);
+            const response = await SaveAttendance(Teacheremail,this.state.session,this.state.ccode,Usemester,xyz);
 
 
 
@@ -125,8 +126,8 @@ class Attendance extends React.Component {
             showConfirmButton:true,
             //timer: 1500
           })
-          localStorage.removeItem("CCode");
-          history.push(`${PUBLIC_URL}takenclasses/${Coursecode}`);
+
+          history.push(`${PUBLIC_URL}takenclasses/${this.state.ccode}`);
       }
       else if(response.checkdate){
 
@@ -140,7 +141,7 @@ class Attendance extends React.Component {
           })
 
 
-        history.push(`${PUBLIC_URL}takenclasses/${Coursecode}`);
+        history.push(`${PUBLIC_URL}takenclasses/${this.state.ccode}`);
         localStorage.removeItem("CCode");
 
       }
@@ -151,7 +152,7 @@ class Attendance extends React.Component {
               isLoading: false,
           });
       }
-    }
+    //}
         // Axios.post('/OARS/api/saveattendence', xyz)
 
         // .then(res => {
@@ -210,11 +211,15 @@ paginate=(pageNum)=>{
     const IndexOfFirst=IndexOfLast-PostPerPage;
     this.setState({ IndexOfLast:IndexOfLast,IndexOfFirst:IndexOfFirst  });
 }
-//check ALl
+// check ALl
  CheckAll (){
     this.setState({checked1:!this.state.checked1});
-    alert(this.state.checked1);
+  //alert(this.state.checked1);
 
+}
+setChecked(){
+    alert(!this.state.checked1);
+  this.setState({checked1:!this.state.checked1});
 }
     render() {
         return (
@@ -232,6 +237,7 @@ paginate=(pageNum)=>{
                             {this.state.semesterinfo1.slice(0,1).map((student123, index) => (
                                 <>
                  <Card.Subtitle class="mb-1 "><strong style={{color:"#d26161",paddingLeft:"10px"}}>Semester:{student123.semester}</strong></Card.Subtitle>
+                 <Card.Subtitle class="mb-1 "><strong style={{color:"#d26161",paddingLeft:"10px"}}>Course Code:{this.state.ccode}</strong></Card.Subtitle>
                  <Card.Subtitle class="mb-1  "><strong style={{color:"#456",paddingLeft:"10px"}}>Session:{this.state.session}</strong></Card.Subtitle>
                  <Card.Subtitle class="mb-1  "><strong style={{color:"#41aa6f",paddingLeft:"10px"}}>Today Date:{new Date().toLocaleDateString()}</strong></Card.Subtitle>
                     {
@@ -244,11 +250,12 @@ paginate=(pageNum)=>{
 
 
                     <div class="col-md-6">
-                        <div class="float-right clearfix">
+                        {/* dynamic course code modal */}
+                        {/* <div class="float-right clearfix">
                        <CourseCode coursecodedata={this.state.semesterinfo1}
                                  onCompleteCourseCode={this.onCompleteCourseCode}
                                 />
-                         </div>
+                         </div> */}
                     </div>
                   </div>
                         <div class="row">
@@ -302,9 +309,14 @@ paginate=(pageNum)=>{
       <td>
               <>
               <input  type="radio" aria-label="Radio button for following text input"
-               name={student.it} id="fileupload"  value="P" />P
+               name={student.it}   value="A"  Checked={this.state.checked1==true}/>A
               <input   type="radio" aria-label="Radio button for following text input"
-                 name={student.it} id="fileupload"  value="A"  />A
+                 name={student.it} id="fileupload"  value="P"  defaultChecked={this.state.checked1==false} />P
+                 {/* checkbox option */}
+                 {/* <input type="checkbox"  name={student.it}  value={this.state.checked1}
+          defaultChecked={this.state.checked1}
+        onChange={()=>this.setState((!this.state.checked1))}
+       />  */}
 
            </>
            </td>

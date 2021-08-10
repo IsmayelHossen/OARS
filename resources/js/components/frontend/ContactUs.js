@@ -110,7 +110,7 @@ export class ContactUs extends Component {
                             <div class="col-md-8">
                                 <ul>
                                     <li><i class="fa fa-phone"></i> 01952152883,01952152883</li>
-                                    <li><i class="fa fa-envelope-o"></i> abc@gmail.com</li>
+                                    <li><i class="fa fa-envelope-o"></i> department.ict@mbstu.ac.bd</li>
                                     <li><i class="fa fa-location-arrow"></i> Santosh-1902,Tangail,Bangladesh</li>
                                 </ul>
 

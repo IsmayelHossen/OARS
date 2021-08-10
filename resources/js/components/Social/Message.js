@@ -8,7 +8,6 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { withRouter } from "react-router-dom";
-import Echo from "laravel-echo";
 class Message extends Component {
     chatContainer = React.createRef();
     constructor(props) {
@@ -30,24 +29,23 @@ class Message extends Component {
 
     componentDidMount() {
         this.getAllfriend();
-        // this.PushMessage();
-        // window.Echo.private(`message.${this.state.friendid}`)
-        // .listen(`messages.${this.state.friendid}`, (e)=>{console.log(e)});
-        //     console.log('msg',this.state.msg);
-        window.Echo.private(`messages.${this.state.friendid}`).listen(
-            "NewMessage",
-            e => {
-                console.log(e);
+      console.log('user id',this.user.id);
+ //window.Echo.channel(`messages.${this.user.id}`)
+ window.Echo.private(`messages.${this.user.id}`)
+    .listen('NewMessage', (e) => {
+        alert(e.message.msg);
+        console.log(e.message);
+        this.hanleIncoming(e.message);
+    });
 
-                alert(e);
-                this.handleIncoming(e);
-            }
-        );
     }
-    handleIncoming = message => {
-        //  console.log(message);
+     hanleIncoming = async(message) => {
+         console.log(message);
         if (this.state.friendid) {
+            alert('comming from'+message.from)
+            //this.setState({allMsg:message  });
             this.state.allMsg.push(message);
+            return await true;
         }
     };
 
@@ -84,16 +82,16 @@ class Message extends Component {
             Submitbutton: !this.state.Submitbutton
         });
     };
-    MsgEvent = async e => {
+    MsgEvent =async (e) => {
         e.preventDefault();
         //  alert(this.state.msg);
 
         const getLoginData = localStorage.getItem("LoginData");
         const data1 = JSON.parse(getLoginData);
         const myid = data1.user.id;
-        if (this.state.msg.length == 0) {
-            return;
-        }
+        // if (this.state.msg.length == 0) {
+        //     return;
+        // }
 
         const postBody = {
             myid: myid,
@@ -101,15 +99,17 @@ class Message extends Component {
             friendid: this.state.friendid,
             created_at: new Date()
         };
-        this.state.allMsg.push({
-            from: myid,
-            msg: this.state.msg,
-            to: this.state.friendid,
-            created_at: new Date()
-        });
-        const response = await saveMsg(postBody);
+        // this.state.allMsg.push({
+        //     from: myid,
+        //     msg: this.state.msg,
+        //     to: this.state.friendid,
+        //     created_at: new Date()
+        // });
+        const response= await saveMsg(postBody);
         if (response.success) {
-            this.setState({ msg: "", errors: "" }, () => this.scrollToMyRef());
+            console.log('Message Data',response);
+             this.state.allMsg.push(response.data);
+       this.setState({ msg: "", errors: "" }, () => this.scrollToMyRef());
         } else {
             this.setState({ errors: response.errors });
         }

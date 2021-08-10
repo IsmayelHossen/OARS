@@ -41,7 +41,7 @@ import Pagination1 from '../Teacher/Pagination1';
             <div>
          <div class="containerCustom">
             <div class="topMargin takenclasss">
-        <h3 class="heading animate__bounce"> Student Informations of {this.state.AllclassMate.slice(0,1).map((row,index)=>(<span>{row.session}</span>))} Session</h3>
+        <h3 class="heading animate__bounce"> Students Information of {this.state.AllclassMate.slice(0,1).map((row,index)=>(<span>{row.session}</span>))} Session</h3>
             <div class="row ">
 
             {this.state.AllclassMate.slice(this.state.IndexOfFirst,this.state.IndexOfLast).map((row,index)=>(

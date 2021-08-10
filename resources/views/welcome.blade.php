@@ -47,12 +47,12 @@
 
 
 </style>
-<script src="{{ asset('public/js/translate.js') }}" defer></script>
+{{-- <script src="{{ asset('public/js/translate.js') }}" defer></script>
 <script type="text/javascript">
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
     }
-    </script>
+    </script> --}}
 </head>
 <body>
 

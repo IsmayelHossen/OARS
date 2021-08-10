@@ -18,7 +18,7 @@ class SideBar extends React.Component {
                             <ul class="list-unstyled components">
                                 <li class="active">
 
-                                        <Link class="hrefa" to={`${PUBLIC_URL}addSemesterCourse`}>Add Semester Course</Link>
+                                        <Link class="hrefa" to={`${PUBLIC_URL}addSemesterCourse`}>Assign Semester Course to teacher</Link>
 
                                         </li>
                                         <li class="active">

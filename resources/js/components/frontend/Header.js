@@ -88,6 +88,8 @@ import { PUBLIC_URL } from "../CommonURL";;
 
             localStorage.removeItem("LoginData");
             window.location.href =`${PUBLIC_URL}loginuser`;
+           // const {history}=this.props;
+            // history.push(`${PUBLIC_URL}loginuser`);
          }
          semesterFunction=async(session)=>{
              const {history}=this.props;
@@ -179,7 +181,7 @@ Home <span class="sr-only">(current)</span></Link>
                                 </li>
                              <li class="nav-item">
 
-                                 <Link class="nav-link" to={`${PUBLIC_URL}seeclassmate`}>See Classmate</Link>
+                                 <Link class="nav-link" to={`${PUBLIC_URL}seeclassmate`}> Classmate</Link>
                              </li>
                              <li class="nav-item">
 
@@ -288,6 +290,8 @@ Home <span class="sr-only">(current)</span></Link>
                             )}
 
                                  {/* after login for Admin Links and routes end */}
+
+
                             {/* specific routes access after login(teacher) */}
                             {this.props.authData.isLoggedIn && this.props.authData.user12.user_rule == 'Teacher' &&  this.props.authData.user12.status == 1 && (
                               <>
@@ -301,10 +305,10 @@ Home <span class="sr-only">(current)</span></Link>
                              </li>
                              <li class="nav-item">
 
-                       <Link class="nav-link" to={`${PUBLIC_URL}allinformation`} >AllInformation</Link>
+                       <Link class="nav-link" to={`${PUBLIC_URL}courseCodeAllInfo`} >All Information</Link>
                         </li>
-
-                             <li class="nav-item dropdown">
+                           {/* semester wise attendance */}
+                             {/* <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Semester
                                  </a>
@@ -323,7 +327,7 @@ Home <span class="sr-only">(current)</span></Link>
                     )}
 
                                 </div>
-                            </li>
+                            </li> */}
                             <li class="nav-item">
 
                     <Link class="nav-link" to={`${PUBLIC_URL}colleague`}>Colleague</Link>

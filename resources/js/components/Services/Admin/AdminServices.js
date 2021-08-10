@@ -4,7 +4,6 @@ export const GetTeacherInfo = async (email) => {
 
     return await Axios.get(`${PUBLIC_URL}api/Infoteacher`).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
 
     });
 };
@@ -13,7 +12,22 @@ export const SaveSemesterCourse = async (data) => {
 
     return await Axios.post(`${PUBLIC_URL}api/SaveSemesterCourse1`,data).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
+
+    });
+};
+// from teacher page save routine data
+export const SaveSemesterRoutinefromTacher = async (data) => {
+
+    return await Axios.post(`${PUBLIC_URL}api/SaveSemesterRoutinefromTacher1`,data).then((res) => {
+       return res.data;
+
+    });
+};
+//delete routine from teacher page deleteSpecificRoutine
+export const deleteSpecificRoutine = async (email,day) => {
+
+    return await Axios.delete(`${PUBLIC_URL}api/deleteSpecificRoutine1/${email}/${day}`).then((res) => {
+       return res.data;
 
     });
 };
@@ -22,7 +36,7 @@ export const GetSemesterCourseInfo = async () => {
 
     return await Axios.get(`${PUBLIC_URL}api/GetSemesterCourseInfo1`).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
+
 
     });
 };
@@ -77,7 +91,6 @@ export const NoticeSave=async(data)=>{
 
         return await Axios.get(`${PUBLIC_URL}api/getNoticeData1`).then((res) => {
            return res.data;
-          console.log('attendance data',res.data.data);
 
         });
     };
@@ -86,7 +99,7 @@ export const NoticeSave=async(data)=>{
 
         return await Axios.get(`${PUBLIC_URL}api/GetSessionActiveData1`).then((res) => {
            return res.data;
-          console.log('attendance data',res.data.data);
+
 
         });
     };
@@ -95,7 +108,7 @@ export const NoticeSave=async(data)=>{
 
         return await Axios.get(`${PUBLIC_URL}api/GetSessionStudent1/${session}`).then((res) => {
            return res.data;
-          console.log('attendance data',res.data.data);
+
 
         });
     };
@@ -115,7 +128,7 @@ export const NoticeSave=async(data)=>{
 
             return await Axios.get(`${PUBLIC_URL}api/GetSemesterCourseTitleInfo1`).then((res) => {
                return res.data;
-              console.log('attendance data',res.data.data);
+
 
             });
         };
@@ -125,7 +138,7 @@ export const NoticeSave=async(data)=>{
 
             return await Axios.delete(`${PUBLIC_URL}api/deleteSpecificSemesterCoursetitle1/${ccode}/${ctitle}`).then((res) => {
                return res.data;
-              console.log('attendance data',res.data.data);
+
 
             });
         };
@@ -134,16 +147,25 @@ export const getSemesterCode= async(semester) => {
 
     return await Axios.get(`${PUBLIC_URL}api/getSemesterCode1/${semester}`).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
+
 
     });
 };
+//getSemesterCodeIndivi individual semester code from teacher panel
+export const getSemesterCodeIndivi= async(email,semester) => {
+
+    return await Axios.get(`${PUBLIC_URL}api/getSemesterCodeIndivi1/${email}/${semester}`).then((res) => {
+       return res.data;
+
+
+    });
+};
+
 // getSemesterCodeTitle
 export const getSemesterCodeTitle= async(ccode) => {
 
     return await Axios.get(`${PUBLIC_URL}api/getSemesterCodeTitle1/${ccode}`).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
 
     });
 };
@@ -152,7 +174,7 @@ export const GetActiveSessioninfo= async() => {
 
     return await Axios.get(`${PUBLIC_URL}api/GetActiveSessioninfo1`).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
+
 
     });
 };
@@ -170,7 +192,6 @@ export const getSemesterInfoR= async(session) => {
 
     return await Axios.get(`${PUBLIC_URL}api/getSemesterInfoR1/${session}`).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
 
     });
 };
@@ -179,7 +200,7 @@ export const getSemesterCodeMR= async(session,semester,theorylab) => {
 
     return await Axios.get(`${PUBLIC_URL}api/getSemesterCodeMR1/${session}/${semester}/${theorylab}`).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
+
 
     });
 };
@@ -188,7 +209,7 @@ export const getSemesterCTitleMR= async(session,courseCode) => {
 
     return await Axios.get(`${PUBLIC_URL}api/getSemesterCTitleMR1/${session}/${courseCode}`).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
+
 
     });
 };
@@ -197,7 +218,7 @@ export const getSemesterAttendanceMark= async(session,courseCode,it) => {
 
     return await Axios.get(`${PUBLIC_URL}api/getSemesterAttendanceMark1/${session}/${courseCode}/${it}`).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
+
 
     });
 };
@@ -206,7 +227,7 @@ export const getSemesterCTMark= async(session,courseCode,it) => {
 
     return await Axios.get(`${PUBLIC_URL}api/getSemesterCTMark1/${session}/${courseCode}/${it}`).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
+
 
     });
 };
@@ -215,7 +236,7 @@ export const SaveSemesterResult= async(data) => {
 
     return await Axios.post(`${PUBLIC_URL}api/SaveSemesterResult1`,data).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
+
 
     });
 };
@@ -224,7 +245,7 @@ export const FinalResultByIt= async(it) => {
 
     return await Axios.get(`${PUBLIC_URL}api/FinalResultByIt1/${it}`).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
+
 
     });
 };
@@ -233,7 +254,7 @@ export const deleteSpecificSemesterCCResult= async(it,courseCode,session) => {
 
     return await Axios.get(`${PUBLIC_URL}api/deleteSpecificSemesterCCResult1/${it}/${courseCode}/${session}`).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
+
 
     });
 };
@@ -242,7 +263,7 @@ export const AllSession= async() => {
 
     return await Axios.get(`${PUBLIC_URL}api/AllSession`).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
+
 
     });
 };
@@ -251,7 +272,6 @@ export const SearchSemesterWiseResult= async(session,semester) => {
 
     return await Axios.get(`${PUBLIC_URL}api/SearchSemesterWiseResult1/${session}/${semester}`).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
 
     });
 };
@@ -260,7 +280,7 @@ export const GPAMark= async(it,semester) => {
 
     return await Axios.get(`${PUBLIC_URL}api/GPAMark1/${it}/${semester}`).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
+
 
     });
 };
@@ -270,7 +290,7 @@ export const GradeSheetResult= async(it,semester) => {
 
     return await Axios.get(`${PUBLIC_URL}api/GradeSheetResult1/${it}/${semester}`).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
+
 
     });
 };
@@ -279,7 +299,6 @@ export const getlpgrade= async() => {
 
     return await Axios.get(`${PUBLIC_URL}api/getlpgrade1`).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
 
     });
 };
@@ -288,7 +307,7 @@ export const getmemberRequest= async() => {
 
     return await Axios.get(`${PUBLIC_URL}api/getmemberRequest1`).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
+
 
     });
 };
@@ -296,7 +315,7 @@ export const getmemberRequest2= async() => {
 
     return await Axios.get(`${PUBLIC_URL}api/getmemberRequest2`).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
+
 
     });
 };
@@ -305,7 +324,6 @@ export const RequestInfoData= async(infodata) => {
    // console.log('info',infodata);
     return await Axios.get(`${PUBLIC_URL}api/RequestInfoData1/${infodata}`).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
 
     });
 };
@@ -314,7 +332,7 @@ export const AcceptRequestDone= async(who,email) => {
     // console.log('info',infodata);
      return await Axios.get(`${PUBLIC_URL}api/AcceptRequestDone1/${who}/${email}`).then((res) => {
         return res.data;
-       console.log('attendance data',res.data.data);
+
 
      });
  };
@@ -323,7 +341,6 @@ export const GetAllMsg= async(friendid,myid) => {
     // console.log('info',infodata);
      return await Axios.get(`${PUBLIC_URL}api/GetAllMsg1/${friendid}/${myid}`).then((res) => {
         return res.data;
-       console.log('attendance data',res.data.data);
 
      });
  };
@@ -332,7 +349,7 @@ export const GetAllMsg= async(friendid,myid) => {
 
     return await Axios.post(`${PUBLIC_URL}api/saveMsg1`,data).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
+     // console.log('message data',res.data);
 
     });
 };
@@ -359,7 +376,6 @@ export const SavePost= async(data) => {
 
     return await Axios.post(`${PUBLIC_URL}api/SavePost1`,data).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
 
     });
 };
@@ -368,7 +384,7 @@ export const PostGet= async(email) => {
     // console.log('info',infodata);
      return await Axios.get(`${PUBLIC_URL}api/PostGet1/${email}`).then((res) => {
         return res.data;
-       console.log('attendance data',res.data.data);
+
 
      });
  };
@@ -377,7 +393,7 @@ export const PostDelete= async(id) => {
     // console.log('info',infodata);
      return await Axios.get(`${PUBLIC_URL}api/PostDelete1/${id}`).then((res) => {
         return res.data;
-       console.log('attendance data',res.data.data);
+
 
      });
  }
@@ -386,7 +402,7 @@ export const EditDataget= async(id,email) => {
     // console.log('info',infodata);
      return await Axios.get(`${PUBLIC_URL}api/EditDataget1/${id}/${email}`).then((res) => {
         return res.data;
-       console.log('attendance data',res.data.data);
+
 
      });
  }
@@ -395,7 +411,7 @@ export const EditDataget= async(id,email) => {
 
     return await Axios.post(`${PUBLIC_URL}api/EditPostData1`,data).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
+
 
     });
 };
@@ -404,7 +420,7 @@ export const SaveSemesterRoutine= async(data) => {
 
     return await Axios.post(`${PUBLIC_URL}api/SaveSemesterRoutine1`,data).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
+
 
     });
 };
@@ -413,7 +429,7 @@ export const RoutineResult= async() => {
 
     return await Axios.get(`${PUBLIC_URL}api/RoutineResult1`).then((res) => {
        return res.data;
-      console.log('attendance data',res.data.data);
+
 
     });
 };
@@ -422,7 +438,13 @@ export const GetRoutineResult= async(email) => {
     // console.log('info',infodata);
      return await Axios.get(`${PUBLIC_URL}api/GetRoutineResult1/${email}`).then((res) => {
         return res.data;
-       console.log('attendance data',res.data.data);
+
 
      });
  }
+//get individual teacher semester course code from teacher panel
+export const GetRoutineCcode=async(email)=>{
+    return await Axios.get(`${PUBLIC_URL}api/GetRoutineCcode1/${email}`).then((res) => {
+        return res.data;
+    });
+}

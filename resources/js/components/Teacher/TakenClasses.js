@@ -16,6 +16,8 @@ class TakenClasses extends React.Component {
 
    componentDidMount() {
        this.totalClasses();
+    //    $(`#exampleModal${ccode}`).modal('hide');
+    //    console.log('ccode',this.state.ccode);
    }
    totalClasses=async()=>{
     const getLoginData = localStorage.getItem("LoginData");

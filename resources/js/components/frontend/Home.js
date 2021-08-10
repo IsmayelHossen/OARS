@@ -43,7 +43,7 @@ class Home extends React.Component {
                 <div class="Headline">
                     <marquee direction="left" onmouseout="this.start()" onmouseover="this.stop()" scrolldelay="1" scrollamount="4">
 
-          <span><a href="#" style={{color:'#fff'}}>&nbsp;In aliquet mattis volutpat. Maecenas tempor augue a orci tempus, sed tempor eros maximus.</a>&nbsp;&nbsp;&nbsp;</span>
+          <span><a href="#" style={{color:'#fff'}}>&nbsp;Welcome To Dept. Of ICT Online Attendance & Result System.</a>&nbsp;&nbsp;&nbsp;</span>
 
 
                   </marquee>
@@ -71,17 +71,7 @@ class Home extends React.Component {
                          <div class="col-md-8">
                          <Fade bottom>
                          <h4 style={{paddingTop:'5px',color:'#242b29',fontWeight:'600'}}>Message from Chairman</h4>
-                         <p>Vestibulum nisi quam, sodales a egestas sagittis, suscipit et risus.
-                             Aenean fermentum, eros pharetra tincidunt pretium, libero sem posuere sapien,
-                              ac pellentesque quam metus sit amet dui. Pellentesque ut elit dapibus, imperdiet odio et,
-                               commodo est. Vivamus pretium orci ut posuere mattis. Sed volutpat aliquam dui ut consequat.
-                                In aliquet mattis volutpat. Maecenas tempor augue a orci tempus, sed tempor eros maximus.
-                                 Phasellus molestie velit augue, vitae dignissim nisl imperdiet eu.
-                                  Ut vehicula euismod imperdiet. Sed ut sapien eget diam convallis pharetra.
-                                   Proin mollis ultrices vestibulum. Integer dapibus condimentum blandit.
-                                   Vestibulum luctus, sem vitae vestibulum pretium, odio dui sodales nisi, in dapibus purus augue nec dolor.
-                                   Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-                              per inceptos himenaeos. Praesent a fermentum tellus.</p>
+                         <p>Welcome to the Department of Information and Communication Technology (ICT) which is one of the leading and prestigious departments of Mawlana Bhashani Science and Technology University (MBSTU). From the establishment of the University, the department has started its journey. And within a short period of time it has been able to produce undergraduate and graduate students who are excelling in various sectors like software development, communication sectors and in different government and non-government organizations etc. in home and abroad. Faculties are contributing in innovative research magnificently, and the department is getting recognition in the country for research contribution. The department provides a congenial environment for the growth of the students and helps them to achieve their goal by maintaining the requirements of 4the industrial revolution. The department also follows the pathways to meet the standards of Digital Bangladesh..</p>
                               </Fade>
                         </div>
 

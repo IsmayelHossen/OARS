@@ -23,6 +23,7 @@ class CreateRoutinesTable extends Migration
             $table->string('time1');
             $table->string('ampm');
             $table->integer('lecture');
+            $table->integer('status');
             $table->timestamps();
         });
     }

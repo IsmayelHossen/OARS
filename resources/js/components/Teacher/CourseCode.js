@@ -33,7 +33,7 @@ class CourseCode extends React.Component{
     return (
       <>
         <ToastContainer/>
-      <div style={{textAlign:'right'}}>
+      <div style={{textAlign:'right',marginTop:'6px'}}>
       <button type="button" class=" btn btn-success"   style={{marginRight:"5px"}} data-toggle="modal" data-target="#exampleModal">
   Course Code
 </button>

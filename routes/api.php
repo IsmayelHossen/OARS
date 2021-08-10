@@ -32,7 +32,8 @@ Route::get('token', [LoginRegController::class, 'createToken']);
 Route::post('login', [LoginRegController::class, 'login']);
 Route::post('register', [LoginRegController::class, 'register']);
 Route::post('storeVcode1', [LoginRegController::class, 'storeVcode1']);
-Route::get('user', [LoginRegController::class, 'user']);
+Route::get('/user', [LoginRegController::class, 'user'])->middleware('auth:api');
+//  Route::get('/user', [LoginRegController::class, 'user'])->middleware('auth:api');
 
 //student all api
 Route::apiResource('Student', StudentController::class);
@@ -67,12 +68,24 @@ Route::get('IndividualAttendResult/{it}/{ccode}/{temail}',[AttendanceController:
 Route::get('SearchByCourseCode/{sbyccode}/{temail}',[AttendanceController::class,'SearchByCourseCode']);
 Route::post('SaveAddMark1',[AttendanceController::class,'SaveAddMark1']);
 Route::get('GetStudentCTMarkByCode1/{session}/{ccode}/{temail}',[AttendanceController::class,'GetStudentCTMarkByCode1']);
-Route::get('GetCTMarks1/{session}/{ccode}/{temail}',[AttendanceController::class,'GetCTMarks1']);
+Route::get('GetCTMarks1/{session}/{ccode}/{bestct}/{temail}',[AttendanceController::class,'GetCTMarks1']);
 Route::delete('DeleteCTMark1/{id}',[AttendanceController::class,'DeleteCTMark1']);
-
-
-
-
+// GetRoutineCcode1
+Route::get('GetRoutineCcode1/{temail}',[AttendanceController::class,'GetRoutineCcode1']);
+// get  semester course code Individual
+Route::get('getSemesterCodeIndivi1/{email}/{semester}',[AttendanceController::class,'getSemesterCodeIndivi1']);
+//Save routine and access admin service
+Route::post('SaveSemesterRoutinefromTacher1',[AttendanceController::class,'SaveSemesterRoutinefromTacher1']);
+//deleteSpecificRoutine1 from teacher
+Route::delete('deleteSpecificRoutine1/{email}/{day}',[AttendanceController::class,'deleteSpecificRoutine1']);
+//save Ct mark
+Route::post('SaveCtMark1/{teacheremail}/{session}/{Coursecode}/{ct}',[AttendanceController::class,'SaveCtMark1']);
+//SemesterCtMark1
+Route::get('SemesterCtMark1/{session}/{ccode}/{temail}',[AttendanceController::class,'SemesterCtMark1']);
+// IndividualCtMark1
+Route::get('IndividualCtMark1/{session}/{ccode}/{temail}/{ctnum}',[AttendanceController::class,'IndividualCtMark1']);
+//GetCountCTMark1
+Route::get('GetCountCTMark1/{session}/{ccode}/{ctcount}/{temail}',[AttendanceController::class,'GetCountCTMark1']);
 
 //image all api
 Route::post('upload',[ImageController::class,'uploadimage']);

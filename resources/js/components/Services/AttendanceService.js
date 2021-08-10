@@ -30,6 +30,36 @@ export const SaveAttendance=async(temail,session,Coursecode,Usemester,data)=>{
 
      })
  }
+ //save ct mark
+
+ export const SaveCtMark=async(temail,session,Coursecode,ct,data)=>{
+    // console.log('student data',data);
+
+      return await Axios.post(`${PUBLIC_URL}api/SaveCtMark1/${temail}/${session}/${Coursecode}/${ct}`,data).then((res)=>{
+
+    return res.data;
+
+      console.log('attendance data',res.data);
+
+     })
+ }
+ //get ct mark SemesterCtMark
+
+ export const SemesterCtMark=async(session,ccode,temail)=>{
+    return await Axios.get(`${PUBLIC_URL}api/SemesterCtMark1/${session}/${ccode}/${temail}`).then((res)=>{
+     // console.log('semesterinfo66',res.data);
+     // console.log('semesterinfo1',res.data);
+   return res.data;
+    });
+}
+//IndividualCtMark
+export const IndividualCtMark=async(session,ccode,temail,ctnum)=>{
+    return await Axios.get(`${PUBLIC_URL}api/IndividualCtMark1/${session}/${ccode}/${temail}/${ctnum}`).then((res)=>{
+     // console.log('semesterinfo66',res.data);
+     // console.log('semesterinfo1',res.data);
+   return res.data;
+    });
+}
 export const getSemesterInfo=async(session,temail)=>{
     return await Axios.get(`${PUBLIC_URL}api/getsemesterinfo/${session}/${temail}`).then((res)=>{
      // console.log('semesterinfo66',res.data);
@@ -134,13 +164,19 @@ export const GetStudentCTMarkByCode=async(session,ccode,temail)=>{
     });
 }
 // GetCTMarks
-export const GetCTMarks=async(session,ccode,temail)=>{
-    return await Axios.get(`${PUBLIC_URL}api/GetCTMarks1/${session}/${ccode}/${temail}`).then((res)=>{
+export const GetCTMarks=async(session,ccode,bestct,temail)=>{
+    return await Axios.get(`${PUBLIC_URL}api/GetCTMarks1/${session}/${ccode}/${bestct}/${temail}`).then((res)=>{
 
    return res.data;
     });
 }
+// GetCountCTMark
+export const GetCountCTMark=async(session,ccode,ctcount,temail)=>{
+    return await Axios.get(`${PUBLIC_URL}api/GetCountCTMark1/${session}/${ccode}/${ctcount}/${temail}`).then((res)=>{
 
+   return res.data;
+    });
+}
 // DeleteCTMark
 
 export const DeleteCTMark=async(id)=>{

@@ -43,7 +43,7 @@ class StudentSemesterInfo extends React.Component {
 
                               <div class="col-md-4 ">
                                   <div class="AllInfo_course">
-                              <h4>Semester:{row.course_code}</h4>
+                              <h4>Course Code:{row.course_code}</h4>
 
                               <ViewAttendance random={randNum++} it={row.it} courseCode={row.course_code} />
 

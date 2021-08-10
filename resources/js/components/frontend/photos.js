@@ -3,7 +3,7 @@ import { PUBLIC_URL } from "../CommonURL";;
 export const photos = [
     {
 
-      src:(`${PUBLIC_URL}storage/app/public/uploads/mbstu2.png`),
+        src:(`${PUBLIC_URL}storage/app/public/uploads/gallary/5.jpg`),
       width: 3,
       height: 4
     },
@@ -20,53 +20,53 @@ export const photos = [
         height: 4
       },
     {
-      src: "https://source.unsplash.com/Dm-qxdynoEc/800x799",
+     src:(`${PUBLIC_URL}storage/app/public/uploads/gallary/1.jpg`),
       width: 1,
       height: 1
     },
     {
-      src: "https://source.unsplash.com/qDkso9nvCg0/600x799",
+        src:(`${PUBLIC_URL}storage/app/public/uploads/gallary/2.jpg`),
       width: 3,
       height: 4
     },
     {
-      src: "https://source.unsplash.com/iecJiKe_RNg/600x799",
+        src:(`${PUBLIC_URL}storage/app/public/uploads/gallary/3.jpg`),
       width: 3,
       height: 4
     },
     {
-      src: "https://source.unsplash.com/epcsn8Ed8kY/600x799",
+        src:(`${PUBLIC_URL}storage/app/public/uploads/gallary/4.jpg`),
       width: 3,
       height: 4
     },
     {
-      src: "https://source.unsplash.com/NQSWvyVRIJk/800x599",
+        src:(`${PUBLIC_URL}storage/app/public/uploads/gallary/5.jpg`),
       width: 4,
       height: 3
     },
     {
-      src: "https://source.unsplash.com/zh7GEuORbUw/600x799",
+        src:(`${PUBLIC_URL}storage/app/public/uploads/gallary/6.jpg`),
       width: 3,
       height: 4
     },
     {
-      src: "https://source.unsplash.com/PpOHJezOalU/800x599",
+        src:(`${PUBLIC_URL}storage/app/public/uploads/gallary/7.jpg`),
       width: 4,
       height: 3
     },
     {
-        src: "https://source.unsplash.com/epcsn8Ed8kY/600x799",
-        width: 3,
+        src:(`${PUBLIC_URL}storage/app/public/uploads/gallary/2.jpg`),
+        width: 4,
         height: 4
       },
-      {
-        src: "https://source.unsplash.com/NQSWvyVRIJk/800x599",
-        width: 4,
-        height: 3
-      },
-    {
-      src: "https://source.unsplash.com/I1ASdgphUH4/800x599",
-      width: 4,
-      height: 3
-    }
+    //   {
+    //     src: "https://source.unsplash.com/NQSWvyVRIJk/800x599",
+    //     width: 4,
+    //     height: 3
+    //   },
+    // {
+    //   src: "https://source.unsplash.com/I1ASdgphUH4/800x599",
+    //   width: 4,
+    //   height: 3
+    // }
   ];

@@ -154,7 +154,7 @@ class ViewRoutine extends React.Component {
                                  ))}
 
                                        <td>
-                                       <button class="btn btn-danger"Delete>
+                                       <button class="btn btn-danger">
                                            Delete
                                            </button>
 

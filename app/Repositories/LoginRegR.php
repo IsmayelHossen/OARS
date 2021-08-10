@@ -14,7 +14,8 @@ class LoginRegR implements LoginRegI
 {
     public function checkIfAuthenticated(Request $request)
     {
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'user_rule' => $request->user_rule])) {
+        // if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'user_rule' => $request->user_rule])) {
+            if(Auth::attempt($request->only("email","password","user_rule"))){
             return true;
         }
         return false;
@@ -57,9 +58,14 @@ class LoginRegR implements LoginRegI
 
     }
 
-    public function findUserByEmailAddress($email)
+    // public function findUserByEmailAddress($email)
+    // {
+    //     $user = User::where('email', $email)->first();
+    //     return $user;
+    // }
+    public function findUserByEmailAddress()
     {
-        $user = User::where('email', $email)->first();
+        $user =Auth::user();
         return $user;
     }
 }

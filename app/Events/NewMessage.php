@@ -16,34 +16,31 @@ use Illuminate\Queue\SerializesModels;
 class NewMessage implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $message;
-    public $user;
-    /**
+     public $message;
+ /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Message $message, User $user)
+    public function __construct(Message $message)
     {
         $this->message = $message;
-        $this->user = $user;
     }
-
-    /**
+   /**
      * Get the channels the event should broadcast on.
      *
      * @return \Illuminate\Broadcasting\Channel|array
      */
     public function broadcastOn()
     {
+        // return new Channel('messages.' . $this->message->to);
         return new PrivateChannel('messages.' . $this->message->to);
     }
-    // public function bradcastWith(){
-    //      ['message'=>$this->message];
-    // }
 
-    public function broadcastAs()
+    public function broadcastWith()
     {
-        return 'NewMessage';
+        $this->message->load('fromContact');
+
+        return ["message" => $this->message];
     }
 }

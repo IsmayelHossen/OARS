@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
-
 class LoginRegController extends Controller
 {
     public $useraccess;
@@ -22,11 +21,12 @@ class LoginRegController extends Controller
         $this->useraccess= $useraccess;
     }
     public function user(){
-        $user=Auth::user();
+        $user1=Auth::user();
+       // $user1 = User::first();
         return response()->json([
            'success' =>true,
            'message' =>"get user",
-           'data' =>$user,
+           'data' =>$user1,
        ]);
     }
     public function createToken()
@@ -56,9 +56,14 @@ class LoginRegController extends Controller
             ]);
         }
   else{
-       $user=$this->useraccess->checkIfAuthenticated($request);
-        if ($user) {
-             $user = $this->useraccess->findUserByEmailAddress($request->email);
+      //$user=$this->useraccess->checkIfAuthenticated($request);
+
+    if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'user_rule' => $request->user_rule])) {
+             //$user = User::where('email', $request->email)->first();
+           // $user=Auth::user();
+           // $token= Auth::user()->createToken('authToken')->accessToken;
+             $user = $this->useraccess->findUserByEmailAddress();
+             $token= $user->createToken('authToken')->accessToken;
              if($request->user_rule=='Student' ||$request->user_rule=='Teacher' ){
                  $checkemailValid=User::where('evaild',0)->where('email',$request->email)->first();
                  $status=User::where('status',0)->where('email',$request->email)->first();
@@ -80,22 +85,26 @@ class LoginRegController extends Controller
             //         ]);
 
             //      }
-                 $accessToken = $user->createToken('authToken')->accessToken;
+
+
                  return response()->json([
                      'success' => true,
                      'message' => 'Logged in successully !!',
                      'user' => $user,
-                     'access_token' => $accessToken,
+                     'access_token' => $token,
                  ]);
              }
 
              else{
-                $accessToken = $user->createToken('authToken')->accessToken;
+
+
+                $token= $user->createToken('authToken')->accessToken;
+
                 return response()->json([
                     'success' => true,
                     'message' => 'Logged in successully !!',
                     'user' => $user,
-                    'access_token' => $accessToken,
+                    'access_token' => $token,
                 ]);
 
              }
@@ -173,7 +182,7 @@ class LoginRegController extends Controller
 
 
         if ($registration) {
-       $registration = $this->useraccess->findUserByEmailAddress($request->email);
+         $registration = $this->useraccess->findUserByEmailAddress();
             $accessToken = $registration->createToken('authToken')->accessToken;
             return response()->json([
                 'success' => true,

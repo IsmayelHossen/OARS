@@ -72,7 +72,7 @@ class ViewStudents extends React.Component {
             <i class="fa fa-align-right"></i>  <span class="glyphicon glyphicon-align-right " aria-hidden="true">Toggle</span>
             </button>
              <br></br>
-        <h3 class="adminStudentH3">Student Informations({this.props.match.params.session})</h3>
+        <h3 class="adminStudentH3">Student Information({this.props.match.params.session})</h3>
         <br></br>
         <form style={{marginBottom: ".7em",paddingLeft:"10px"}}>
                   Search: <input type="text" class="search" onChange={(e)=>this.onSearch(e)}>

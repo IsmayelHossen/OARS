@@ -26,7 +26,7 @@ export default class Colleague extends React.Component {
             <div>
                <div class="containerCustom">
             <div class="topMargin takenclasss">
-        <h3 class="heading animate__bounce"> Colleague Informations</h3>
+        <h3 class="heading animate__bounce"> Colleagues Information</h3>
             <div class="row ">
            {this.state.InfoColleague.map((row,index)=>(
 
