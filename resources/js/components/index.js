@@ -60,6 +60,11 @@ import CourseCodeAllInfo from './Teacher/CourseCodeAllInfo';
 import AddCTMarkF from './Teacher/AddCTMarkF';
 import DetailsCt from './Teacher/detailsCt';
 import IndividualDetailsCT from './Teacher/IndividualDetailsCT';
+import MoreInfo from './Teacher/MoreInfo';
+import ColleagueDetails from './Teacher/ColleagueDetails';
+import NoticeEvent from './frontend/NoticeEvent';
+import TeacherInfo from './Student/TeacherInfo';
+import AdminTeacherInfo from './Admin/AdminTeacherInfo';
 
 class Index extends React.Component {
     constructor(props){
@@ -103,6 +108,10 @@ class Index extends React.Component {
                     <Route exact path={`${PUBLIC_URL}registeruser`}>
                         <Register />
                     </Route>
+
+                    <Route exact path={`${PUBLIC_URL}noticeEvent/:id`}>
+                        <NoticeEvent />
+                    </Route>
                     <Route exact path={`${PUBLIC_URL}verification`}>
                         <Verification />
                     </Route>
@@ -122,6 +131,10 @@ class Index extends React.Component {
                     <Route exact path={`${PUBLIC_URL}forgetPassword`}>
                         <ForgetPassword />
                     </Route>
+                    <Route exact path={`${PUBLIC_URL}Getteacherinfo`}>
+                        <TeacherInfo />
+                    </Route>
+
 
                     {/* student routes access check is usr authenticated or not and if hit
                     url with differnt way to access homepage first check is logged?? if logged in, then access otherways redireect to login page */}
@@ -146,6 +159,10 @@ class Index extends React.Component {
                     <Route exact path={`${PUBLIC_URL}post`}>
                         <Post />
                     </Route>
+                    <Route exact path={`${PUBLIC_URL}colleagueD/:email`}>
+                            <ColleagueDetails />
+                        </Route>
+
                     <Route exact path={`${PUBLIC_URL}newsfeed`}>
                         <Newsfeed />
                     </Route>
@@ -180,6 +197,12 @@ class Index extends React.Component {
                             <Route exact path={`${PUBLIC_URL}addroutine`} component={AddRoutine}
                             isSession={true}
                            />
+                               <Route exact path={`${PUBLIC_URL}adminTeacherin`} component={AdminTeacherInfo}
+                            isSession={true}
+                           />
+                   <Route exact path={`${PUBLIC_URL}colleagueD/:email`}>
+                            <ColleagueDetails />
+                        </Route>
                       <Route exact path={`${PUBLIC_URL}post`}>
                         <Post />
                     </Route>
@@ -192,7 +215,7 @@ class Index extends React.Component {
                    <Route exact path={`${PUBLIC_URL}vedio`}>
                         <Vedio />
                         </Route>
-                   <Route exact path={`${PUBLIC_URL}adminStudentInfo`}>
+                   <Route exact path={`${PUBLIC_URL}adminStudentInfo/:id`}>
                            <AdminStudentInfo/>
 
                         </Route>
@@ -256,6 +279,11 @@ class Index extends React.Component {
                         <Route exact path={`${PUBLIC_URL}addCtMarkF/:session/:ccode`}>
                             <AddCTMarkF />
                         </Route>
+
+                        <Route exact path={`${PUBLIC_URL}colleagueD/:email`}>
+                            <ColleagueDetails />
+                        </Route>
+
                         <Route exact path={`${PUBLIC_URL}detailsCt/:session/:ccode`}>
                             <DetailsCt />
                         </Route>
@@ -298,6 +326,9 @@ class Index extends React.Component {
                             <successClasses/>
                         </Route>
 
+                        <Route path={`${PUBLIC_URL}moreinfo`}>
+                            <MoreInfo/>
+                        </Route>
                         {/* <AccessRoute
                         authed={this.state.isLoggedIn}
                       exact  path="/OARS/successclasses"

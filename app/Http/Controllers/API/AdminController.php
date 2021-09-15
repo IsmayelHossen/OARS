@@ -11,6 +11,7 @@ use App\Models\CTMark;
 use App\Models\Lpgrade;
 use App\Models\Message;
 use App\Models\Notice;
+use App\Models\NoticeEvent;
 use App\Models\Post;
 use App\Models\Result;
 use App\Models\Routine;
@@ -37,6 +38,26 @@ class AdminController extends Controller
             'data' => $result
 
         ]);
+    }
+    public function getNoticeEvent2($email){
+        $result =NoticeEvent::get();
+        return response()->json([
+            'success' => true,
+            'message' => 'Get teacher Informations',
+            'data' => $result
+
+        ]);
+
+    }
+    public function getIndviNoticeEvent1($id){
+        $result =NoticeEvent::where('id',$id)->first();
+        return response()->json([
+            'success' => true,
+            'message' => 'Get teacher Informations',
+            'data' => $result
+
+        ]);
+
     }
     public function SaveSemesterCourse1(Request $request)
     {
@@ -182,9 +203,9 @@ class AdminController extends Controller
             'data' => $row
         ]);
     }
-    public function GetSessionActiveData1()
+    public function GetSessionActiveData1($id)
     {
-        $result = SemesterRule::select('session')->distinct()->where('status', 1)->get();
+        $result = SemesterRule::select('session')->distinct()->where('status', $id)->get();
         return response()->json([
             'success' => true,
             'message' => 'notice',
@@ -334,6 +355,7 @@ class AdminController extends Controller
         $result = CTMark::where('session', $session)
             ->where('ccode', $courseCode)
             ->where('it', $it)
+            ->where('status',1)
             ->get();
         return response()->json([
             'success' => true,
@@ -734,7 +756,42 @@ class AdminController extends Controller
     }
     public function AllFriendData1($myid)
     {
-        $data = User::where('status', 1)->Where('id', '!=', $myid)->get();
+
+$data = DB::table('users')
+ ->join('teachers', 'users.email', '=', 'teachers.email')
+->select( 'users.*','teachers.image')
+->where('users.status',1)
+->Where('users.id', '!=', $myid)
+->get();
+     //  $data = User::where('status', 1)->Where('id', '!=', $myid)->get();
+        return response()->json([
+            'success' => true,
+            'message' => 'get  data',
+            'data' => $data
+        ]);
+    }
+
+    public function AllFriendData3($myid)
+    {
+
+        $data = DB::table('users')
+        ->join('students', 'users.email', '=', 'students.email')
+       ->select( 'users.*','students.image','students.it','students.session')
+       ->where('users.status',1)
+       ->Where('users.id', '!=', $myid)
+       ->get();
+     //  $data = User::where('status', 1)->Where('id', '!=', $myid)->get();
+        return response()->json([
+            'success' => true,
+            'message' => 'get  data',
+            'data' => $data
+        ]);
+    }
+    public function AllFriendData4($myid)
+    {
+
+
+       $data = User::where('user_rule', 'Admin')->where('status', 1)->Where('id', '!=', $myid)->get();
         return response()->json([
             'success' => true,
             'message' => 'get  data',
@@ -837,6 +894,61 @@ class AdminController extends Controller
 
             ]);
         }
+    }
+    public function SaveNoticeEvent1(Request $request){
+
+        $formData = $request->all();
+        $validator = Validator::make($formData, [
+            'text' => 'required|min:3',
+            'title' => 'required',
+            'category' => 'required',
+        ], [
+            'text.required' => 'Write something',
+            'category.required' => 'Select Category',
+
+
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => $validator->getMessageBag()->first(),
+                'errors' => $validator->getMessageBag(),
+            ]);
+        }
+        $data = array();
+        $data['description'] = $request->text;
+        $data['category'] = $request->category;
+        $data['title'] = $request->title;
+        $data['email'] = $request->email;
+       $data['created_at'] = $request->date1;
+        if ($request->hasFile('image')) {
+            $uniqueid = uniqid();
+            $original_name = $request->file('image')->getClientOriginalName();
+            $size = $request->file('image')->getSize();
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $name = $uniqueid . '.' . $extension;
+            $path = $request->file('image')->storeAs('public/uploads/post', $name);
+            $data['image'] = $name;
+            $post = DB::table('notice_events')->insert($data);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Update Data successully !!',
+                'data' => $post,
+
+
+            ]);
+        } else {
+            $post = DB::table('notice_events')->insert($data);
+            return response()->json([
+                'success' => true,
+                'message' => 'Update Data successully from else !!',
+                'data' => $post,
+
+
+            ]);
+        }
+
     }
     public function PostGet1($email)
     {
@@ -982,6 +1094,15 @@ class AdminController extends Controller
                 'data' => $obj
             ]);
         }
+    }
+    //active routine add from tacher panel
+    public function RoutineActive1($email,$day,$id){
+        $result = Routine::where('email',$email)->where('day',$day)->where('id',$id)->update(array('status' =>1));
+        return response()->json([
+            'success' => true,
+            'message' => 'get data',
+            'data' => $result
+        ]);
     }
     public function RoutineResult1()
     {

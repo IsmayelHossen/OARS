@@ -35,5 +35,5 @@ interface LoginRegI
      * @return obj $user object
      */
     // public function findUserByEmailAddress($email);
-    public function findUserByEmailAddress();
+    public function findUserByEmailAddress($email);
 }

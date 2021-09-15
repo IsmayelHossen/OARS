@@ -62,7 +62,7 @@ class LoginRegController extends Controller
              //$user = User::where('email', $request->email)->first();
            // $user=Auth::user();
            // $token= Auth::user()->createToken('authToken')->accessToken;
-             $user = $this->useraccess->findUserByEmailAddress();
+             $user = $this->useraccess->findUserByEmailAddress($request->email);
              $token= $user->createToken('authToken')->accessToken;
              if($request->user_rule=='Student' ||$request->user_rule=='Teacher' ){
                  $checkemailValid=User::where('evaild',0)->where('email',$request->email)->first();
@@ -182,13 +182,14 @@ class LoginRegController extends Controller
 
 
         if ($registration) {
-         $registration = $this->useraccess->findUserByEmailAddress();
+         $registration = $this->useraccess->findUserByEmailAddress($request->email);
             $accessToken = $registration->createToken('authToken')->accessToken;
             return response()->json([
                 'success' => true,
                 'message' => 'Registered successully !!',
                 'user' => $registration,
-                'accesstoken'=>$accessToken
+                'accesstoken'=>$accessToken,
+                'data'=>$registration
 
             ]);
         } else {

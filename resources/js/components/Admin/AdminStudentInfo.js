@@ -16,7 +16,7 @@ class AdminStudentInfo extends React.Component {
         this.GetActiveSession();
     }
     GetActiveSession=async()=>{
-        const response=await GetSessionActiveData();
+        const response=await GetSessionActiveData(this.props.match.params.id);
         if(response.success){
             this.setState({ CurrentSession:response.data  });
         }
@@ -45,7 +45,13 @@ class AdminStudentInfo extends React.Component {
             <i class="fa fa-align-right"></i>  <span class="glyphicon glyphicon-align-right " aria-hidden="true">Toggle</span>
             </button>
              <br></br>
-             <h3 class="adminStudentH3"> Current Batch Student Information</h3>
+             {this.props.match.params.id==1 && (
+ <h3 class="adminStudentH3"> Current Batch Student Information</h3>
+             )}
+                {this.props.match.params.id==0 && (
+ <h3 class="adminStudentH3"> Ex Batch Student Information</h3>
+             )}
+
 
                  <div class="row">
                      {this.state.CurrentSession.map((row,index)=>(

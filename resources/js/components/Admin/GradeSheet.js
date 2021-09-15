@@ -197,13 +197,14 @@ shall be determined as follows:</p>
                                    <tr class="marksheettr">
                                 <td class="marksheettd">{row.ccode}</td>
                                 <td class="marksheettd">{row.ctitle}</td>
-                                <td class="marksheettd">{row.crediths}</td>
+                                <td class="marksheettd">{row.chours}</td>
                                 <td class="marksheettd">{row.lg}</td>
                                 <td class="marksheettd">{row.gp}</td>
 
                             </tr>
                             ))}
-                               <tr>
+                            {/* dame data start */}
+                               {/* <tr>
                                <td class="marksheettd">123</td>
                                <td class="marksheettd">Microwave Communication and Radar</td>
                                <td class="marksheettd">3</td>
@@ -274,7 +275,8 @@ shall be determined as follows:</p>
                                <td class="marksheettd">3</td>
                                <td class="marksheettd" >3</td>
 
-                           </tr>
+                           </tr> */}
+                           {/* dame data end */}
                          </table>
 
 

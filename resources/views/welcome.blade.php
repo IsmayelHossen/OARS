@@ -14,7 +14,7 @@
     <script src="{{ asset('public/js/app.js') }}" defer></script>
     <script src="{{ asset('public/ExtraJs/jquery/jquery.min.js')}}"></script>
     <script src="{{ asset('public/ExtraJs/js/main.js')}}"></script>
-    <script src="{{ asset('public/ExtraJs/scrollreveal/scrollreveal.min.js')}}"></script>
+    {{-- <script src="{{ asset('public/ExtraJs/scrollreveal/scrollreveal.min.js')}}"></script> --}}
     <script src="{{ asset('public/ExtraJs/counterup/counterup.min.js')}}"></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

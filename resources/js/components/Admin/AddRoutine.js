@@ -372,7 +372,7 @@ class AddRoutine extends React.Component {
 
 
                         <br></br>
-                         <h3>Semester Routine</h3>
+                         <h3 style={{textAlign:'center'}}>Semester Routine Teacher Wise</h3>
                          <div class="table-responsive">
                          <table class="table table-bordered">
                              <thead>

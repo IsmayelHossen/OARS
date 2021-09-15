@@ -652,6 +652,9 @@ changeInputForCtmark=async(e)=>{
                 ctmarkavg=ctmark1/this.state.CtMarkData.length
             }
             </p>
+            {this.state.CtMarkData!=0 &&(
+               <span><br></br>Best CT Count:{this.state.CtMarkData.length}</span>
+              )  }
             <select class="form-control" id="exampleFormControlSelect1" name="ctmark"
                 onChange={(e) => this.changeInput(e)}>
                     <option value="">Select</option>
@@ -808,7 +811,7 @@ changeInputForCtmark=async(e)=>{
 
 
                         <br></br>
-                         <h3>Here result of It-16054</h3>
+                         <h3 style={{margin:'o auto;' ,display:'block',textAlign:'center',fontWeight:700}}>Result Processing Sheet</h3>
 
                          <div class="table-responsive">
                          <div style={{maxWidth:"1080px",overflowX:"scroll"}}>

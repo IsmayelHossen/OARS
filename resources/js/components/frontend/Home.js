@@ -1,27 +1,41 @@
 import React from 'react';
 import Slider from './Slider';
-import { GetTeacherInfo, getNoticeData,GetSemesterCourseInfo,deleteSpecificSemesterCourse } from '../Services/Admin/AdminServices';
+import { SavePost,PostGet, PostDelete,SaveNoticeEvent,getNoticeEvent1,getSemesterCodeTitle }
+ from '../Services/Admin/AdminServices';
 import Fade from 'react-reveal/Fade';
+import { PUBLIC_URL } from "../CommonURL";
+import { Link, withRouter } from "react-router-dom";
 class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             NoticeResult:[],
+            email:'ismayelhossen123@gmail.com'
          }
     }
     componentDidMount() {
-       this. getNotice();
-    }
-    getNotice=async()=>{
-        const result=await getNoticeData();
-        if(result.success){
-            this.setState({ NoticeResult:result.data });
-        }
-        console.log('notice result',result.data);
 
+
+        this.getNoticeEvent();
     }
+    getNoticeEvent=async()=>{
+      //  alert(this.user.email);
+        const response= await getNoticeEvent1(this.state.email);
+        if(response.success){
+            this.setState({ NoticeResult:response.data  });
+
+        }
+        console.log('notice data',this.state.NoticeResult)
+    }
+NEvent=async(id)=>{
+
+    const {history}=this.props;
+    history.push(`${PUBLIC_URL}noticeEvent/${id}`);
+}
     render() {
         const lengthR=this.state.NoticeResult.length;
+        let i=1;
+        let i2=1;
         return (
             <>
             <div class="topMargin ">
@@ -83,13 +97,11 @@ class Home extends React.Component {
 
 <ul class="nav nav-tabs" style={{marginTop:'10px'}}>
   <li class="nav-item">
-    <a class="nav-link active" data-toggle="tab" href="#home">Notice   <span class="badge badge-primary badge-pill">12</span></a>
+    <a class="nav-link active" data-toggle="tab" href="#home">Notice   <span class="badge badge-primary badge-pill"></span></a>
   </li>
+
   <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#menu1">News<span class="badge badge-primary badge-pill">4</span></a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#menu2">Events<span class="badge badge-primary badge-pill">2</span></a>
+    <a class="nav-link" data-toggle="tab" href="#menu2">Events<span class="badge badge-primary badge-pill"></span></a>
   </li>
 </ul>
 
@@ -97,38 +109,34 @@ class Home extends React.Component {
 <div class="tab-content" style={{marginLeft:'-15px;'}}>
   <div class="tab-pane container active" id="home">
   <ul class="list-group" style={{marginLeft:'-15px'}}>
-  <li class="list-group-item d-flex justify-content-between align-items-center">
-  Vivamus pretium orci ut posuere mattis.  Class aptent taciti sociosqu
+  {this.state.NoticeResult.map((row,index)=>(
+       <>
+       {row.category=='Notice' &&(
+        <li class="list-group-item d-flex justify-content-between align-items-center" onClick={()=>this.NEvent(row.id)}>
+    {row.title}
 
   </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center">
-  Vivamus pretium orci ut posuere mattis.  Class aptent taciti sociosqu
+       )}
+       </>
+    ))}
 
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center">
-  Vivamus pretium orci ut posuere mattis.  Class aptent taciti sociosqu
-
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center">
-  Vivamus pretium orci ut posuere mattis.  Class aptent taciti sociosqu
-
-  </li>
 </ul>
 </div>
-  <div class="tab-pane container fade" id="menu1">
+  <div class="tab-pane container fade" id="menu2">
    <ul class="list-group" style={{marginLeft:'-15px'}}>
-  <li class="list-group-item d-flex justify-content-between align-items-center">
-  Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos
+   {this.state.NoticeResult.map((row,index)=>(
+       <>
+       {row.category=='Event' &&(
+        <li class="list-group-item d-flex justify-content-between align-items-center" onClick={()=>this.NEvent(row.id)}>
+    {row.title}
+
   </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center">
-  Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center">
-  Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos
-  </li>
+       )}
+       </>
+    ))}
 </ul>
   </div>
-  <div class="tab-pane container fade" id="menu2">...</div>
+
 </div>
 
                         </div>
@@ -165,4 +173,4 @@ class Home extends React.Component {
     }
 }
 
-export default Home;
+export default withRouter(Home);

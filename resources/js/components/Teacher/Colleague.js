@@ -16,10 +16,19 @@ export default class Colleague extends React.Component {
         this.ColleagueInfo();
     }
     ColleagueInfo=async()=>{
-        const response= await getColleagueInfo();
+        const getLoginData = localStorage.getItem("LoginData");
+        const data1 = JSON.parse(getLoginData);
+        const email = data1.user.email;
+        const response= await getColleagueInfo(email);
         if(response.success){
             this.setState({ InfoColleague:response.data  });
         }
+    }
+    Details=async(email)=>{
+        const {history}=this.props;
+        //window.location.href = `/OARS/takenclasses/${coursecode}`;
+      await history.push(`${PUBLIC_URL}colleagueD/${email}`);
+      //  alert(email);
     }
     render() {
         return (
@@ -28,6 +37,11 @@ export default class Colleague extends React.Component {
             <div class="topMargin takenclasss">
         <h3 class="heading animate__bounce"> Colleagues Information</h3>
             <div class="row ">
+                {this.state.InfoColleague.length==0 && (
+                     <div class="col-md-12">
+                    <h3 style={{textAlign:'center',color:'red',marginTop:'8rem',marginBottom:'8rem'}}> No Colleague information available</h3>
+                    </div>
+                )}
            {this.state.InfoColleague.map((row,index)=>(
 
 
@@ -38,10 +52,11 @@ export default class Colleague extends React.Component {
                        <h6><button class="btn btn-success">{row.name}</button></h6>
 
                     <p style={{color:'#13114d'}}>{row.designation}</p>
-                    <p style={{color:'#118655'}}>Blood Group:{row.bloodg}</p>
+                    {/* <p style={{color:'#118655'}}>Blood Group:{row.bloodg}</p> */}
                     <p style={{color:'#a22e0b'}}>Phone:{row.phone}</p>
-                    <p><button class="btn btn-primary">Email:{row.email}</button></p>
-                    <p>Permanent Address:{row.paddress}</p>
+                    <p><button class="btn ">Email:{row.email}</button></p>
+                    <button class="btn btn-danger" onClick={()=>this.Details(row.email)}>Profile</button>
+                    {/* <p>Permanent Address:{row.paddress}</p> */}
 
                    </div>
                 </div>

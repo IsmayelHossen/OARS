@@ -38,7 +38,7 @@ class AttendanceController extends Controller
     public function SaveAttendence($temail,$session,$Coursecode,$Usemester,Request $request){
 
        $attend=$request->all();
-       $date=date('d/m/yy');
+       $date=date('d/m/Y');
        $successCode=mt_rand();
        $checkDate=Attendace::where('TakenDate',$date)
        ->where('teacheremail',$temail)
@@ -387,6 +387,8 @@ public function GetCTMarks1($it,$ccode,$bestct,$temail)
 {
     $get1=DB::table('c_t_marks')
  ->where('it',$it)->where('ccode',$ccode)->where('temail',$temail)->orderBy('marks','DESC')->take($bestct)->get();
+ $get2=DB::table('c_t_marks')
+ ->where('it',$it)->where('ccode',$ccode)->where('temail',$temail)->orderBy('marks','DESC')->take($bestct)->update(['status' =>1]);
     return response()->json([
         'success'=>true,
         'message'=>'Get Individual CT mark Result',
@@ -396,7 +398,7 @@ public function GetCTMarks1($it,$ccode,$bestct,$temail)
 
 }
 public function GetRoutineCcode1($email){
- $get1=DB::table('semester_rules')->where('email',$email)->get();
+ $get1=DB::table('semester_rules')->select('semester')->distinct()->where('email',$email)->get();
  return response()->json([
     'success'=>true,
     'message'=>'Get Individual Course code',
@@ -475,6 +477,15 @@ public function deleteSpecificRoutine1($email,$day){
      'data'=>$del
     ]);
 
+}
+public function GetRoutineResult2($email)
+{
+    $result = Routine::where('email', $email)->where('status',1)->get();
+    return response()->json([
+        'success' => true,
+        'message' => 'get data',
+        'data' => $result
+    ]);
 }
 public function DeleteCTMark1($id){
    $del=CTMark::where('id',$id)->delete();

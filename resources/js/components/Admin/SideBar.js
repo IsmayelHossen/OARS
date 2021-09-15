@@ -9,6 +9,14 @@ class SideBar extends React.Component {
     deleteSidebar=()=>{
         $('#sidebar').toggle();
     }
+    getStudent=(id)=>{
+
+            const {history}=this.props;
+            window.location.href = `${PUBLIC_URL}adminStudentInfo/${id}`;
+      //  history.push(`${PUBLIC_URL}requestinfo/${abc}`);
+         // alert(abc);
+
+    }
     render() {
         return (  <>
 
@@ -40,10 +48,11 @@ class SideBar extends React.Component {
                                     <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Students</a>
                                     <ul class="list-unstyled collapse" id="homeSubmenu1">
                                         <li>
-                                        <Link class="hrefa" to={`${PUBLIC_URL}adminStudentInfo`}>Current Student</Link>
+                                        <Link class="hrefa" onClick={()=>this.getStudent(1)}>Current Student</Link>
                                         </li>
                                         <li>
-                                            <a href="#565">Ex Student</a>
+                                        <Link class="hrefa"  onClick={()=>this.getStudent(0)} >Ex Student</Link>
+
                                         </li>
 
                                     </ul>

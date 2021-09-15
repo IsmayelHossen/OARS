@@ -72,7 +72,7 @@ class RequestInfo extends React.Component {
             <i class="fa fa-align-right"></i>  <span class="glyphicon glyphicon-align-right " aria-hidden="true">Toggle</span>
             </button>
              <br></br>
-             <h3 class="adminStudentH3"> Request {this.props.match.params.request} Information</h3>
+             <h3 class="adminStudentH3">Want to be a member of OARS as  {this.props.match.params.request}(Sending Request) </h3>
                  <div class="row">
 
                  {this.props.match.params.request=='Student' && this.state.RequestInfo.map((row,index)=>(

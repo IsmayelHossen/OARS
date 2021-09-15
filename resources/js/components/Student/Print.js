@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactToPrint, { PrintContextConsumer } from 'react-to-print';
-import { GetCTMarks } from '../Services/AttendanceService';
-import { SemesterWithCourseCodeRes, TeacherInformation } from '../Services/StudentService';
+// import { GetCTMarks } from '../Services/AttendanceService';
+// import { SemesterWithCourseCodeRes, TeacherInformation } from '../Services/StudentService';
+import {GetCTMarks, SemesterWithCourseCodeRes, TeacherInformation } from '../Services/StudentService';
 import ViewAttendance from './ViewAttendance';
 
 class ComponentToPrint  extends React.Component {
@@ -132,7 +133,9 @@ class ComponentToPrint  extends React.Component {
      </div>
 
      <h5>Class Test Marks</h5>
-
+      {this.state.CTMark!=0 &&(
+          <h6>Best CT Count:{this.state.CTMark.length}</h6>
+      )}
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>

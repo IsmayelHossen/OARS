@@ -12,16 +12,7 @@ use App\Http\Controllers\API\TeacherController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -33,6 +24,7 @@ Route::post('login', [LoginRegController::class, 'login']);
 Route::post('register', [LoginRegController::class, 'register']);
 Route::post('storeVcode1', [LoginRegController::class, 'storeVcode1']);
 Route::get('/user', [LoginRegController::class, 'user'])->middleware('auth:api');
+
 //  Route::get('/user', [LoginRegController::class, 'user'])->middleware('auth:api');
 
 //student all api
@@ -41,14 +33,22 @@ Route::get('AttendanceResultInfo1/{email}',[StudentController::class,'Attendance
 Route::get('StudentSemResultInfo1/{it}/{semester}',[StudentController::class,'StudentSemResultInfo1']);
 Route::get('IndividualAttendResult1/{it}/{ccode}',[StudentController::class,'IndividualAttendResult1']);
 Route::get('TeacherInformation1/{temail}',[StudentController::class,'TeacherInformation1']);
-Route::get('classmateGet1/{session}',[StudentController::class,'classmateGet1']);
+Route::get('classmateGet1/{session}/{email}',[StudentController::class,'classmateGet1']);
 // Route::group(['middleware' => 'auth:api'], function () {
 //     Route::apiResource('Student', StudentController::class);
 // });
-
+// ct mark get GetCTMarks2
+Route::get('GetCTMarks2/{it}/{ccode}/{temail}',[StudentController::class,'GetCTMarks2']);
 //teacher all api
 Route::apiResource('Teacher', TeacherController::class);
-Route::get('getColleagueInfo1',[TeacherController::class,'getColleagueInfo1']);
+// SaveMoreInfo
+Route::post('SaveMoreInfo1',[TeacherController::class,'SaveMoreInfo1']);
+// GetMoreinf2
+Route::get('GetMoreinf2/{email}',[TeacherController::class,'GetMoreinf2']);
+Route::get('getColleagueInfo1/{email}',[TeacherController::class,'getColleagueInfo1']);
+Route::get('GetteacherData1',[StudentController::class,'GetteacherData1']);
+
+
 //Attendance api
 // Route::get('semesterrule/{email}/{batch}',[AttendanceController::class,'TakenPermitClass']);
 Route::get('semesterrule/{email}',[AttendanceController::class,'TakenPermitClass']);
@@ -86,7 +86,8 @@ Route::get('SemesterCtMark1/{session}/{ccode}/{temail}',[AttendanceController::c
 Route::get('IndividualCtMark1/{session}/{ccode}/{temail}/{ctnum}',[AttendanceController::class,'IndividualCtMark1']);
 //GetCountCTMark1
 Route::get('GetCountCTMark1/{session}/{ccode}/{ctcount}/{temail}',[AttendanceController::class,'GetCountCTMark1']);
-
+// GetRoutineResult1
+Route::get('GetRoutineResult2/{temail}',[AttendanceController::class,'GetRoutineResult2']);
 //image all api
 Route::post('upload',[ImageController::class,'uploadimage']);
 
@@ -99,7 +100,7 @@ Route::get('GetSemcCourseUpdateData1/{email}/{ccode}/{session}',[AdminController
 Route::post('UpdateSemesterCourse1',[AdminController::class,'UpdateSemesterCourse1']);
 Route::post('NoticeSave1',[AdminController::class,'NoticeSave1']);
 Route::get('getNoticeData1',[AdminController::class,'getNoticeData1']);
-Route::get('GetSessionActiveData1',[AdminController::class,'GetSessionActiveData1']);
+Route::get('GetSessionActiveData1/{id}',[AdminController::class,'GetSessionActiveData1']);
 Route::get('GetSessionStudent1/{session}',[AdminController::class,'GetSessionStudent1']);
 Route::post('SaveSemesterCourseTitle1',[AdminController::class,'SaveSemesterCourseTitle1']);
 Route::get('GetSemesterCourseTitleInfo1',[AdminController::class,'GetSemesterCourseTitleInfo1']);
@@ -127,9 +128,18 @@ Route::get('AcceptRequestDone1/{who}/{email}',[AdminController::class,'AcceptReq
 Route::get('GetAllMsg1/{friendid}/{myid}',[AdminController::class,'GetAllMsg1']);
 Route::post('saveMsg1',[AdminController::class,'saveMsg1']);
 Route::get('AllFriendData1/{myid}',[AdminController::class,'AllFriendData1']);
+Route::get('AllFriendData3/{myid}',[AdminController::class,'AllFriendData3']);
+Route::get('AllFriendData4/{myid}',[AdminController::class,'AllFriendData4']);
+
+// RoutineActive1
+Route::get('RoutineActive1/{email}/{day}/{id}',[AdminController::class,'RoutineActive1']);
+//getNoticeEvent1
+Route::get('getNoticeEvent2/{email}',[AdminController::class,'getNoticeEvent2']);
 
 Route::post('pusher/auth',[AdminController::class,'authenticate']);
 Route::post('SavePost1',[AdminController::class,'SavePost1']);
+Route::post('SaveNoticeEvent1',[AdminController::class,'SaveNoticeEvent1']);
+
 Route::get('PostGet1/{email}',[AdminController::class,'PostGet1']);
 Route::get('PostDelete1/{id}',[AdminController::class,'PostDelete1']);
 Route::get('EditDataget1/{id}/{email}',[AdminController::class,'EditDataget1']);
@@ -137,6 +147,7 @@ Route::post('EditPostData1',[AdminController::class,'EditPostData1']);
 Route::post('SaveSemesterRoutine1',[AdminController::class,'SaveSemesterRoutine1']);
 Route::get('RoutineResult1',[AdminController::class,'RoutineResult1']);
 Route::get('GetRoutineResult1/{email}',[AdminController::class,'GetRoutineResult1']);
+Route::get('getIndviNoticeEvent1/{id}',[AdminController::class,'getIndviNoticeEvent1']);
 
 
 

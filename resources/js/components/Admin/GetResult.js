@@ -18,7 +18,8 @@ class GetResult extends React.Component {
             courseTitle:[],
             SessionGet:[],
             SemesterResult:[],
-            errormessage:''
+            errormessage:'',
+            notfound:'',
           }
     }
     componentDidMount() {
@@ -52,12 +53,13 @@ class GetResult extends React.Component {
          this.setState({
               ccode:"",
               ctitle:"",
-              semester:'',
+
               credit:'',
               errors:"",
               errormessage:"",
               isLoading:true,
-              SemesterResult:response.data
+              SemesterResult:response.data,
+              notfound:response.success
 
           });
           console.log('SemesterResult',this.state.SemesterResult);
@@ -124,7 +126,7 @@ class GetResult extends React.Component {
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <h5 class="modal-title" id="exampleModalLabel">Grade Sheet Generate</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -190,6 +192,9 @@ class GetResult extends React.Component {
   {/* modal end */}
 
 <h3>Semester Wise Result</h3>
+{ this.state.notfound==true && this.state.SemesterResult.length==0 &&(
+                               <h3 style={{color:'red'}}>No result found </h3>
+                             )}
                          <div class="table-responsive">
                          <table class="table table-striped">
                              <thead>
@@ -207,10 +212,8 @@ class GetResult extends React.Component {
                                </tr>
                              </thead>
                              <tbody>
-                             {this.state.semester && this.state.session && this.state.SemesterResult.length<0 &&(
-                               <h3>No result fund {this.state.errormessage}</h3>
-                             )}
-                                 {this.state.SemesterResult  !=null && this.state.SemesterResult.map((row,index)=>(
+
+                                 {this.state.SemesterResult!=null && this.state.SemesterResult.map((row,index)=>(
 
                                   <tr>
                                       <td>{i++}</td>

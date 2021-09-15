@@ -21,7 +21,11 @@ import Pagination1 from '../Teacher/Pagination1';
      }
      getClassmate=async()=>{
          const session=localStorage.getItem('session');
-         const response=await classmateGet(session);
+         const getLoginData = localStorage.getItem("LoginData");
+         const data1 = JSON.parse(getLoginData);
+         const email = data1.user.email;
+         const response=await classmateGet(session,email);
+
          if(response.success){
              this.setState({ AllclassMate:response.data  });
 

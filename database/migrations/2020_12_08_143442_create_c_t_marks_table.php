@@ -22,6 +22,7 @@ class CreateCTMarksTable extends Migration
             $table->string('temail');
             $table->string('ctname');
             $table->float('marks');
+            $table->string('status')->default(0);
             $table->timestamps();
         });
     }

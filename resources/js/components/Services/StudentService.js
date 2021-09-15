@@ -10,6 +10,18 @@ export const StudentAllInfo =async(email) => {
 
     });
 };
+//get teacher data
+export const GetteacherData =async() => {
+    //  console.log(data);
+  return await Axios.get(`${PUBLIC_URL}api/GetteacherData1`).then((res) => {
+     return res.data;
+     // console.log('data',res.data);
+
+
+
+  });
+};
+
 export const StudenUpdateData = async (email,data) => {
     //  console.log(data);
     return await Axios.put(`${PUBLIC_URL}api/Student/${email}`,data).then((res) => {
@@ -18,7 +30,17 @@ export const StudenUpdateData = async (email,data) => {
 
     });
 };
+// ct mark result GetCTMarks(this.props.it,this.props.courseCode,temail);
+export const GetCTMarks=async(it,courseCode,temail) => {
+    //  console.log(data);
+  return await Axios.get(`${PUBLIC_URL}api/GetCTMarks2/${it}/${courseCode}/${temail}`).then((res) => {
+     return res.data;
+     // console.log('data',res.data);
 
+
+
+  });
+};
 // AttendanceResultInfo
 
 export const AttendanceResultInfo=async(email) => {
@@ -66,9 +88,9 @@ export const TeacherInformation=async(temail) => {
   });
 };
 // classmateGet
-export const classmateGet=async(session) => {
+export const classmateGet=async(session,email) => {
     //  console.log(data);
-  return await Axios.get(`${PUBLIC_URL}api/classmateGet1/${session}`).then((res) => {
+  return await Axios.get(`${PUBLIC_URL}api/classmateGet1/${session}/${email}`).then((res) => {
      return res.data;
      // console.log('data',res.data);
 

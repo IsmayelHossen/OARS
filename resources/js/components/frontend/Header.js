@@ -183,6 +183,9 @@ Home <span class="sr-only">(current)</span></Link>
 
                                  <Link class="nav-link" to={`${PUBLIC_URL}seeclassmate`}> Classmate</Link>
                              </li>
+                             <li>
+                             <Link class="nav-link" to={`${PUBLIC_URL}Getteacherinfo`}>Teacher-Info</Link>
+                                    </li>
                              <li class="nav-item">
 
                 <Link class="nav-link" to={`${PUBLIC_URL}message`}>Message</Link>
@@ -208,12 +211,9 @@ Home <span class="sr-only">(current)</span></Link>
                                <>
                                  <li class="nav-item">
 
-                        <Link class="nav-link" to={PUBLIC_URL}>Teachers Info</Link>
+                        <Link class="nav-link"   to={`${PUBLIC_URL}adminTeacherin`}>Teachers Info</Link>
                           </li>
-                          <li class="nav-item">
 
-                        <Link class="nav-link" to={PUBLIC_URL}>Stuffs Info</Link>
-                        </li>
                         <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Member Request <span class="badge badge-primary badge-pill">{this.state.memberRequest.length+this.state.memberRequest2.length}</span>

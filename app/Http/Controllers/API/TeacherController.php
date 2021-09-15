@@ -9,6 +9,7 @@ use App\Repositories\StudentR;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\API;
+use App\Models\Moreinfo;
 use Illuminate\Support\Facades\DB;
 
 class TeacherController extends Controller
@@ -26,6 +27,99 @@ class TeacherController extends Controller
   public function show($email){
       $getdata=Teacher::where('email',$email)->first();
         return  $getdata;
+
+ }
+ public function GetMoreinf2($email){
+    $data=Moreinfo::where('email',$email)->get();
+    return response()->json([
+        'success' => true,
+        'message' => 'getdata successully !!',
+        'data' => $data,
+
+
+    ]);
+ }
+ public function SaveMoreInfo1(Request $request){
+     if($request->heading=='Education'){
+
+        $formData = $request->all();
+        $validator =Validator::make($formData, [
+            'heading' => 'required',
+            'email' => 'required',
+            'degree' => 'required',
+            'institution' => 'required',
+            'pyear' => 'required|min:4|max:4',
+        ], [
+            'heading.required' => 'Please Select Heading',
+            'degree.required' => 'Please write your Degree',
+            'institution.required' => 'Please write your institution name',
+            'pyear.required' => 'Please write your Passing Year',
+
+
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => $validator->getMessageBag()->first(),
+                'errors' => $validator->getMessageBag(),
+            ]);
+        }
+        $data=array();
+        $data['email']=$request->email;
+        $data['heading']=$request->heading;
+        $data['institution']=$request->institution;
+        $data['passing']=$request->pyear ;
+        $data['result']=$request->result;
+        $data['degree']=$request->degree;
+        $savedata=DB::table('moreinfos')->insert($data);
+       return response()->json([
+          'success' => true,
+          'message' => 'Update Data successully !!',
+          'data' => $savedata,
+
+
+      ]);
+
+     }
+     else{
+        $formData = $request->all();
+        $validator =Validator::make($formData, [
+            'heading' => 'required',
+            'email' => 'required',
+            'details' => 'required',
+
+        ], [
+            'heading.required' => 'Please Select Heading',
+            'details.required' => 'Please write something according to the heading',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => $validator->getMessageBag()->first(),
+                'errors' => $validator->getMessageBag(),
+            ]);
+        }
+        $data=array();
+        $data['email']=$request->email;
+        $data['heading']=$request->heading;
+        $details=$request->details;
+       // $details=str_replace("'", "\'", $details);
+        $data['details']=$details;
+        $savedata=DB::table('moreinfos')->insert($data);
+       return response()->json([
+          'success' => true,
+          'message' => 'Update Data successully !!',
+          'data' => $savedata,
+
+
+      ]);
+
+     }
+
+
+
+
+
 
  }
  public function update(Request $request,$email){
@@ -104,8 +198,8 @@ class TeacherController extends Controller
   }
 
 }
-public function getColleagueInfo1(){
-    $result=Teacher::get();
+public function getColleagueInfo1($email){
+    $result=Teacher::whereNotIn('email',[$email])->where('status',2)->get();
     return response()->json([
         'success' => true,
         'message' => 'get colleague info !!',

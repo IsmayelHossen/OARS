@@ -39,6 +39,7 @@ class DetailsCT  extends React.Component{
    }
    onclickInput=(e)=>{
     this.setState({ [e.target.name]:e.target.value  });
+   // alert(this.state.ctcount);
     console.log(this.state.it+this.state.marks);
 }
    formSubmit=async(e)=>{
@@ -84,7 +85,10 @@ class DetailsCT  extends React.Component{
             <div class="row">
                <div class="col-md-12">
                    <div class="takenclasss">
-                        <h3 class="heading"></h3>
+                        <h3 class="heading">Session:{this.props.match.params.session}<br></br>
+                        Course Code:{this.props.match.params.ccode}
+                        </h3>
+
                           <div class="row">
                               {this.state.SemesterCTdata.map((row,index)=>(
 
@@ -106,7 +110,7 @@ class DetailsCT  extends React.Component{
 )}
                               <form action="" method="post" onSubmit={this.formSubmit}>
                               <div class="form-group">
- <label for="email">Get number Of best CT marks And  attendance result:</label>
+ <label for="email">Count number Of best CT marks and get attendance result also:</label>
   <select class="form-control" id="sel1"  name="ctcount" onChange={(e)=>this.onclickInput(e)}>
     <option value="">Select</option>
     <option value="1">1</option>

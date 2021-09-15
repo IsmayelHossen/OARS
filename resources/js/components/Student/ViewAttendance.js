@@ -1,8 +1,8 @@
 import React from 'react';
-import { SemesterWithCourseCodeRes, TeacherInformation } from '../Services/StudentService';
+import {GetCTMarks, SemesterWithCourseCodeRes, TeacherInformation } from '../Services/StudentService';
 import { withRouter } from 'react-router-dom';
 import { PUBLIC_URL } from "../CommonURL";
-import { GetCTMarks } from '../Services/AttendanceService';
+// import { GetCTMarks } from '../Services/AttendanceService';
  class ViewAttendance extends React.Component {
     constructor(props) {
         super(props);
@@ -146,7 +146,9 @@ import { GetCTMarks } from '../Services/AttendanceService';
        <h6 style={{color:((PresentCount*100)/this.state.AttendanceIndivi.length>60)?'#2c601e':'red'}}>Attendance Percentance:{(PresentCount*100)/this.state.AttendanceIndivi.length}%</h6>
  </div>
  <h5>Class Test Marks</h5>
-
+ {this.state.CTMark!=0 &&(
+          <h6 style={{color:'red'}}>Best CT Count:{this.state.CTMark.length}</h6>
+      )}
  <div class="table-responsive">
      <table class="table table-striped">
          <thead>

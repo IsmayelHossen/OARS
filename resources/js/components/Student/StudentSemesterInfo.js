@@ -35,7 +35,7 @@ class StudentSemesterInfo extends React.Component {
              <div class="row ">
                <div class="col-md-12">
                    <div class="takenclasss">
-                        <h3 class="heading example-screen"> All Information</h3>
+                        <h3 class="heading example-screen"> All Information(Semester:{this.props.match.params.semester})</h3>
                           <div class="row">
 
                                {this.state.StudentSemInfo.map((row,index)=>(

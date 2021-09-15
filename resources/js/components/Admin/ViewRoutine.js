@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    deleteSpecificSemesterCourse,GetRoutineResult ,RoutineResult} from '../Services/Admin/AdminServices';
+    deleteSpecificRoutine,deleteSpecificSemesterCourse,GetRoutineResult ,RoutineResult,RoutineActive} from '../Services/Admin/AdminServices';
 import SideBar from './SideBar';
 import Swal from 'sweetalert2';
 import { ToastContainer, toast } from 'react-toastify';
@@ -80,12 +80,52 @@ class ViewRoutine extends React.Component {
         this.setState({ toggleButton:!this.state.toggleButton ,ToggleData:!this.state.ToggleData });
     }
 
+    DeleteRoutine=(email,day)=>{
+        Swal.fire({
+              title: 'Are you sure?',
+          text: 'Want To delete',
+            icon: 'warning',
+              showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+         confirmButtonText: 'Yes!'})
+         .then(async(result) => {
+              if(result.value){
+                //   this.props.submitUser(this.state)
+
+            //     const getLoginData = localStorage.getItem("LoginData");
+            //   const data1 = JSON.parse(getLoginData);
+            //   const email = data1.user.email;
+              const response = await deleteSpecificRoutine(email,day);
+              if(response.success){
+                  toast('Routine Deleted Successfully');
+                  this.GetRoutine();
+
+              }
+                //console.log(ccode ,takendate);
+
+                }
+            })
+       }
+       ActiveRoutine=async(email,day,id)=>{
+           const activeroutine=await RoutineActive(email,day,id);
+           if(activeroutine){
+            toast('Active Successfully');
+            this.GetRoutine();
+           }
+
+       }
     render() {
         let i=1;
         let i1=1;
         let i2=1;
         let i3=1;
         let i4=1;
+        let i5=1;
+        let i6=1;
+        let i7=1;
+        let i8=1;
+        let i9=1;
         return (
             <>
             <ToastContainer/>
@@ -110,9 +150,9 @@ class ViewRoutine extends React.Component {
 
 
                         <br></br>
-                         <h3>Semester Routine</h3>
+                         <h3 style={{textAlign:'center'}}>Individual Semester Routine({this.props.match.params.email})</h3>
                          <div class="table-responsive">
-                         <table class="table table-striped">
+                         <table class="table table-hover">
                              <thead>
                                {/* <tr>
                                    <th>Day</th>
@@ -128,11 +168,11 @@ class ViewRoutine extends React.Component {
                              <tr>
                                  {this.state.IndividualRoutine.map((row,index)=>(
                                 <>
-
-                                   {row.day=='Saturday' &&(
+                                  {row.day=='Saturday' &&(
                                    <>
                                    {i=='1' &&(
                                        <>
+                                       {/* for print day once time that's ehy here i condition is used */}
                                 <th>{row.day}</th>
                                 <span style={{display:'none'}}>{i++}</span>
                                 </>
@@ -143,22 +183,43 @@ class ViewRoutine extends React.Component {
                                             Semester:{row.semester}<p>Course Code:{row.ccode}</p>
                                     <p>Course Title:{row.ctitle}</p>
                                     <p>Time:{row.time1}<span>{row.ampm}</span></p>
+                                    {/* active inactive status start */}
+                                    <p>{row.status==0 && (
+                                        <>
+                                        <span style={{color:'red'}}>Inactive</span>
+                                        <button class="btn btn-success"
+                                        onClick={()=>this.ActiveRoutine(row.email,row.day,row.id)}
+                                        >Active Please</button>
+                                        </>
+                                    )}</p>
+                                      {/* active inactive status end */}
                                     </td>
 
 
                                   </>
                                    )}
 
-
                                 </>
                                  ))}
-
-                                       <td>
-                                       <button class="btn btn-danger">
+                                 {/* for delete option need this specific code start */}
+                                 {this.state.IndividualRoutine.map((row,index)=>(
+                                     <>
+                                       {row.day=='Saturday' &&(
+                                           <>
+                                          {(i5=='1' &&
+                                        <td>
+                                          <span style={{display:'none'}}>{i5++}</span>
+                                       <button class="btn btn-danger" onClick={()=>this.DeleteRoutine(row.email,row.day)}>
                                            Delete
                                            </button>
+                                             </td>
+                                             )}
 
-                                           </td>
+                                             </>
+                                       )}
+                                       </>
+                                 ))}
+                                  {/* for delete option need this specific code end */}
                                   </tr>
                                   <tr>
                                  {this.state.IndividualRoutine.map((row,index)=>(
@@ -169,7 +230,7 @@ class ViewRoutine extends React.Component {
                                    {i1=='1' &&(
                                        <>
                                 <th>{row.day}</th>
-                                <span style={{display:'none'}}>{i++}</span>
+                                <span style={{display:'none'}}>{i1++}</span>
                                 </>
                                    )}
 
@@ -178,21 +239,43 @@ class ViewRoutine extends React.Component {
                                             Semester:{row.semester}<p>Course Code:{row.ccode}</p>
                                     <p>Course Title:{row.ctitle}</p>
                                     <p>Time:{row.time1}<span>{row.ampm}</span></p>
+                                       {/* active inactive status start */}
+                                       <p>{row.status==0 && (
+                                        <>
+                                        <span style={{color:'red'}}>Inactive</span>
+                                        <button class="btn btn-success"
+                                        onClick={()=>this.ActiveRoutine(row.email,row.day,row.id)}
+                                        >Active Please</button>
+                                        </>
+                                    )}</p>
+                                      {/* active inactive status end */}
                                     </td>
 
 
                                   </>
                                    )}
 
-
                                 </>
                                  ))}
-                                 <td>
-                                       <button class="btn btn-danger"Delete>
+                                     {/* for delete option need this specific code start */}
+                                     {this.state.IndividualRoutine.map((row,index)=>(
+                                     <>
+                                       {row.day=='Sunday' &&(
+                                           <>
+                                          {(i6=='1' &&
+                                        <td>
+                                          <span style={{display:'none'}}>{i6++}</span>
+                                          <button class="btn btn-danger" onClick={()=>this.DeleteRoutine(row.email,row.day)}>
                                            Delete
                                            </button>
+                                             </td>
+                                             )}
 
-                                           </td>
+                                             </>
+                                       )}
+                                       </>
+                                 ))}
+                                  {/* for delete option need this specific code end */}
                                   </tr>
                                   <tr>
                                  {this.state.IndividualRoutine.map((row,index)=>(
@@ -203,7 +286,7 @@ class ViewRoutine extends React.Component {
                                    {i2=='1' &&(
                                        <>
                                 <th>{row.day}</th>
-                                <span style={{display:'none'}}>{i++}</span>
+                                <span style={{display:'none'}}>{i2++}</span>
                                 </>
                                    )}
 
@@ -212,21 +295,42 @@ class ViewRoutine extends React.Component {
                                             Semester:{row.semester}<p>Course Code:{row.ccode}</p>
                                     <p>Course Title:{row.ctitle}</p>
                                     <p>Time:{row.time1}<span>{row.ampm}</span></p>
+                                       {/* active inactive status start */}
+                                       <p>{row.status==0 && (
+                                        <>
+                                        <span style={{color:'red'}}>Inactive</span>
+                                        <button class="btn btn-success"
+                                        onClick={()=>this.ActiveRoutine(row.email,row.day,row.id)}
+                                        >Active Please</button>
+                                        </>
+                                    )}</p>
+                                      {/* active inactive status end */}
                                     </td>
 
 
                                   </>
                                    )}
-
-
                                 </>
                                  ))}
-                                 <td>
-                                       <button class="btn btn-danger"Delete>
+                                     {/* for delete option need this specific code start */}
+                                     {this.state.IndividualRoutine.map((row,index)=>(
+                                     <>
+                                       {row.day=='Monday' &&(
+                                           <>
+                                          {(i7=='1' &&
+                                        <td>
+                                          <span style={{display:'none'}}>{i7++}</span>
+                                          <button class="btn btn-danger" onClick={()=>this.DeleteRoutine(row.email,row.day)}>
                                            Delete
                                            </button>
+                                             </td>
+                                             )}
 
-                                           </td>
+                                             </>
+                                       )}
+                                       </>
+                                 ))}
+                                  {/* for delete option need this specific code end */}
                                   </tr>
                                   <tr>
                                  {this.state.IndividualRoutine.map((row,index)=>(
@@ -237,7 +341,7 @@ class ViewRoutine extends React.Component {
                                    {i3=='1' &&(
                                        <>
                                 <th>{row.day}</th>
-                                <span style={{display:'none'}}>{i++}</span>
+                                <span style={{display:'none'}}>{i3++}</span>
                                 </>
                                    )}
 
@@ -246,22 +350,42 @@ class ViewRoutine extends React.Component {
                                             Semester:{row.semester}<p>Course Code:{row.ccode}</p>
                                     <p>Course Title:{row.ctitle}</p>
                                     <p>Time:{row.time1}<span>{row.ampm}</span></p>
+                                       {/* active inactive status start */}
+                                       <p>{row.status==0 && (
+                                        <>
+                                        <span style={{color:'red'}}>Inactive</span>
+                                        <button class="btn btn-success"
+                                        onClick={()=>this.ActiveRoutine(row.email,row.day,row.id)}
+                                        >Active Please</button>
+                                        </>
+                                    )}</p>
+                                      {/* active inactive status end */}
                                     </td>
 
 
                                   </>
                                    )}
-
-
                                 </>
                                  ))}
-                                 <td>
-
-                                       <button class="btn btn-danger"Delete>
+                                  {/* for delete option need this specific code start */}
+                                  {this.state.IndividualRoutine.map((row,index)=>(
+                                     <>
+                                       {row.day=='Tuesday' &&(
+                                           <>
+                                          {(i9=='1' &&
+                                        <td>
+                                          <span style={{display:'none'}}>{i9++}</span>
+                                          <button class="btn btn-danger" onClick={()=>this.DeleteRoutine(row.email,row.day)}>
                                            Delete
                                            </button>
+                                             </td>
+                                             )}
 
-                                           </td>
+                                             </>
+                                       )}
+                                       </>
+                                 ))}
+                                  {/* for delete option need this specific code end */}
                                   </tr>
                                   <tr>
                                  {this.state.IndividualRoutine.map((row,index)=>(
@@ -272,7 +396,7 @@ class ViewRoutine extends React.Component {
                                    {i4=='1' &&(
                                        <>
                                 <th>{row.day}</th>
-                                <span style={{display:'none'}}>{i++}</span>
+                                <span style={{display:'none'}}>{i4++}</span>
                                 </>
                                    )}
 
@@ -281,22 +405,42 @@ class ViewRoutine extends React.Component {
                                             Semester:{row.semester}<p>Course Code:{row.ccode}</p>
                                     <p>Course Title:{row.ctitle}</p>
                                     <p>Time:{row.time1}<span>{row.ampm}</span></p>
+                                       {/* active inactive status start */}
+                                       <p>{row.status==0 && (
+                                        <>
+                                        <span style={{color:'red'}}>Inactive</span>
+                                        <button class="btn btn-success"
+                                        onClick={()=>this.ActiveRoutine(row.email,row.day,row.id)}
+                                        >Active Please</button>
+                                        </>
+                                    )}</p>
+                                      {/* active inactive status end */}
                                     </td>
 
 
                                   </>
                                    )}
-
-
                                 </>
                                  ))}
-                                 <td>
-
-                                       <button class="btn btn-danger"Delete>
+                                {/* for delete option need this specific code start */}
+                                {this.state.IndividualRoutine.map((row,index)=>(
+                                     <>
+                                       {row.day=='Wednesday' &&(
+                                           <>
+                                          {(i8=='1' &&
+                                        <td>
+                                          <span style={{display:'none'}}>{i8++}</span>
+                                          <button class="btn btn-danger" onClick={()=>this.DeleteRoutine(row.email,row.day)}>
                                            Delete
                                            </button>
+                                             </td>
+                                             )}
 
-                                           </td>
+                                             </>
+                                       )}
+                                       </>
+                                 ))}
+                                  {/* for delete option need this specific code end */}
                                   </tr>
 
 

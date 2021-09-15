@@ -50,7 +50,7 @@ class Register extends React.Component {
             // alert('add successfully');
              //toast.info('check your email for verification');
              history.push(`${PUBLIC_URL}verification`);
-            console.log('register',response.data);
+            console.log('register data',response.data);
         }
         else {
             console.log("response.errors", response.errors);

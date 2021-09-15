@@ -9,6 +9,7 @@ use App\Models\Student;
 use App\Models\Teacher;
 use App\Repositories\StudentR;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
@@ -27,6 +28,16 @@ class StudentController extends Controller
       $getdata=Student::where('email',$email)->first();
         return $getdata;
 
+  }
+  public function GetteacherData1(){
+    $getdata=Teacher::where('status',2)->get();
+    return response()->json([
+        'success' => true,
+        'message' => 'getdata successully !!',
+        'data' => $getdata,
+
+
+    ]);
   }
   public function update(Request $request,$email){
         $formData = $request->all();
@@ -68,16 +79,32 @@ class StudentController extends Controller
         }
 
          $studentData=Student::where('email',$email)->first();
-         $studentData->name=$request->name;
-        $studentData->it = $request->it;
-        $studentData->bloodg = $request->bloodg;
-        $studentData->session = $request->session;
-        $studentData->phone = $request->phone;
-        $studentData->faname = $request->faname;
-        $studentData->maname = $request->maname;
-        $studentData->caddress = $request->caddress;
-        $studentData->paddress = $request->paddress;
-        $studentData->status ='1';
+         if($studentData->status==2){
+            $studentData->name=$request->name;
+            $studentData->it = $request->it;
+            $studentData->bloodg = $request->bloodg;
+            $studentData->session = $request->session;
+            $studentData->phone = $request->phone;
+            $studentData->faname = $request->faname;
+            $studentData->maname = $request->maname;
+            $studentData->caddress = $request->caddress;
+            $studentData->paddress = $request->paddress;
+           $data=DB::table('users')->where('email', $email)->update(['name' =>$request->name]);
+         }
+         else{
+            $studentData->name=$request->name;
+            $studentData->it = $request->it;
+            $studentData->bloodg = $request->bloodg;
+            $studentData->session = $request->session;
+            $studentData->phone = $request->phone;
+            $studentData->faname = $request->faname;
+            $studentData->maname = $request->maname;
+            $studentData->caddress = $request->caddress;
+            $studentData->paddress = $request->paddress;
+            $studentData->status ='1';
+            $data=DB::table('users')->where('email', $email)->update(['name' =>$request->name]);
+         }
+
 
         $studentData->save();
         return response()->json([
@@ -113,6 +140,19 @@ class StudentController extends Controller
 
     ]);
   }
+  public function GetCTMarks2($it,$ccode,$temail)
+{
+    $get1=DB::table('c_t_marks')
+ ->where('it',$it)->where('ccode',$ccode)->where('temail',$temail)->orderBy('marks','DESC')->where('status',1)->get();
+
+    return response()->json([
+        'success'=>true,
+        'message'=>'Get Individual CT mark Result',
+        'data'=>$get1
+    ]);
+
+
+}
   public function IndividualAttendResult1($it,$ccode){
     $result=Attendace::where('course_code',$ccode)->where('it',$it)->get();
     return response()->json([
@@ -129,8 +169,8 @@ class StudentController extends Controller
     return $result;
 
   }
-  public function classmateGet1($session){
-   $result=Student::where('session',$session)->orderBy('it','asc')->get();
+  public function classmateGet1($session,$email){
+   $result=Student::where('status',2)->where('session',$session)->Where('email', '!=',$email)->orderBy('it','asc')->get();
    return response()->json([
     'success' => true,
     'message' => 'session waize result !!',

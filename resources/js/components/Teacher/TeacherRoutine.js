@@ -1,6 +1,7 @@
 import React from "react";
 //since routine is same that's why use Admin panel service
-import { GetRoutineResult,GetRoutineCcode ,getSemesterCodeIndivi,getSemesterCodeTitle,SaveSemesterRoutinefromTacher,deleteSpecificRoutine} from "../Services/Admin/AdminServices";
+import { GetRoutineCcode ,getSemesterCodeIndivi,getSemesterCodeTitle,SaveSemesterRoutinefromTacher,deleteSpecificRoutine} from "../Services/Admin/AdminServices";
+import { GetRoutineResult} from "../Services/TeacherService";
 import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -39,7 +40,7 @@ class TeacherRoutine extends React.Component {
         const response = await GetRoutineCcode(this.user.email);
         if (response.success) {
             this.setState({getccode: response.data });
-            console.log('getcode',response.data);
+            console.log('getcode123',response.data);
         }
     }
 
@@ -128,7 +129,7 @@ class TeacherRoutine extends React.Component {
             });
 
             this.GetRoutine();
-            toast('Data Inserted Successfully')
+            toast('Data Inserted Successfully and wait for the admin response');
             $('#exampleModal').modal('hide');
 
 
@@ -197,12 +198,12 @@ class TeacherRoutine extends React.Component {
              <div class="wrapper">
      <div id="content">
          <div class="row">
-             <div class="col">
-             <h3 class="btn btn-primary">Semester Routine</h3>
+             <div class="col-md-10">
+             <h3 style={{textAlign:'center',fontWeight:'700',textShadow:'0px 2px #d7cdcd '}}>Semester Routine</h3>
              </div>
-             <div class="col">
+             <div class="col-md-2">
              <button type="button" class=" btn btn-success  clearfix"   style={{marginRight:"5px"}} data-toggle="modal" data-target="#exampleModal">
-  Add
+  Add Routine
 </button>
 
 {/* modal start */}

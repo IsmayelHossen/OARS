@@ -31,6 +31,15 @@ export const deleteSpecificRoutine = async (email,day) => {
 
     });
 };
+//getNoticeEvent1
+export const getNoticeEvent1 = async (email) => {
+
+    return await Axios.get(`${PUBLIC_URL}api/getNoticeEvent2/${email}`).then((res) => {
+       return res.data;
+
+
+    });
+};
 // GetSemesterCourseInfo
 export const GetSemesterCourseInfo = async () => {
 
@@ -95,9 +104,9 @@ export const NoticeSave=async(data)=>{
         });
     };
     // GetSessionActiveData
-    export const GetSessionActiveData= async () => {
+    export const GetSessionActiveData= async (id) => {
 
-        return await Axios.get(`${PUBLIC_URL}api/GetSessionActiveData1`).then((res) => {
+        return await Axios.get(`${PUBLIC_URL}api/GetSessionActiveData1/${id}`).then((res) => {
            return res.data;
 
 
@@ -146,6 +155,16 @@ export const NoticeSave=async(data)=>{
 export const getSemesterCode= async(semester) => {
 
     return await Axios.get(`${PUBLIC_URL}api/getSemesterCode1/${semester}`).then((res) => {
+       return res.data;
+
+
+    });
+};
+//individual notie event request from font end home
+
+export const getIndviNoticeEvent= async(id) => {
+
+    return await Axios.get(`${PUBLIC_URL}api/getIndviNoticeEvent1/${id}`).then((res) => {
        return res.data;
 
 
@@ -362,6 +381,23 @@ export const AllFriendData= async(myid) => {
 
      });
  };
+ export const AllFriendData2= async(myid) => {
+    // console.log('info',infodata);
+     return await Axios.get(`${PUBLIC_URL}api/AllFriendData3/${myid}`).then((res) => {
+        return res.data;
+       console.log('attendance data',res.data.data);
+
+     });
+ };
+
+ export const AllFriendData3= async(myid) => {
+    // console.log('info',infodata);
+     return await Axios.get(`${PUBLIC_URL}api/AllFriendData4/${myid}`).then((res) => {
+        return res.data;
+       console.log('attendance data',res.data.data);
+
+     });
+ };
 //  export const usermethod1= async(id,data) => {
 //     // console.log('info',infodata);
 //      return await Axios.post(`${PUBLIC_URL}api/pusher/auth/${id}`,data).then((res) => {
@@ -375,6 +411,14 @@ export const AllFriendData= async(myid) => {
 export const SavePost= async(data) => {
 
     return await Axios.post(`${PUBLIC_URL}api/SavePost1`,data).then((res) => {
+       return res.data;
+
+    });
+};
+//saveNoticeEvent
+export const SaveNoticeEvent= async(data) => {
+
+    return await Axios.post(`${PUBLIC_URL}api/SaveNoticeEvent1`,data).then((res) => {
        return res.data;
 
     });
@@ -437,6 +481,16 @@ export const RoutineResult= async() => {
 export const GetRoutineResult= async(email) => {
     // console.log('info',infodata);
      return await Axios.get(`${PUBLIC_URL}api/GetRoutineResult1/${email}`).then((res) => {
+        return res.data;
+
+
+     });
+ }
+ //active specific routine
+
+ export const RoutineActive= async(email,day,id) => {
+    // console.log('info',infodata);
+     return await Axios.get(`${PUBLIC_URL}api/RoutineActive1/${email}/${day}/${id}`).then((res) => {
         return res.data;
 
 

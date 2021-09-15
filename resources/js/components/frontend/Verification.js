@@ -57,7 +57,7 @@ class Verification extends React.Component {
             < >
             <ToastContainer/>
             <div class="confarmation_page">
-                <h2>Registration Confarmation form</h2>
+                <h2>Registration Confirmation form</h2>
                 <form onSubmit={this.submitform} >
 
                             <div class="form-group">

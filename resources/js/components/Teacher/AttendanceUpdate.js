@@ -161,6 +161,7 @@ class AttendanceUpdate extends React.Component {
                  {this.state.SemesterStudent.slice(0,1).map((student123, index) => (
                <>
                  <Card.Subtitle class="mb-1 "><strong style={{color:"#d26161",paddingLeft:"10px"}}>Semester::{student123.semester}</strong></Card.Subtitle>
+                 <Card.Subtitle class="mb-1 "><strong style={{paddingLeft:"10px"}}>Course Code::{this.state.ccode}</strong></Card.Subtitle>
                  <Card.Subtitle class="mb-1  "><strong style={{color:"#456",paddingLeft:"10px"}}>Session:{student123.session}</strong></Card.Subtitle>
                  <Card.Subtitle class="mb-1  "><strong style={{color:"#41aa6f",paddingLeft:"10px"}}>Taken Date:{student123.TakenDate}</strong></Card.Subtitle>
 
@@ -173,11 +174,11 @@ class AttendanceUpdate extends React.Component {
 
 
                     <div class="col-md-6">
-                       <UpdateCcode SuccessCode={this.props.match.params.scode}
+                       {/* <UpdateCcode SuccessCode={this.props.match.params.scode}
                                      Session={localStorage.getItem('Session')}
                                      onCompleteCourseCodeUpdate={this.onCompleteCourseCodeUpdate}
                                 />
-                                <h3>Course Code:{this.state.ccode}</h3>
+                                <h3>Course Code:{this.state.ccode}</h3> */}
 
                     </div>
                 </div>

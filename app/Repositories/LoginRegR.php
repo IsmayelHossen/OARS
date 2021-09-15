@@ -58,15 +58,15 @@ class LoginRegR implements LoginRegI
 
     }
 
-    // public function findUserByEmailAddress($email)
-    // {
-    //     $user = User::where('email', $email)->first();
-    //     return $user;
-    // }
-    public function findUserByEmailAddress()
+    public function findUserByEmailAddress($email)
     {
-        $user =Auth::user();
+        $user = User::where('email', $email)->first();
         return $user;
     }
+    // public function findUserByEmailAddress()
+    // {
+    //     $user =Auth::user();
+    //     return $user;
+    // }
 }
 ?>

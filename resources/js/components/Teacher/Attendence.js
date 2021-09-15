@@ -309,7 +309,7 @@ setChecked(){
       <td>
               <>
               <input  type="radio" aria-label="Radio button for following text input"
-               name={student.it}   value="A"  Checked={this.state.checked1==true}/>A
+               name={student.it}   value="A"  Checked={this.state.checked1==true} /><span style={{marginRight:'6px'}}>A</span>
               <input   type="radio" aria-label="Radio button for following text input"
                  name={student.it} id="fileupload"  value="P"  defaultChecked={this.state.checked1==false} />P
                  {/* checkbox option */}
