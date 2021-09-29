@@ -260,9 +260,9 @@ export const SaveSemesterResult= async(data) => {
     });
 };
 // FinalResultByIt
-export const FinalResultByIt= async(it) => {
+export const FinalResultByIt= async(it,semester) => {
 
-    return await Axios.get(`${PUBLIC_URL}api/FinalResultByIt1/${it}`).then((res) => {
+    return await Axios.get(`${PUBLIC_URL}api/FinalResultByIt1/${it}/${semester}`).then((res) => {
        return res.data;
 
 

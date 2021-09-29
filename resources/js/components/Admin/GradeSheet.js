@@ -55,6 +55,7 @@ class ComponentToPrint  extends React.Component {
              let totalCT=0;
              let gpa=0;
              let avg=0;
+             let crdithours=0;
       return (
 
             <div class="containerCustom">
@@ -201,8 +202,17 @@ shall be determined as follows:</p>
                                 <td class="marksheettd">{row.lg}</td>
                                 <td class="marksheettd">{row.gp}</td>
 
+
                             </tr>
                             ))}
+{/* count course credit hours */}
+{this.state.MarksheetResult.map((row1,index)=>(
+
+      <span style={{display:'none'}}>
+      {crdithours=row1.chours+crdithours}
+
+  </span>
+ ))}
                             {/* dame data start */}
                                {/* <tr>
                                <td class="marksheettd">123</td>
@@ -306,7 +316,7 @@ shall be determined as follows:</p>
        </div>
        <div class="earncredit">
        <p><strong>Credit(s) Offered:</strong> </p>
-                   <p><strong>Credit(s) Earned:</strong>20 </p>
+                   <p><strong>Credit(s) Earned:</strong>6</p>
                    <p><strong>CGPA:</strong>20 </p>
                    <p><strong>Remarks:</strong> </p>
        </div>

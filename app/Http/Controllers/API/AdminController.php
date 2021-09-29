@@ -575,9 +575,9 @@ class AdminController extends Controller
             }
         }
     }
-    public function FinalResultByIt1($it)
+    public function FinalResultByIt1($it,$semester)
     {
-        $result = Result::where('it', $it)->get();
+        $result = Result::where('it', $it)->where('semester', $semester)->get();
         return response()->json([
             'success' => true,
             'message' => 'insert data',

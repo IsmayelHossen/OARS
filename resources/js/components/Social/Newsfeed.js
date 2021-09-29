@@ -80,20 +80,20 @@ export default class Newsfeed extends React.Component {
 
                                       {/* 2nd  part end */}
                                          {/* 3rd  part start*/}
-                                         <div class="row Main3rdPart">
+                                         {/* <div class="row Main3rdPart">
                                              <div class="col">
                                              <i class="fa fa-thumbs-up"></i>  <span>Like</span>
-                                                 <span>50</span>
+                                                 <span> 50</span>
                                              </div>
                                              <div class="col">
                                              <i class="fa fa-thumbs-down"></i> <span>Dislike</span>
-                                                 <span>50</span>
+                                                 <span> 50</span>
                                              </div>
                                              <div class="col">
                                                  <span>Comment</span>
-                                                 <span>60</span>
+                                                 <span> 60</span>
                                              </div>
-                                         </div>
+                                         </div> */}
                                           {/* 3rd  part end*/}
                                              {/* 4th  part start*/}
                                              <div  class="row Main4thPart">
@@ -118,7 +118,7 @@ export default class Newsfeed extends React.Component {
 
                                                  {/* 4th  part end*/}
                                                     {/* 5th  part start*/}
-                                                      <div class="row Main5thPart">
+                                                      {/* <div class="row Main5thPart">
                                                         <div class="col-md-12 eachcomment">
 
                                                          <div class="commentImg">
@@ -153,7 +153,7 @@ export default class Newsfeed extends React.Component {
 
 
 
-                                                   </div>
+                                                   </div> */}
 
                                                        {/* 5th  part end*/}
 

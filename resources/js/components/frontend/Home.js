@@ -48,7 +48,7 @@ NEvent=async(id)=>{
                     <div>
                 <div class="jumbotron">
 
-                    <h2 style={{textAlign:"center"}}>Welcome To Dept. Of ICT Online Attendance & Result System</h2>
+                    <h2 style={{textAlign:"center"}}>Welcome To Dept. Of ICT Online Attendance & Resulting System With Social Network</h2>
                     <p style={{textAlign:"center"}} class="homeP">To Get the MemberShip Please Registration </p>
 
                 </div>
@@ -57,7 +57,7 @@ NEvent=async(id)=>{
                 <div class="Headline">
                     <marquee direction="left" onmouseout="this.start()" onmouseover="this.stop()" scrolldelay="1" scrollamount="4">
 
-          <span><a href="#" style={{color:'#fff'}}>&nbsp;Welcome To Dept. Of ICT Online Attendance & Result System.</a>&nbsp;&nbsp;&nbsp;</span>
+          <span><a href="#" style={{color:'#fff'}}>&nbsp;Welcome To Dept. Of ICT Online Attendance & Resulting System With Social Network.</a>&nbsp;&nbsp;&nbsp;</span>
 
 
                   </marquee>
@@ -70,9 +70,9 @@ NEvent=async(id)=>{
                         <Fade bottom>
                             <div>
                          <div class="card chairmanprofile">
-                                <img class="card-img-top" src="public/Images/shahin.jpg" alt="Card image" style={{width:'100%'}}></img>
+                                <img class="card-img-top" src="public/Images/chairman.jpg" alt="Card image" style={{width:'100%'}}></img>
                                     <div class="card-body">
-                                <h5 class="card-title" style={{color:'#ae3333',fontWeight:'600',}}>Professor Dr. Mohammad Shain Uddin</h5>
+                                <h5 class="card-title" style={{color:'#ae3333',fontWeight:'600',}}>Dr. Mohammad Shain Uddin (Professor)</h5>
                                 <h5 style={{fontWeight:'600'}}>Chairman</h5>
                                 <p class="card-text" style={{fontWeight:'600',color:'#291b37'}}>Dept. Of ICT,MBSTU</p>
 

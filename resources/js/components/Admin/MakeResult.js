@@ -17,9 +17,9 @@ class MakeResult extends React.Component {
             TeacherData:[],
             email:'',
             batch:'',
-            it:'',
-            semester:'',
-            session:'',
+            it:this.props.match.params.it,
+            semester:this.props.match.params.semester,
+            session:this.props.match.params.session,
             courseCode:'',
             cname:'',
             errors:'',
@@ -46,8 +46,12 @@ class MakeResult extends React.Component {
             FinalIT:'',
             FinalSemester:'',
             FinalResult:[],
-            heldIn:'',
-            finalexamyr:'',
+            heldIn:this.props.match.params.held,
+            finalexamyr:this.props.match.params.year,
+            year1:this.props.match.params.year,
+            held:this.props.match.params.held,
+            session:this.props.match.params.session,
+            it:this.props.match.params.it,
           }
     }
     componentDidMount() {
@@ -73,7 +77,7 @@ class MakeResult extends React.Component {
           console.log('semesterInfo',this.state.SemesterCourseInfo);
     }
     GetFinalResult=async()=>{
-              const result=await FinalResultByIt(this.state.FinalIT);
+              const result=await FinalResultByIt(this.state.it,this.state.semester);
               if(result.success){
                   this.setState({ FinalResult:result.data  });
                   console.log('FinalResultOk',this.state.FinalResult);
@@ -292,12 +296,13 @@ changeInputForCtmark=async(e)=>{
                       $('#exampleModal').modal('hide');
                       this.getSemesterCourse();
                       this.GetFinalResult();
-
+                      console.log('check whats',this.state.FinalResult);
           }
                       else if(response.checkedData){
                           this.setState({
                                 errors:"",
                           errormessage:"", });
+                          this.GetFinalResult();
                           toast.error('Already Data Exists!')
 
                       }
@@ -387,8 +392,9 @@ changeInputForCtmark=async(e)=>{
                       $('#exampleModal').modal('hide');
                       this.getSemesterCourse();
                       this.GetFinalResult();
+                      window.location.reload(false);
                       toast('Data Inserted Successfully')
-
+                      console.log('check whats',this.state.FinalResult);
           }
                       else if(response.checkedData){
                           this.setState({
@@ -432,7 +438,7 @@ changeInputForCtmark=async(e)=>{
                 this.getSemesterCourse();
                 this.GetFinalResult();
                 toast.success('Semester Course Code-'+' '+ccode+' '+' Deleted Successfully');
-                this.totalClasses();
+
 
             }
 
@@ -473,6 +479,8 @@ changeInputForCtmark=async(e)=>{
 
                 <button type="button" class=" btn btn-success float-right clearfix"   style={{marginRight:"5px"}} data-toggle="modal" data-target="#exampleModal">
   Make Result
+
+
 </button>
 
 {/* modal start */}
@@ -488,70 +496,17 @@ changeInputForCtmark=async(e)=>{
       <div class="modal-body">
 
       <div class="addSemesterCourseForm" style={{maxWidth:'700px'}}>
-                            <h3>Make Grade Sheet</h3>
+                            <h3>Make Grade Sheet-2</h3>
 
                             <form onSubmit={this.formSubmit} >
 
-                <div class="form-group">
-            <label for="email">Final Examination Year</label>
-            <input type="text" class="form-control" id="email" placeholder="Final Examination Year" name="finalexamyr"
-                value={this.state.finalexamyr} onChange={(e) => this.changeInput(e)} ></input>
-            {this.state.errors && this.state.errors.finalexamyr && (
-                <p class="text-danger">{this.state.errors.finalexamyr[0]}</p>
-            )}
-                </div>
-
-                <div class="form-group">
-            <label for="email">Held In</label>
-            <input type="text" class="form-control" id="email" placeholder="Held In like April-June 2019" name="heldIn"
-                value={this.state.heldIn} onChange={(e) => this.changeInput(e)} ></input>
-            {this.state.errors && this.state.errors.heldIn && (
-                <p class="text-danger">{this.state.errors.heldIn[0]}</p>
-            )}
-                </div>
-                            <div class="form-group">
-            <label for="exampleFormControlSelect1">Session </label>
-            <select class="form-control" id="exampleFormControlSelect1" name="session"
-                onChange={(e) => this.changeInputSession(e)}>
-                    <option value="">Select</option>
-                    {this.state.ActiveSessiondata !=null && this.state.ActiveSessiondata.map((row,index)=>(
-               <option value={row.session}>{row.session}</option>
-                ))}
 
 
-            </select>
-            {this.state.errors && this.state.errors.session && (
-                <p class="text-danger">{this.state.errors.session[0]}</p>
-            )}
-        </div>
-
-        <div class="form-group">
-            <label for="email">IT</label>
-            <select class="form-control" id="exampleFormControlSelect1" name="it"
-                onChange={(e) => this.changeInputIT(e)}>
-                    <option value="">Select</option>
-                    {this.state.SessionStudent !=null && this.state.SessionStudent.map((row,index)=>(
-               <option value={row.it}>{row.it}</option>
-                ))}
 
 
-            </select>
-            {this.state.errors && this.state.errors.batch && (
-                <p class="text-danger">{this.state.errors.batch[0]}</p>
-            )}
-                </div>
-        <div class="form-group">
-            <label for="password">Semester</label>
-            <select class="form-control" id="exampleFormControlSelect1" name="semester"
-                onChange={(e) => this.changeInput(e)}>
-                    <option value="">Select</option>
-            <option value={this.state.SemesterInfo.semester}>{this.state.SemesterInfo.semester}</option>
 
-            </select>
-            {this.state.errors && this.state.errors.semester && (
-                <p class="text-danger">{this.state.errors.semester[0]}</p>
-            )}
-        </div>
+
+
         <div class="form-group">
             <label for="password">Theory/Lab</label>
             <select class="form-control" id="exampleFormControlSelect1" name="labtheory"
@@ -811,7 +766,7 @@ changeInputForCtmark=async(e)=>{
 
 
                         <br></br>
-                         <h3 style={{margin:'o auto;' ,display:'block',textAlign:'center',fontWeight:700}}>Result Processing Sheet</h3>
+                         <h3 style={{margin:'o auto;' ,display:'block',textAlign:'center',fontWeight:700}}>Result Processing Output Sheet</h3>
 
                          <div class="table-responsive">
                          <div style={{maxWidth:"1080px",overflowX:"scroll"}}>

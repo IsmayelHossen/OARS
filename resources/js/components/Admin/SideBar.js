@@ -61,7 +61,9 @@ class SideBar extends React.Component {
                                     <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Result</a>
                                     <ul class="list-unstyled collapse" id="homeSubmenu2">
                                         <li>
-                                        <Link class="hrefa" to={`${PUBLIC_URL}makeresult`}>Make Result</Link>
+
+
+                                        <Link class="hrefa" to={`${PUBLIC_URL}resultPprestep`}>Make Result</Link>
                                         </li>
                                         <li>
                                         <Link class="hrefa" to={`${PUBLIC_URL}getresult`}>Get Result</Link>

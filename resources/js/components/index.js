@@ -65,6 +65,7 @@ import ColleagueDetails from './Teacher/ColleagueDetails';
 import NoticeEvent from './frontend/NoticeEvent';
 import TeacherInfo from './Student/TeacherInfo';
 import AdminTeacherInfo from './Admin/AdminTeacherInfo';
+import ResultPreStep from './Admin/ResultPreStep';
 
 class Index extends React.Component {
     constructor(props){
@@ -209,6 +210,9 @@ class Index extends React.Component {
                     <Route exact path={`${PUBLIC_URL}newsfeed`}>
                         <Newsfeed />
                     </Route>
+                    <Route exact path={`${PUBLIC_URL}resultPprestep`}>
+                        <ResultPreStep />
+                    </Route>
                        <Route exact path={PUBLIC_URL}>
                     <AdminHome userData1={this.state.userData1}/>
                    </Route>
@@ -230,7 +234,7 @@ class Index extends React.Component {
                     </Route>
                    <Route exact path={`${PUBLIC_URL}viewstudent/:session`}
                     component={ViewStudents}  />
-                        <Route exact path={`${PUBLIC_URL}makeresult`}
+                        <Route exact path={`${PUBLIC_URL}makeresult/:year/:held/:session/:it/:semester`}
                     component={MakeResult}  />
                       <Route exact path={`${PUBLIC_URL}getresult`}
                     component={GetResult}  />

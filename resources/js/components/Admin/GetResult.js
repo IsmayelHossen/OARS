@@ -191,7 +191,13 @@ class GetResult extends React.Component {
 </div>
   {/* modal end */}
 
-<h3>Semester Wise Result</h3>
+<h3 style={{
+
+textAlign:'center',
+paddingBottom:'10px',
+fontWeight:'700',
+fontSize:'24px'
+}}>Semester Wise Grade Sheet Result</h3>
 { this.state.notfound==true && this.state.SemesterResult.length==0 &&(
                                <h3 style={{color:'red'}}>No result found </h3>
                              )}

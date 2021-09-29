@@ -114,7 +114,7 @@ Route::get('getSemesterCTitleMR1/{session}/{courseCode}',[AdminController::class
 Route::get('getSemesterAttendanceMark1/{session}/{courseCode}/{it}',[AdminController::class,'getSemesterAttendanceMark1']);
 Route::get('getSemesterCTMark1/{session}/{courseCode}/{it}',[AdminController::class,'getSemesterCTMark1']);
 Route::post('SaveSemesterResult1',[AdminController::class,'SaveSemesterResult1']);
-Route::get('FinalResultByIt1/{it}',[AdminController::class,'FinalResultByIt1']);
+Route::get('FinalResultByIt1/{it}/{semester}',[AdminController::class,'FinalResultByIt1']);
 Route::get('deleteSpecificSemesterCCResult1/{it}/{ccode}/{session}',[AdminController::class,'deleteSpecificSemesterCCResult1']);
 Route::get('AllSession',[AdminController::class,'AllSession']);
 Route::get('SearchSemesterWiseResult1/{session}/{semester}',[AdminController::class,'SearchSemesterWiseResult1']);
